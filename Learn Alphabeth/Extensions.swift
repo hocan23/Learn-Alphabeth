@@ -6,25 +6,44 @@
 //
 
 import Foundation
-import AVFAudio
+import UIKit
+extension UIView{
+func anchor(top : NSLayoutYAxisAnchor?,
+            bottom : NSLayoutYAxisAnchor?,
+            leading : NSLayoutXAxisAnchor?,
+            trailing : NSLayoutXAxisAnchor?,
+            paddingTop : CGFloat,
+            paddingBottom : CGFloat,
+            paddingLeft : CGFloat,
+            paddingRight : CGFloat,
+            width : CGFloat,
+            height : CGFloat) {
+    translatesAutoresizingMaskIntoConstraints = false
+    
+    if let top = top {
+        self.topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
+    }
+    if let bottom = bottom {
+        self.bottomAnchor.constraint(equalTo: bottom, constant: paddingBottom).isActive = true
+    }
+    if let leading = leading {
+        self.leadingAnchor.constraint(equalTo: leading, constant: paddingLeft).isActive = true
+    }
+    if let trailing = trailing {
+        self.trailingAnchor.constraint(equalTo: trailing, constant: paddingRight).isActive = true
+    }
+    
+    if width != 0 {
+        widthAnchor.constraint(equalToConstant: width).isActive = true
+    }
+    if height != 0 {
+        heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
+    
+}
+
+}
 
 
-public func playMusic (name:String,type:String){
-let urlString = Bundle.main.path(forResource: name, ofType: type)
-var player : AVAudioPlayer?
-do {
-    try AVAudioSession.sharedInstance().setMode(.default)
-    try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-    guard let urlString = urlString else{
-        return
-    }
-    player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
-    guard let player = player else{
-        return
-    }
-    player.play()
-}
-catch{
-    print("not work")
-}
-}
+
+

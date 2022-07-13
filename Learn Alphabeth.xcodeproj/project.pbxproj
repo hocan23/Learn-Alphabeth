@@ -34,6 +34,9 @@
 		76260657287418DD00BE102E /* V.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7626063D287418DC00BE102E /* V.mp3 */; };
 		76260658287418DD00BE102E /* Y.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7626063E287418DD00BE102E /* Y.mp3 */; };
 		76260659287418DD00BE102E /* B.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7626063F287418DD00BE102E /* B.mp3 */; };
+		765AEDB82874DFA3004EA8B2 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AEDB62874DFA3004EA8B2 /* DetailCollectionViewCell.swift */; };
+		7687D2E32875784F00ACBC00 /* Cera Pro Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7687D2E22875784F00ACBC00 /* Cera Pro Medium.ttf */; };
+		7687D2E52875787900ACBC00 /* Cera Pro Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7687D2E42875787900ACBC00 /* Cera Pro Bold.ttf */; };
 		7C318B3B28722259003B0C36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C318B3A28722259003B0C36 /* ViewController.swift */; };
 		7C318B3D2872380D003B0C36 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C318B3C2872380D003B0C36 /* DetailViewController.swift */; };
 		7C693FF62870E72E0030BFDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C693FF52870E72E0030BFDF /* AppDelegate.swift */; };
@@ -92,6 +95,9 @@
 		7626063D287418DC00BE102E /* V.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = V.mp3; sourceTree = "<group>"; };
 		7626063E287418DD00BE102E /* Y.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Y.mp3; sourceTree = "<group>"; };
 		7626063F287418DD00BE102E /* B.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = B.mp3; sourceTree = "<group>"; };
+		765AEDB62874DFA3004EA8B2 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		7687D2E22875784F00ACBC00 /* Cera Pro Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cera Pro Medium.ttf"; sourceTree = "<group>"; };
+		7687D2E42875787900ACBC00 /* Cera Pro Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cera Pro Bold.ttf"; sourceTree = "<group>"; };
 		7C318B3A28722259003B0C36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7C318B3C2872380D003B0C36 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7C693FF22870E72E0030BFDF /* Learn Alphabeth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learn Alphabeth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,7 +201,10 @@
 				7C318B3C2872380D003B0C36 /* DetailViewController.swift */,
 				7C693FF72870E72E0030BFDF /* SceneDelegate.swift */,
 				76260623287414B200BE102E /* Extensions.swift */,
+				7687D2E42875787900ACBC00 /* Cera Pro Bold.ttf */,
+				7687D2E22875784F00ACBC00 /* Cera Pro Medium.ttf */,
 				7C318B3A28722259003B0C36 /* ViewController.swift */,
+				765AEDB62874DFA3004EA8B2 /* DetailCollectionViewCell.swift */,
 				762606252874185100BE102E /* Audio */,
 				7C693FFB2870E72E0030BFDF /* Main.storyboard */,
 				7C693FFE2870E72F0030BFDF /* Assets.xcassets */,
@@ -338,6 +347,8 @@
 				76260642287418DD00BE102E /* F.mp3 in Resources */,
 				7C693FFF2870E72F0030BFDF /* Assets.xcassets in Resources */,
 				76260641287418DD00BE102E /* J.mp3 in Resources */,
+				7687D2E32875784F00ACBC00 /* Cera Pro Medium.ttf in Resources */,
+				7687D2E52875787900ACBC00 /* Cera Pro Bold.ttf in Resources */,
 				7626064D287418DD00BE102E /* L.mp3 in Resources */,
 				76260646287418DD00BE102E /* N.mp3 in Resources */,
 				7626064F287418DD00BE102E /* Q.mp3 in Resources */,
@@ -379,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				765AEDB82874DFA3004EA8B2 /* DetailCollectionViewCell.swift in Sources */,
 				7C318B3B28722259003B0C36 /* ViewController.swift in Sources */,
 				76260624287414B200BE102E /* Extensions.swift in Sources */,
 				7C693FF62870E72E0030BFDF /* AppDelegate.swift in Sources */,
