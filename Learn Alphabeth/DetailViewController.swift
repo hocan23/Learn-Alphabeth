@@ -51,7 +51,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         collectionAnimal.delegate = self
         collectionAnimal.dataSource = self
         removeBtn.layer.cornerRadius = (view.frame.height*0.045)/2
-        homeBtn.layer.cornerRadius = (view.frame.height*0.05)/2
+       
         autoNextBtn.layer.cornerRadius = (view.frame.height*0.09)/2
         prevBtn.layer.cornerRadius = (view.frame.height*0.08)/2
         nextBtn.layer.cornerRadius = (view.frame.height*0.08)/2
@@ -80,6 +80,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     
     
     func setupConstraints (){
+       
         topView.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.15)
         collectionAnimal.anchor(top: topView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.55)
         print(view.bounds.height)
@@ -89,7 +90,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         playBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -bottomView.frame.height*0.2, paddingLeft: 0, paddingRight: 0, width: view.frame.height*0.09, height: view.frame.height*0.09)
         nextBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: playBtn.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -bottomView.frame.height*0.225, paddingLeft: bottomView.frame.width*0.06, paddingRight: 0, width: view.frame.height*0.08, height: view.frame.height*0.08)
         prevBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: nil, trailing: playBtn.leadingAnchor, paddingTop: 0, paddingBottom: -bottomView.frame.height*0.225, paddingLeft: 0, paddingRight: -bottomView.frame.width*0.06, width: view.frame.height*0.08, height: view.frame.height*0.08)
-        homeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: topView.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        homeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: topView.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: -view.frame.height*0.045, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.055, height: view.frame.height*0.045)
         removeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: nil, trailing: topView.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.3, height: view.frame.height*0.035)
 //        animalImage.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: nil, trailing: nil, paddingTop: view.frame.height*0.165, paddingBottom: view.frame.height*0.165, paddingLeft: 0, paddingRight: 0, width: view.frame.height*0.22, height: view.frame.height*0.22)
 
@@ -151,10 +152,14 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     
     @IBAction func autoNextPressed(_ sender: UIButton) {
         player?.stop()
-       
+        if isAuto == false{
         playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
         isAuto = true
-     
+        }else{
+            isAuto = false
+            playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+
+        }
 //        setupUi()
     }
     @IBAction func beforePressed(_ sender: UIButton) {
@@ -166,7 +171,10 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             selectedItemNumber = cellIds.count-1
         }
         self.collectionAnimal.scrollToItem(at:IndexPath(item: selectedItemNumber, section: 0), at: .right, animated: false)
-        playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+        if isAuto == false{
+            playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+
+        }
 //        setupUi()
 //        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
 
@@ -180,8 +188,10 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             selectedItemNumber = 0
         }
         self.collectionAnimal.scrollToItem(at:IndexPath(item: selectedItemNumber, section: 0), at: .right, animated: false)
-        playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
-
+//        if isAuto == false{
+//            playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+//
+//        }
 //        setupUi()
         print(cellIds[selectedItemNumber].letterSound)
 //        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
