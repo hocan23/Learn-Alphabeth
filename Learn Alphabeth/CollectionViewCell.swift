@@ -10,7 +10,6 @@ import UIKit
 class CollectionViewCell: UICollectionViewCell {
     
     
-    @IBOutlet weak var cardBG: UIImageView!
     
     @IBOutlet weak var animalImage: UIImageView!
     
@@ -18,7 +17,9 @@ class CollectionViewCell: UICollectionViewCell {
     
     
     
-    
-
+     override func awakeFromNib() {
+         super.awakeFromNib()
+         contentView.layer.cornerRadius = 20
+     }
 
 }

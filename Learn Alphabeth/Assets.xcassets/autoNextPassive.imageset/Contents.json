@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "autoNextPassive.png",
+      "filename" : "Rectangle 12.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "autoNextPassive@2x.png",
+      "filename" : "Rectangle 12@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "autoNextPassive@3x.png",
+      "filename" : "Rectangle 12@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

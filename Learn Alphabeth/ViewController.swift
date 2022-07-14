@@ -30,32 +30,32 @@ class Alphabeth {
 
 let cellIds: [Alphabeth] = [
     
-    Alphabeth(letterImage: "A", animalImage: "AA", letterSound: "A", animalName: "ALIGATOR" ),
-    Alphabeth(letterImage: "B", animalImage: "BB", letterSound: "B", animalName: "BUTTERFLY" ),
-    Alphabeth(letterImage: "C", animalImage: "CC", letterSound: "C", animalName: "COW" ),
-    Alphabeth(letterImage: "D", animalImage: "DD", letterSound: "D", animalName: "DOG" ),
-    Alphabeth(letterImage: "E", animalImage: "EE", letterSound: "E", animalName: "ELEPHANT" ),
-    Alphabeth(letterImage: "F", animalImage: "FF", letterSound: "F", animalName: "FROG" ),
-    Alphabeth(letterImage: "G", animalImage: "GG", letterSound: "G", animalName: "GOAT" ),
-    Alphabeth(letterImage: "H", animalImage: "HH", letterSound: "H", animalName: "HIPPO" ),
-    Alphabeth(letterImage: "I", animalImage: "II", letterSound: "I", animalName: "IGUANA" ),
-    Alphabeth(letterImage: "J", animalImage: "JJ", letterSound: "J", animalName: "JELLYFISH" ),
-    Alphabeth(letterImage: "K", animalImage: "KK", letterSound: "K", animalName: "KANGAROO" ),
-    Alphabeth(letterImage: "L", animalImage: "LL", letterSound: "L", animalName: "LION" ),
-    Alphabeth(letterImage: "M", animalImage: "MM", letterSound: "M", animalName: "MONKEY" ),
-    Alphabeth(letterImage: "N", animalImage: "NN", letterSound: "N", animalName: "NARWHAL" ),
-    Alphabeth(letterImage: "O", animalImage: "OO", letterSound: "O", animalName: "OCTOPUS" ),
-    Alphabeth(letterImage: "P", animalImage: "PP", letterSound: "P", animalName: "PANDA" ),
-    Alphabeth(letterImage: "Q", animalImage: "QQ", letterSound: "Q", animalName: "QUAKKA" ),
-    Alphabeth(letterImage: "R", animalImage: "RR", letterSound: "R", animalName: "RABBIT" ),
-    Alphabeth(letterImage: "S", animalImage: "SS", letterSound: "S", animalName: "SNAKE" ),
-    Alphabeth(letterImage: "T", animalImage: "TT", letterSound: "T", animalName: "TURTLE" ),
-    Alphabeth(letterImage: "U", animalImage: "UU", letterSound: "U", animalName: "UMBRELLABIRD" ),
-    Alphabeth(letterImage: "V", animalImage: "VV", letterSound: "V", animalName: "VOLE" ),
-    Alphabeth(letterImage: "W", animalImage: "WW", letterSound: "W", animalName: "WOLF" ),
-    Alphabeth(letterImage: "X", animalImage: "XX", letterSound: "X", animalName: "X-RAY FISH" ),
-    Alphabeth(letterImage: "Y", animalImage: "YY", letterSound: "Y", animalName: "YAK" ),
-    Alphabeth(letterImage: "Z", animalImage: "ZZ", letterSound: "Z", animalName: "ZEBRA" ),
+    Alphabeth(letterImage: "Aa", animalImage: "AA", letterSound: "A", animalName: "ALIGATOR" ),
+    Alphabeth(letterImage: "Bb", animalImage: "BB", letterSound: "B", animalName: "BUTTERFLY" ),
+    Alphabeth(letterImage: "Cc", animalImage: "CC", letterSound: "C", animalName: "COW" ),
+    Alphabeth(letterImage: "Dd", animalImage: "DD", letterSound: "D", animalName: "DOG" ),
+    Alphabeth(letterImage: "Ee", animalImage: "EE", letterSound: "E", animalName: "ELEPHANT" ),
+    Alphabeth(letterImage: "Ff", animalImage: "FF", letterSound: "F", animalName: "FROG" ),
+    Alphabeth(letterImage: "Gg", animalImage: "GG", letterSound: "G", animalName: "GOAT" ),
+    Alphabeth(letterImage: "Hh", animalImage: "HH", letterSound: "H", animalName: "HIPPO" ),
+    Alphabeth(letterImage: "Ii", animalImage: "II", letterSound: "I", animalName: "IGUANA" ),
+    Alphabeth(letterImage: "Jj", animalImage: "JJ", letterSound: "J", animalName: "JELLYFISH" ),
+    Alphabeth(letterImage: "Kk", animalImage: "KK", letterSound: "K", animalName: "KANGAROO" ),
+    Alphabeth(letterImage: "Ll", animalImage: "LL", letterSound: "L", animalName: "LION" ),
+    Alphabeth(letterImage: "Mm", animalImage: "MM", letterSound: "M", animalName: "MONKEY" ),
+    Alphabeth(letterImage: "Nn", animalImage: "NN", letterSound: "N", animalName: "NARWHAL" ),
+    Alphabeth(letterImage: "Oo", animalImage: "OO", letterSound: "O", animalName: "OCTOPUS" ),
+    Alphabeth(letterImage: "Pp", animalImage: "PP", letterSound: "P", animalName: "PANDA" ),
+    Alphabeth(letterImage: "Qq", animalImage: "QQ", letterSound: "Q", animalName: "QUAKKA" ),
+    Alphabeth(letterImage: "Rr", animalImage: "RR", letterSound: "R", animalName: "RABBIT" ),
+    Alphabeth(letterImage: "Ss", animalImage: "SS", letterSound: "S", animalName: "SNAKE" ),
+    Alphabeth(letterImage: "Tt", animalImage: "TT", letterSound: "T", animalName: "TURTLE" ),
+    Alphabeth(letterImage: "Uu", animalImage: "UU", letterSound: "U", animalName: "UMBRELLABIRD" ),
+    Alphabeth(letterImage: "Vv", animalImage: "VV", letterSound: "V", animalName: "VOLE" ),
+    Alphabeth(letterImage: "Ww", animalImage: "WW", letterSound: "W", animalName: "WOLF" ),
+    Alphabeth(letterImage: "Xx", animalImage: "XX", letterSound: "X", animalName: "X-RAY FISH" ),
+    Alphabeth(letterImage: "Yy", animalImage: "YY", letterSound: "Y", animalName: "YAK" ),
+    Alphabeth(letterImage: "Zz", animalImage: "ZZ", letterSound: "Z", animalName: "ZEBRA" ),
     
     
 ]
@@ -95,7 +95,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = lettersCW.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
-        cell.cardBG.image = UIImage(named: "Cards")
         cell.animalImage.image = UIImage(named: cellIds[indexPath.item].animalImage)
         cell.letterImage.image = UIImage(named: cellIds[indexPath.item].letterImage)
     
@@ -112,8 +111,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         destinationVC.delegate = self
         destinationVC.cellIds = cellIds
         destinationVC.selectedItem = cellIds[indexPath.row]
+        print(indexPath.row)
         destinationVC.selectedItemNumber = indexPath.row
         destinationVC.modalPresentationStyle = .fullScreen
+        destinationVC.firstScrollİndex = indexPath.row
         self.present(destinationVC, animated: true, completion: nil)
         
         

@@ -17,6 +17,8 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     weak var delegate : DetailViewControllerDelegate?
     var isAuto : Bool = false
     var isPlay : Bool = false
+    var isautoPlay : Bool = false
+    var firstScrollİndex : Int?
     @IBOutlet weak var animalImage: UIImageView!
     
     @IBOutlet weak var collectionAnimal: UICollectionView!
@@ -50,20 +52,22 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         setupConstraints()
         collectionAnimal.delegate = self
         collectionAnimal.dataSource = self
-        removeBtn.layer.cornerRadius = (view.frame.height*0.045)/2
-       
-        autoNextBtn.layer.cornerRadius = (view.frame.height*0.09)/2
-        prevBtn.layer.cornerRadius = (view.frame.height*0.08)/2
-        nextBtn.layer.cornerRadius = (view.frame.height*0.08)/2
-        playBtn.layer.cornerRadius = (view.frame.height*0.09)/2
-        self.collectionAnimal.backgroundColor = UIColor(named: "clear")
-       
+        print(selectedItemNumber)
+//        removeBtn.layer.cornerRadius = (view.frame.height*0.045)/2
+//
+//        autoNextBtn.layer.cornerRadius = (view.frame.height*0.09)/2
+//        prevBtn.layer.cornerRadius = (view.frame.height*0.08)/2
+//        nextBtn.layer.cornerRadius = (view.frame.height*0.08)/2
+//        playBtn.layer.cornerRadius = (view.frame.height*0.09)/2
+        self.collectionAnimal.backgroundColor = UIColor(red: 194/255, green: 213/255, blue: 236/255, alpha: 1)
+        
+        collectionAnimal.contentInset = UIEdgeInsets(top: 0, left: view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05)
+
     }
     override func viewWillAppear(_ animated: Bool) {
-   
+       
        
     }
-   
     
     @IBAction func homeBtnTap(_ sender: Any) {
         
@@ -82,24 +86,36 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     func setupConstraints (){
        
         topView.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.15)
-        collectionAnimal.anchor(top: topView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.55)
+        collectionAnimal.anchor(top: topView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.6)
         print(view.bounds.height)
         print(view.frame.height*0.3)
-        bottomView.anchor(top: collectionAnimal.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height:  view.frame.height*0.3)
-        autoNextBtn.anchor(top: nil, bottom: bottomView.bottomAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -10, paddingLeft: 0, paddingRight: 0, width: view.frame.width*0.5, height: view.frame.height*0.09)
-        playBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -bottomView.frame.height*0.2, paddingLeft: 0, paddingRight: 0, width: view.frame.height*0.09, height: view.frame.height*0.09)
-        nextBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: playBtn.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -bottomView.frame.height*0.225, paddingLeft: bottomView.frame.width*0.06, paddingRight: 0, width: view.frame.height*0.08, height: view.frame.height*0.08)
-        prevBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: nil, trailing: playBtn.leadingAnchor, paddingTop: 0, paddingBottom: -bottomView.frame.height*0.225, paddingLeft: 0, paddingRight: -bottomView.frame.width*0.06, width: view.frame.height*0.08, height: view.frame.height*0.08)
-        homeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: topView.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: -view.frame.height*0.045, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.055, height: view.frame.height*0.045)
-        removeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: nil, trailing: topView.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.3, height: view.frame.height*0.035)
+        bottomView.anchor(top: collectionAnimal.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height:  view.frame.height*0.25)
+        autoNextBtn.anchor(top: nil, bottom: bottomView.bottomAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -10, paddingLeft: 0, paddingRight: 0, width: view.frame.width*0.5, height: view.frame.height*0.07)
+        playBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.02, paddingLeft: 0, paddingRight: 0, width: view.frame.width*0.2, height: view.frame.height*0.09)
+        nextBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: playBtn.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: bottomView.frame.width*0.06, paddingRight: 0, width: view.frame.width*0.16, height: view.frame.height*0.075)
+        prevBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: nil, trailing: playBtn.leadingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: 0, paddingRight: -bottomView.frame.width*0.06, width: view.frame.width*0.16, height: view.frame.height*0.075)
+        homeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: topView.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: -view.frame.height*0.045, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        removeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: nil, trailing: topView.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.35, height: view.frame.height*0.05)
 //        animalImage.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: nil, trailing: nil, paddingTop: view.frame.height*0.165, paddingBottom: view.frame.height*0.165, paddingLeft: 0, paddingRight: 0, width: view.frame.height*0.22, height: view.frame.height*0.22)
 
     }
     
+   
+    
+    @IBAction func autoPlaySwitchPressed(_ sender: UISwitch) {
+        print(sender.isOn)
+        if sender.isOn {
+            isautoPlay = true
+        }else{
+           isautoPlay = false
+        }
+        collectionAnimal.reloadData()
+    }
     
     @IBAction func playTapped(_ sender: UIButton) {
-            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
-     
+        
+        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+        print(isautoPlay)
         
     }
     public func playMusic (name:String,type:String){
@@ -175,19 +191,24 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
 
         }
-//        setupUi()
-//        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
-
+//
     }
     @IBAction func nextPressed(_ sender: UIButton) {
         player?.stop()
         if selectedItemNumber < cellIds.count-1{
             selectedItemNumber += 1
-            
+            if isautoPlay == true {
+                playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+            }
+
         }else{
             selectedItemNumber = 0
         }
         self.collectionAnimal.scrollToItem(at:IndexPath(item: selectedItemNumber, section: 0), at: .right, animated: false)
+//        if isautoPlay == true {
+//            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+//        }
+
 //        if isAuto == false{
 //            playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
 //
@@ -225,53 +246,59 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
         visibleRect.size = collectionAnimal.bounds.size
         let visiblePoint = CGPoint(x: CGFloat(visibleRect.midX), y: CGFloat(visibleRect.midY))
         let visibleIndexPath: IndexPath? = collectionAnimal.indexPathForItem(at: visiblePoint)
-        selectedItemNumber = visibleIndexPath?.row
+//        selectedItemNumber = visibleIndexPath?.row
+        print(selectedItemNumber)
         player?.stop()
-        
-       playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
-        
+        if let number = selectedItemNumber  {
+            if isautoPlay == true || isAuto == true{
+                playMusic(name: cellIds[number].letterSound, type: "mp3")
+
+            }
+        }
         print("Visible cell's index is : \(visibleIndexPath?.row)!")
     }
     
    
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        targetContentOffset.pointee = scrollView.contentOffset
-        var indexes = self.collectionAnimal.indexPathsForVisibleItems
-        indexes.sort()
-        var index = indexes.first!
-        let cell = self.collectionAnimal.cellForItem(at: index)!
-        let position = self.collectionAnimal.contentOffset.x - cell.frame.origin.x
-        if position > cell.frame.size.width/2{
-           index.row = index.row+1
-        }
-        self.collectionAnimal.scrollToItem(at: index, at: .left, animated: true )
-    }
-    
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        targetContentOffset.pointee = scrollView.contentOffset
+//        var indexes = self.collectionAnimal.indexPathsForVisibleItems
+//        indexes.sort()
+//        var index = indexes.first!
+//        let cell = self.collectionAnimal.cellForItem(at: index)!
+//        let position = self.collectionAnimal.contentOffset.x - cell.frame.origin.x
+//        if position > cell.frame.size.width/2{
+//           index.row = index.row+1
+//        }
+//        self.collectionAnimal.scrollToItem(at: index, at: .left, animated: true )
+//    }
+//
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionAnimal.dequeueReusableCell(withReuseIdentifier: "colcell", for: indexPath) as! DetailCollectionViewCell
         cell.animalImg.image = UIImage(named:  cellIds[indexPath.row].animalImage)
-        cell.inimalLatter.image = UIImage(named: cellIds[indexPath.row].letterImage)
         cell.animalLabel.text = cellIds[indexPath.row].animalName
-        
-        cell.layer.cornerRadius = 10
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOffset = CGSize(width: 2, height: 2)
-        cell.layer.shadowRadius = 5
-        cell.layer.shadowOpacity = 1
+        cell.switch.setOn(isautoPlay, animated: true)
+        cell.inimalLatter.text = cellIds[indexPath.row].letterImage
+
 //        cell.animalImg.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: collectionAnimal.frame.height*0.22, paddingBottom: -collectionAnimal.frame.height*0.22, paddingLeft: collectionAnimal.frame.width*0.25, paddingRight: collectionAnimal.frame.width*0.25, width: 0, height: collectionAnimal.frame.height*0.6)
 
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.size.width-20, height: collectionAnimal.frame.size.height-40)
+        return CGSize(width: view.frame.size.width*0.9, height: view.frame.size.height*0.6-30)
     }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return view.frame.width*0.05
+//    }
     
     internal func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-          let indexToScrollTo = IndexPath(item: selectedItemNumber, section: 0)
-          self.collectionAnimal.scrollToItem(at: indexToScrollTo, at: .left, animated: false)
+        print(selectedItemNumber)
+        let indexToScrollTo = IndexPath(item: selectedItemNumber, section: 0)
+            collectionAnimal.scrollToItem(at: indexToScrollTo, at: .right, animated: false)
+        
          
       }
     
