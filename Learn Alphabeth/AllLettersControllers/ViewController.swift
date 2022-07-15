@@ -68,8 +68,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     
     
-    let insets = UIEdgeInsets(top: 10, left: 15, bottom: 50, right: 15)
-    let spacing = CGSize(width: 5, height: 5)
+    let insets = UIEdgeInsets(top: 10, left: 15, bottom: 60, right: 15)
+       let spacing = CGSize(width: 5, height: 10)
 
     @IBOutlet weak var lettersCW: UICollectionView!
     
@@ -96,8 +96,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = lettersCW.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
         cell.animalImage.image = UIImage(named: cellIds[indexPath.item].animalImage)
-        cell.letterImage.image = UIImage(named: cellIds[indexPath.item].letterImage)
-    
+        cell.letterImage.image = UIImage(named: String(cellIds[indexPath.item].letterImage.prefix(1)))
+        cell.layer.masksToBounds = false
+               cell.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
+               cell.layer.shadowOffset = CGSize(width: -3, height: 4)
+               cell.layer.shadowRadius = 10
+               cell.layer.shadowOpacity = 1
         
         return cell
 

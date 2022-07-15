@@ -19,6 +19,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     var isPlay : Bool = false
     var isautoPlay : Bool = false
     var firstScrollİndex : Int?
+    var isFirstOpen : Bool = true
     @IBOutlet weak var animalImage: UIImageView!
     
     @IBOutlet weak var collectionAnimal: UICollectionView!
@@ -53,6 +54,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         collectionAnimal.delegate = self
         collectionAnimal.dataSource = self
         print(selectedItemNumber)
+        collectionAnimal.contentInset
 //        removeBtn.layer.cornerRadius = (view.frame.height*0.045)/2
 //
 //        autoNextBtn.layer.cornerRadius = (view.frame.height*0.09)/2
@@ -62,6 +64,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         self.collectionAnimal.backgroundColor = UIColor(red: 194/255, green: 213/255, blue: 236/255, alpha: 1)
         
         collectionAnimal.contentInset = UIEdgeInsets(top: 0, left: view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05)
+        
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +99,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         prevBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: nil, trailing: playBtn.leadingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: 0, paddingRight: -bottomView.frame.width*0.06, width: view.frame.width*0.16, height: view.frame.height*0.075)
         homeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: topView.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: -view.frame.height*0.045, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
         removeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: nil, trailing: topView.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.35, height: view.frame.height*0.05)
+
 //        animalImage.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: nil, trailing: nil, paddingTop: view.frame.height*0.165, paddingBottom: view.frame.height*0.165, paddingLeft: 0, paddingRight: 0, width: view.frame.height*0.22, height: view.frame.height*0.22)
 
     }
@@ -190,7 +194,9 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         if isAuto == false{
             playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
 
-        }
+         }else{
+            playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+         }
 //
     }
     @IBAction func nextPressed(_ sender: UIButton) {
@@ -199,6 +205,9 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             selectedItemNumber += 1
             if isautoPlay == true {
                 playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+            }else{
+                playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+
             }
 
         }else{
@@ -218,13 +227,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
 //        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
         
     }
-//    func setupUi () {
-//        animalImage.image = UIImage(named:  cellIds[selectedItemNumber].animalImage)
-//        letterImage.image = UIImage(named: cellIds[selectedItemNumber].letterImage)
-//        animalName.text = cellIds[selectedItemNumber].animalName
-//
-//    }
-    
+
 }
 
 
@@ -246,7 +249,11 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
         visibleRect.size = collectionAnimal.bounds.size
         let visiblePoint = CGPoint(x: CGFloat(visibleRect.midX), y: CGFloat(visibleRect.midY))
         let visibleIndexPath: IndexPath? = collectionAnimal.indexPathForItem(at: visiblePoint)
-//        selectedItemNumber = visibleIndexPath?.row
+        if isFirstOpen != true{
+        selectedItemNumber = visibleIndexPath?.row
+        }else{
+            isFirstOpen = false
+        }
         print(selectedItemNumber)
         player?.stop()
         if let number = selectedItemNumber  {
@@ -268,18 +275,26 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
 //        let cell = self.collectionAnimal.cellForItem(at: index)!
 //        let position = self.collectionAnimal.contentOffset.x - cell.frame.origin.x
 //        if position > cell.frame.size.width/2{
-//           index.row = index.row+1
+//           index.row = index.row+2
+//            print(index)
 //        }
 //        self.collectionAnimal.scrollToItem(at: index, at: .left, animated: true )
 //    }
-//
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionAnimal.dequeueReusableCell(withReuseIdentifier: "colcell", for: indexPath) as! DetailCollectionViewCell
         cell.animalImg.image = UIImage(named:  cellIds[indexPath.row].animalImage)
         cell.animalLabel.text = cellIds[indexPath.row].animalName
         cell.switch.setOn(isautoPlay, animated: true)
         cell.inimalLatter.text = cellIds[indexPath.row].letterImage
+        cell.layer.cornerRadius = 20
+          cell.contentView.layer.cornerRadius = 20
 
+          cell.layer.masksToBounds = false
+          cell.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
+          cell.layer.shadowOffset = CGSize(width: -3, height: 4)
+          cell.layer.shadowRadius = 10
+          cell.layer.shadowOpacity = 1
 //        cell.animalImg.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: collectionAnimal.frame.height*0.22, paddingBottom: -collectionAnimal.frame.height*0.22, paddingLeft: collectionAnimal.frame.width*0.25, paddingRight: collectionAnimal.frame.width*0.25, width: 0, height: collectionAnimal.frame.height*0.6)
 
         return cell
@@ -287,7 +302,7 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.size.width*0.9, height: view.frame.size.height*0.6-30)
+        return CGSize(width: view.frame.size.width*0.9, height: view.frame.size.height*0.6-40)
     }
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 //        return view.frame.width*0.05
