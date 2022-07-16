@@ -9,6 +9,8 @@ import UIKit
 
 class QuizViewController: UIViewController {
  
+    @IBOutlet weak var removeView: UIImageView!
+    @IBOutlet weak var homeView: UIImageView!
     @IBOutlet weak var midButton: UIButton!
     @IBOutlet weak var playView: UIImageView!
     @IBOutlet weak var leftButton: UIButton!
@@ -40,10 +42,17 @@ class QuizViewController: UIViewController {
         bottom1View.anchor(top: collectionAnimal1.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height:  view.frame.height*0.25)
 
         homeBtn.anchor(top: top1View.topAnchor, bottom: top1View.bottomAnchor, leading: top1View.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: -view.frame.height*0.045, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+//        homeView.anchor(top: top1View.topAnchor, bottom: top1View.bottomAnchor, leading: top1View.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: -view.frame.height*0.045, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
         removeBtn.anchor(top: top1View.topAnchor, bottom: top1View.bottomAnchor, leading: nil, trailing: top1View.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.35, height: view.frame.height*0.05)
+//        removeView.anchor(top: top1View.topAnchor, bottom: top1View.bottomAnchor, leading: nil, trailing: top1View.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.35, height: view.frame.height*0.05)
         leftButton.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.1, paddingRight: 0, width: view.frame.width*0.237, height: view.frame.height*0.11)
         midButton.anchor(top: nil, bottom: nil, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.width*0.237, height: view.frame.height*0.11)
         rightButton.anchor(top: nil, bottom: nil, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.width*0.237, height: view.frame.height*0.11)
+        
+        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.05, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -15, width: view.frame.width*0.35, height: view.frame.height*0.05)
+        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        homeView.isUserInteractionEnabled = true
+        homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
        
         leftButton.layer.cornerRadius = 20
         midButton.layer.cornerRadius = 20
@@ -51,7 +60,9 @@ class QuizViewController: UIViewController {
 
         
     }
-
+    @objc func exitTapped (){
+        self.dismiss(animated: true)
+    }
     /*
     // MARK: - Navigation
 

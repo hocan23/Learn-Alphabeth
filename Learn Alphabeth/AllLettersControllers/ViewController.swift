@@ -63,9 +63,12 @@ let cellIds: [Alphabeth] = [
 private let reuseIdentifier = "Cell"
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    @IBOutlet weak var collectionLetter: UICollectionView!
     
-  
-
+    @IBOutlet weak var homeView: UIImageView!
+    
+    @IBOutlet weak var removeView: UIImageView!
+    
     
     
     let insets = UIEdgeInsets(top: 10, left: 15, bottom: 60, right: 15)
@@ -76,10 +79,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.05, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -15, width: view.frame.width*0.35, height: view.frame.height*0.05)
         
+        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        collectionLetter.anchor(top: removeView.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.05, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
+        homeView.isUserInteractionEnabled = true
+        homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
     }
     
-    
+    @objc func exitTapped (){
+        self.dismiss(animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       

@@ -35,10 +35,15 @@
 		76260658287418DD00BE102E /* Y.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7626063E287418DD00BE102E /* Y.mp3 */; };
 		76260659287418DD00BE102E /* B.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7626063F287418DD00BE102E /* B.mp3 */; };
 		765AEDB82874DFA3004EA8B2 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AEDB62874DFA3004EA8B2 /* DetailCollectionViewCell.swift */; };
+		765B2C1C288226D8006901A9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765B2C1B288226D8006901A9 /* HomeViewController.swift */; };
 		766E88F92880136F008F04CB /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E88F82880136F008F04CB /* QuizViewController.swift */; };
 		766E88FC288013F9008F04CB /* QuizCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E88FB288013F9008F04CB /* QuizCollectionViewCell.swift */; };
 		7687D2E32875784F00ACBC00 /* Cera Pro Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7687D2E22875784F00ACBC00 /* Cera Pro Medium.ttf */; };
 		7687D2E52875787900ACBC00 /* Cera Pro Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7687D2E42875787900ACBC00 /* Cera Pro Bold.ttf */; };
+		76AA15302882911100734A02 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA152F2882911100734A02 /* SettingsViewController.swift */; };
+		76AA1533288291AF00734A02 /* PracriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA1532288291AF00734A02 /* PracriceViewController.swift */; };
+		76AA15352882A59300734A02 /* PracticeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA15342882A59300734A02 /* PracticeCollectionViewCell.swift */; };
+		76AA15372882B36100734A02 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA15362882B36100734A02 /* PopupViewController.swift */; };
 		7C318B3B28722259003B0C36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C318B3A28722259003B0C36 /* ViewController.swift */; };
 		7C318B3D2872380D003B0C36 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C318B3C2872380D003B0C36 /* DetailViewController.swift */; };
 		7C693FF62870E72E0030BFDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C693FF52870E72E0030BFDF /* AppDelegate.swift */; };
@@ -98,10 +103,15 @@
 		7626063E287418DD00BE102E /* Y.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Y.mp3; sourceTree = "<group>"; };
 		7626063F287418DD00BE102E /* B.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = B.mp3; sourceTree = "<group>"; };
 		765AEDB62874DFA3004EA8B2 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		765B2C1B288226D8006901A9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		766E88F82880136F008F04CB /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		766E88FB288013F9008F04CB /* QuizCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCollectionViewCell.swift; sourceTree = "<group>"; };
 		7687D2E22875784F00ACBC00 /* Cera Pro Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cera Pro Medium.ttf"; sourceTree = "<group>"; };
 		7687D2E42875787900ACBC00 /* Cera Pro Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cera Pro Bold.ttf"; sourceTree = "<group>"; };
+		76AA152F2882911100734A02 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		76AA1532288291AF00734A02 /* PracriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracriceViewController.swift; sourceTree = "<group>"; };
+		76AA15342882A59300734A02 /* PracticeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeCollectionViewCell.swift; sourceTree = "<group>"; };
+		76AA15362882B36100734A02 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		7C318B3A28722259003B0C36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7C318B3C2872380D003B0C36 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7C693FF22870E72E0030BFDF /* Learn Alphabeth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learn Alphabeth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +214,15 @@
 			path = QuizViewControllers;
 			sourceTree = "<group>";
 		};
+		76AA15312882916F00734A02 /* PracticeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				76AA1532288291AF00734A02 /* PracriceViewController.swift */,
+				76AA15342882A59300734A02 /* PracticeCollectionViewCell.swift */,
+			);
+			path = PracticeViewController;
+			sourceTree = "<group>";
+		};
 		7C693FE92870E72E0030BFDF = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +248,10 @@
 			children = (
 				7C693FF52870E72E0030BFDF /* AppDelegate.swift */,
 				7C693FF72870E72E0030BFDF /* SceneDelegate.swift */,
+				765B2C1B288226D8006901A9 /* HomeViewController.swift */,
+				76AA152F2882911100734A02 /* SettingsViewController.swift */,
+				76AA15362882B36100734A02 /* PopupViewController.swift */,
+				76AA15312882916F00734A02 /* PracticeViewController */,
 				76260623287414B200BE102E /* Extensions.swift */,
 				7687D2E42875787900ACBC00 /* Cera Pro Bold.ttf */,
 				7687D2E22875784F00ACBC00 /* Cera Pro Medium.ttf */,
@@ -422,13 +445,18 @@
 			files = (
 				765AEDB82874DFA3004EA8B2 /* DetailCollectionViewCell.swift in Sources */,
 				7C318B3B28722259003B0C36 /* ViewController.swift in Sources */,
+				76AA15352882A59300734A02 /* PracticeCollectionViewCell.swift in Sources */,
+				76AA15302882911100734A02 /* SettingsViewController.swift in Sources */,
 				76260624287414B200BE102E /* Extensions.swift in Sources */,
 				766E88F92880136F008F04CB /* QuizViewController.swift in Sources */,
 				7C693FF62870E72E0030BFDF /* AppDelegate.swift in Sources */,
+				765B2C1C288226D8006901A9 /* HomeViewController.swift in Sources */,
 				7C318B3D2872380D003B0C36 /* DetailViewController.swift in Sources */,
 				766E88FC288013F9008F04CB /* QuizCollectionViewCell.swift in Sources */,
 				7CB142B5287121BB00E2F1D6 /* CollectionViewCell.swift in Sources */,
 				7C693FF82870E72E0030BFDF /* SceneDelegate.swift in Sources */,
+				76AA1533288291AF00734A02 /* PracriceViewController.swift in Sources */,
+				76AA15372882B36100734A02 /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
