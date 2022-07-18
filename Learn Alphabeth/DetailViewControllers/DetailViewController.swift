@@ -107,10 +107,12 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         nextView.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: playBtn.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: bottomView.frame.width*0.06, paddingRight: 0, width: view.frame.width*0.16, height: view.frame.height*0.075)
         prevBtn.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: nil, trailing: playBtn.leadingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: 0, paddingRight: -bottomView.frame.width*0.06, width: view.frame.width*0.16, height: view.frame.height*0.075)
         prevView.anchor(top: nil, bottom: autoNextBtn.topAnchor, leading: nil, trailing: playBtn.leadingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: 0, paddingRight: -bottomView.frame.width*0.06, width: view.frame.width*0.16, height: view.frame.height*0.075)
-        homeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: topView.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: -view.frame.height*0.045, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
-        homeView.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: topView.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: -view.frame.height*0.045, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
-        removeBtn.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: nil, trailing: topView.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.35, height: view.frame.height*0.05)
-        removeView.anchor(top: topView.topAnchor, bottom: topView.bottomAnchor, leading: nil, trailing: topView.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.35, height: view.frame.height*0.05)
+        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -15, width: view.frame.width*0.35, height: view.frame.height*0.05)
+        
+        homeBtn.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        removeBtn.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -15, width: view.frame.width*0.35, height: view.frame.height*0.05)
+        
+        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
 
 //        animalImage.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: nil, trailing: nil, paddingTop: view.frame.height*0.165, paddingBottom: view.frame.height*0.165, paddingLeft: 0, paddingRight: 0, width: view.frame.height*0.22, height: view.frame.height*0.22)
 
@@ -138,7 +140,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         
         if let player = player, player.isPlaying{
             player.stop()
-            playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+            playView.image = UIImage(named: "playBtn")
         }else{
             
             let urlString = Bundle.main.path(forResource: name, ofType: type)
@@ -157,7 +159,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
                     return
                 }
                 player.play()
-                playBtn.setImage(UIImage(named: "pauseBtn"), for: .normal)
+                playView.image = UIImage(named: "pauseBtn")
 
             }
             catch{
@@ -167,7 +169,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     }
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
             print("finished")//It is working now! printed "finished"!
-        playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+        playView.image = UIImage(named: "playBtn")
         if selectedItemNumber < cellIds.count-1{
             if isAuto == true{
                 selectedItemNumber += 1
@@ -189,7 +191,8 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         isAuto = true
         }else{
             isAuto = false
-            playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+            autonextView.image = UIImage(named: "autoNextPassive")
+            playView.image = UIImage(named: "playBtn")
 
         }
 //        setupUi()
@@ -299,14 +302,7 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
         cell.animalLabel.text = cellIds[indexPath.row].animalName
         cell.switch.setOn(isautoPlay, animated: true)
         cell.inimalLatter.text = cellIds[indexPath.row].letterImage
-        cell.layer.cornerRadius = 20
-          cell.contentView.layer.cornerRadius = 20
-
-          cell.layer.masksToBounds = false
-          cell.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
-          cell.layer.shadowOffset = CGSize(width: -3, height: 4)
-          cell.layer.shadowRadius = 10
-          cell.layer.shadowOpacity = 1
+       
 //        cell.animalImg.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: collectionAnimal.frame.height*0.22, paddingBottom: -collectionAnimal.frame.height*0.22, paddingLeft: collectionAnimal.frame.width*0.25, paddingRight: collectionAnimal.frame.width*0.25, width: 0, height: collectionAnimal.frame.height*0.6)
 
         return cell

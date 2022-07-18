@@ -33,12 +33,12 @@ class QuizCollectionViewCell: UICollectionViewCell {
         progressBar.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: progressLabel.leadingAnchor, paddingTop: 0, paddingBottom: -30, paddingLeft: 10, paddingRight: -10, width:contentWight*0.6, height: 15)
         progressLabel.anchor(top: nil, bottom: cardView.bottomAnchor, leading: progressBar.trailingAnchor, trailing: cardView.trailingAnchor, paddingTop: 0, paddingBottom: -20, paddingLeft: 0, paddingRight: -10, width:0, height: 15)
         cardView.layer.cornerRadius = 20
-        cardView.layer.shadowColor = UIColor.gray.cgColor
-        cardView.layer.shadowOffset = CGSize(width: 1, height: 1)
-        cardView.layer.shadowRadius = 3
-        cardView.layer.shadowOpacity = 0.7
+        cardView.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
+        cardView.layer.shadowOffset = CGSize(width: -3, height: 4)
+        cardView.layer.shadowRadius = 10
+        cardView.layer.shadowOpacity = 1
         cardView.backgroundColor = UIColor.white
-        progressLabel.textColor = UIColor(red: 53/255, green: 85/255, blue: 133/255, alpha: 1)
+        cardView.layer.masksToBounds = false
         
     }
 }

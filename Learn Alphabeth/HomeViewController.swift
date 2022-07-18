@@ -60,6 +60,11 @@ setupConstraits()
         bottomLeftView.layer.cornerRadius = 20
         bottomRightView.layer.cornerRadius = 20
 
+        topLeftView.layer.masksToBounds = false
+        topLeftView.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
+        topLeftView.layer.shadowOffset = CGSize(width: -3, height: 4)
+        topLeftView.layer.shadowRadius = 10
+        topLeftView.layer.shadowOpacity = 1
         
         
     }

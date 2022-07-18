@@ -43,11 +43,13 @@ class PracriceViewController: UIViewController {
     }
     
     func setupConstraints (){
-        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.05, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -15, width: view.frame.width*0.35, height: view.frame.height*0.05)
-        switchLetter.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.043, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
+       
+        switchLetter.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
         labelSwitch.anchor(top: nil, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop:0, paddingBottom: 0, paddingLeft: 0, paddingRight: -5, width:180, height: 40)
-        collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.043, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
-        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.045, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
+        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -15, width: view.frame.width*0.35, height: view.frame.height*0.05)
+        
+        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
        
         
     }
@@ -63,6 +65,7 @@ class PracriceViewController: UIViewController {
         collectionLetter.reloadData()
         
     }
+    
 }
 
 
