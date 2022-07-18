@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class ResultViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
@@ -19,6 +20,7 @@ class ResultViewController: UIViewController {
     var cellIds : [Alphabeth] = Utils.cellIds
     var correctAnswer : [Alphabeth] = []
     var wrongAnswer : [Alphabeth] = []
+    let animationView = AnimationView()
 
     var selectedItemNumber = 0
     var isSmall : Bool = false
@@ -31,6 +33,7 @@ class ResultViewController: UIViewController {
         collectionBottom.delegate = self
         collectionBottom.dataSource = self
         setupConstraits()
+        resultAnimation()
         // Do any additional setup after loading the view.
     }
     func setupConstraits(){
@@ -50,6 +53,19 @@ class ResultViewController: UIViewController {
         destinationVC.modalPresentationStyle = .fullScreen
         self.present(destinationVC, animated: true, completion: nil)
     }
+    func resultAnimation () {
+        animationView.animation = Animation.named("result")
+        animationView.frame = CGRect(x: view.frame.width*0.3, y: 0, width: view.bounds.height*0.22, height: view.bounds.height*0.22)
+
+//        animationView.center = view.center
+        animationView.loopMode = .loop
+        self.animationView.isHidden = false
+        
+        animationView.play()
+        
+        view.addSubview(animationView)
+        
+        
     /*
     // MARK: - Navigation
 
@@ -60,6 +76,7 @@ class ResultViewController: UIViewController {
     }
     */
 
+}
 }
 extension ResultViewController : UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     

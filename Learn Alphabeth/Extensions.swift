@@ -8,6 +8,14 @@
 import Foundation
 import UIKit
 extension UIView{
+    
+    func zoomIn(duration: TimeInterval = 0.4) {
+        self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        UIView.animate(withDuration: duration, delay: 0.0, options: [.curveLinear], animations: { () -> Void in
+            self.transform = .identity
+            }) { (animationCompleted: Bool) -> Void in
+        }
+    }
 func anchor(top : NSLayoutYAxisAnchor?,
             bottom : NSLayoutYAxisAnchor?,
             leading : NSLayoutXAxisAnchor?,
@@ -76,6 +84,8 @@ class Utils{
         
         
     ]
+    
+    
 
 }
 

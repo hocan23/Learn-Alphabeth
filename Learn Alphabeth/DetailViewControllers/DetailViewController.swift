@@ -67,7 +67,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
 //        prevBtn.layer.cornerRadius = (view.frame.height*0.08)/2
 //        nextBtn.layer.cornerRadius = (view.frame.height*0.08)/2
 //        playBtn.layer.cornerRadius = (view.frame.height*0.09)/2
-        self.collectionAnimal.backgroundColor = UIColor(red: 194/255, green: 213/255, blue: 236/255, alpha: 1)
+//        self.collectionAnimal.backgroundColor = UIColor(red: 194/255, green: 213/255, blue: 236/255, alpha: 1)
         
         collectionAnimal.contentInset = UIEdgeInsets(top: 0, left: view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05)
         
@@ -185,8 +185,11 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
   
     
     @IBAction func autoNextPressed(_ sender: UIButton) {
+        autonextView.zoomIn()
         player?.stop()
         if isAuto == false{
+            autonextView.image = UIImage(named: "autoNextActive")
+
         playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
         isAuto = true
         }else{
@@ -198,6 +201,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
 //        setupUi()
     }
     @IBAction func beforePressed(_ sender: UIButton) {
+        prevView.zoomIn()
         player?.stop()
         if selectedItemNumber > 0{
             selectedItemNumber -= 1
@@ -215,13 +219,14 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
 //
     }
     @IBAction func nextPressed(_ sender: UIButton) {
+        nextView.zoomIn()
         player?.stop()
         if selectedItemNumber < cellIds.count-1{
             selectedItemNumber += 1
             if isautoPlay == true {
                 playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
             }else{
-                playBtn.setImage(UIImage(named: "playBtn"), for: .normal)
+                playView.image = UIImage(named: "playBtn")
 
             }
 

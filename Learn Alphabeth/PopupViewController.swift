@@ -45,13 +45,26 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
         }else{
             letterLabel.text = String(cellIds[selectedItemNumber].letterImage.suffix(1))
         }
+        playMusic(name: "\(cellIds[selectedItemNumber].letterSound)1", type: "mp3")
+
     }
-    @IBAction func switchTapped(_ sender: Any) {
-        
-        
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            isSmall = true
+        }else{
+            isSmall = false
+        }
+        if isSmall == false{
+            letterLabel.text = String(cellIds[selectedItemNumber].letterImage.prefix(1))
+
+        }else{
+            letterLabel.text = String(cellIds[selectedItemNumber].letterImage.suffix(1))
+        }
+    
     }
     @objc func playTapped(){
-        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+        playMusic(name: "\(cellIds[selectedItemNumber].letterSound)1", type: "mp3")
+
     }
     
     @objc func exitTapped(){

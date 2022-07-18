@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFAudio
+import Lottie
 
 class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     
@@ -28,22 +29,29 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     var correctAnswer : [Alphabeth] = []
     var wrongAnswer : [Alphabeth] = []
     var isStop = false
-
+    let animationView = AnimationView()
+    var buttonOption : [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         cellIds.shuffle()
         print(cellIds[0].animalName)
         collectionAnimal1.delegate = self
         collectionAnimal1.dataSource = self
+//        collectionAnimal1.isScrollEnabled = false
+//        collectionAnimal1.isUserInteractionEnabled = false
+        self.collectionAnimal1.isScrollEnabled = false
+
         SetupConstraints()
     }
     override func viewDidDisappear(_ animated: Bool) {
         print(correctAnswer)
         print(wrongAnswer)
+
     }
     @IBAction func playyTapped(_ sender: UIButton) {
-        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
         
+        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+
     }
     func SetupConstraints (){
         collectionAnimal1.contentInset = UIEdgeInsets(top: 0, left: view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05)
@@ -67,6 +75,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
         homeView.isUserInteractionEnabled = true
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
+        
+        removeView.isUserInteractionEnabled = true
+        removeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(homeTapped)))
         //        playView.isUserInteractionEnabled = true
         //        playView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playTapped)))
         leftButton.layer.cornerRadius = 20
@@ -95,11 +106,13 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         rightButton.layer.masksToBounds = false
     }
     @objc func exitTapped (){
+        homeView.zoomIn()
         self.dismiss(animated: true)
     }
-    //    @objc func playTapped (){
-    //        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
-    //    }
+    @objc func homeTapped (){
+        removeView.zoomIn()
+    }
+
     public func playMusic (name:String,type:String){
         
         if let player = player, player.isPlaying{
@@ -134,6 +147,39 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             }
         }
     }
+    
+    func successAnimation () {
+        animationView.animation = Animation.named("success")
+        animationView.frame = CGRect(x: 0, y: view.frame.height*0.2, width: 300, height: 300)
+        animationView.center.x = view.center.x
+        animationView.loopMode = .playOnce
+        self.animationView.isHidden = false
+        
+        animationView.play()
+        
+        view.addSubview(animationView)
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.7) {
+            self.animationView.isHidden = true
+            
+        }
+        
+    }
+    func failAnimation () {
+        animationView.animation = Animation.named("fail")
+        animationView.frame = CGRect(x: 0, y: view.frame.height*0.2, width: 300, height: 300)
+        animationView.center.x = view.center.x
+        animationView.loopMode = .playOnce
+        self.animationView.isHidden = false
+        
+        animationView.play()
+        
+        view.addSubview(animationView)
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.7) {
+            self.animationView.isHidden = true
+            
+        }
+        
+    }
     /*
      // MARK: - Navigation
      
@@ -144,6 +190,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
      }
      */
     @IBAction func rightButtonTapped(_ sender: Any) {
+        rightButton.zoomIn()
         print(cellIds[selectedItemNumber].letterImage)
         if cellIds[selectedItemNumber].letterImage.contains((rightButton.titleLabel?.text)!) {
             print("exists")
@@ -156,12 +203,13 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             isStop = false
             collectionAnimal1.reloadData()
             rightButton.backgroundColor = .green
+            successAnimation()
             if selectedItemNumber > 2{
                 goNextView()
                 isFirestAnswer == true
 
             }else{
-                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                DispatchQueue.main.asyncAfter(deadline: .now()+1.7) {
                     
                     self.rightButton.backgroundColor = .white
                     self.collectionAnimal1.scrollToItem(at:IndexPath(item: self.selectedItemNumber+1, section: 0), at: .right, animated: false)
@@ -172,6 +220,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }else{
             isFirestAnswer = false
             rightButton.backgroundColor = .red
+            failAnimation()
+
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 self.rightButton.backgroundColor = .white
                 
@@ -183,6 +233,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         //        }
     }
     @IBAction func midButtonTapped(_ sender: Any) {
+        midButton.zoomIn()
         if cellIds[selectedItemNumber].letterImage.contains((midButton.titleLabel?.text)!) {
             print("exists")
             if isFirestAnswer == true{
@@ -195,12 +246,14 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             player?.stop()
 
             midButton.backgroundColor = .green
+            successAnimation()
+
             if selectedItemNumber > 2{
                 goNextView()
                 isFirestAnswer == true
 
             }else{
-            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                DispatchQueue.main.asyncAfter(deadline: .now()+1.7) {
                 self.midButton.backgroundColor = .white
                 self.collectionAnimal1.scrollToItem(at:IndexPath(item: self.selectedItemNumber+1, section: 0), at: .right, animated: false)
                 self.collectionAnimal1.reloadData()
@@ -210,6 +263,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             isFirestAnswer = false
             
             midButton.backgroundColor = .red
+            failAnimation()
+
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 self.midButton.backgroundColor = .white
                 
@@ -226,6 +281,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         self.present(destinationVC, animated: true, completion: nil)
     }
     @IBAction func leftButtonTapped(_ sender: Any) {
+        leftButton.zoomIn()
         if cellIds[selectedItemNumber].letterImage.contains((leftButton.titleLabel?.text)!) {
             print("exists")
             if isFirestAnswer == true{
@@ -237,11 +293,13 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             collectionAnimal1.reloadData()
             player?.stop()
             leftButton.backgroundColor = .green
+            successAnimation()
+
             if selectedItemNumber > 2{
                 goNextView()
                 isFirestAnswer == true
             }else{
-            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                DispatchQueue.main.asyncAfter(deadline: .now()+1.7) {
                 self.leftButton.backgroundColor = .white
                 self.collectionAnimal1.scrollToItem(at:IndexPath(item: self.selectedItemNumber+1, section: 0), at: .right, animated: false)
                 self.collectionAnimal1.reloadData()
@@ -252,6 +310,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             isFirestAnswer = false
             
             leftButton.backgroundColor = .red
+            failAnimation()
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 self.leftButton.backgroundColor = .white
                 
@@ -264,6 +323,16 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             isSmall = true
         }else{
             isSmall = false
+        }
+        if isSmall == false{
+            leftButton.setTitle(String(buttonOption[0].prefix(1)), for: .normal)
+            midButton.setTitle(String(buttonOption[1].prefix(1)), for: .normal)
+            rightButton.setTitle(String(buttonOption[2].prefix(1)), for: .normal)
+            
+        }else{
+            leftButton.setTitle(String(buttonOption[0].suffix(1)), for: .normal)
+            midButton.setTitle(String(buttonOption[1].suffix(1)), for: .normal)
+            rightButton.setTitle(String(buttonOption[2].suffix(1)), for: .normal)
         }
         collectionAnimal1.reloadData()
         
@@ -288,30 +357,63 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
         visibleRect.size = collectionAnimal1.bounds.size
         let visiblePoint = CGPoint(x: CGFloat(visibleRect.midX), y: CGFloat(visibleRect.midY))
         let visibleIndexPath: IndexPath? = collectionAnimal1.indexPathForItem(at: visiblePoint)
-        if let number = visibleIndexPath{
+        if let number = (visibleIndexPath?.row){
             selectedItemNumber = (visibleIndexPath?.row)!
-            
-            
-            let visibleIndexPath = selectedItemNumber
-            var firstRandom = Int.random(in: 0..<26)
-            var secondRandom = Int.random(in: 0..<26)
-            
-            if firstRandom != visibleIndexPath && secondRandom != visibleIndexPath && secondRandom != firstRandom {
-                var buttonOptions = [(cellIds[visibleIndexPath].letterImage),cellIds[firstRandom].letterImage,cellIds[secondRandom].letterImage]
-                buttonOptions.shuffle()
-                if isSmall == false{
-                    leftButton.setTitle(String(buttonOptions[0].prefix(1)), for: .normal)
-                    midButton.setTitle(String(buttonOptions[1].prefix(1)), for: .normal)
-                    rightButton.setTitle(String(buttonOptions[2].prefix(1)), for: .normal)
-                    
-                }else{
-                    leftButton.setTitle(String(buttonOptions[0].suffix(1)), for: .normal)
-                    midButton.setTitle(String(buttonOptions[1].suffix(1)), for: .normal)
-                    rightButton.setTitle(String(buttonOptions[2].suffix(1)), for: .normal)
-                }
+//        let visibleIndexPath = selectedItemNumber
+        var firstRandom = Int.random(in: 0..<26)
+        if firstRandom == visibleIndexPath?.row {
+            if firstRandom == 25{
+                firstRandom-=1
+            }else{
+                firstRandom+=1
+
             }
-            
         }
+        var secondRandom = Int.random(in: 0..<26)
+        if secondRandom == visibleIndexPath?.row {
+            if secondRandom == 25{
+                secondRandom-=1
+            }else{
+                secondRandom+=1
+
+            }
+        }
+        if secondRandom == firstRandom {
+            if secondRandom == 25{
+                secondRandom-=1
+            }else{
+                secondRandom+=1
+
+            }
+        }
+        
+        
+            print(visibleIndexPath)
+            print((cellIds[visibleIndexPath!.row].letterImage))
+            var buttonOptions = [(cellIds[visibleIndexPath!.row].letterImage),cellIds[firstRandom].letterImage,cellIds[secondRandom].letterImage]
+            buttonOptions.shuffle()
+            buttonOption = buttonOptions
+            if isSmall == false{
+                leftButton.setTitle(String(buttonOptions[0].prefix(1)), for: .normal)
+                midButton.setTitle(String(buttonOptions[1].prefix(1)), for: .normal)
+                rightButton.setTitle(String(buttonOptions[2].prefix(1)), for: .normal)
+                
+            }else{
+                leftButton.setTitle(String(buttonOptions[0].suffix(1)), for: .normal)
+                midButton.setTitle(String(buttonOptions[1].suffix(1)), for: .normal)
+                rightButton.setTitle(String(buttonOptions[2].suffix(1)), for: .normal)
+            }
+            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+
+        }
+          
+        
+        
+            
+            
+            
+            
+        
         
        
         print("Visible cell's index is : \(visibleIndexPath?.row)!")
@@ -354,9 +456,8 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
         let indexToScrollTo = IndexPath(item: selectedItemNumber, section: 0)
         collectionAnimal1.scrollToItem(at: indexToScrollTo, at: .right, animated: false)
         
-        
- 
     }
     
     
 }
+

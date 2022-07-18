@@ -41,4 +41,5 @@ class QuizCollectionViewCell: UICollectionViewCell {
         cardView.layer.masksToBounds = false
         
     }
+   
 }

@@ -85,10 +85,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionLetter.anchor(top: removeView.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.02, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
         homeView.isUserInteractionEnabled = true
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
+        removeView.isUserInteractionEnabled = true
+        removeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeTapped)))
     }
     
     @objc func exitTapped (){
+        homeView.zoomIn()
         self.dismiss(animated: true)
+    }
+    @objc func removeTapped (){
+        removeView.zoomIn()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
