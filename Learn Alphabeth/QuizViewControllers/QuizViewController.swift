@@ -8,9 +8,12 @@
 import UIKit
 import AVFAudio
 import Lottie
+import StoreKit
+import GoogleMobileAds
+
 
 class QuizViewController: UIViewController, AVAudioPlayerDelegate {
-    
+    var adCounter = 0
     @IBOutlet weak var removeView: UIImageView!
     @IBOutlet weak var homeView: UIImageView!
     @IBOutlet weak var midButton: UIButton!
@@ -31,6 +34,17 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     var isStop = false
     let animationView = AnimationView()
     var buttonOption : [String] = []
+    var models = [SKProduct]()
+    var bannerView: GADBannerView!
+    var isAd = false
+    var isinAd = false
+    private var interstitial: GADInterstitialAd?
+    enum Products : String,CaseIterable{
+        case removeAds = "com.temporary.id"
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cellIds.shuffle()
@@ -42,11 +56,24 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         self.collectionAnimal1.isScrollEnabled = false
 
         SetupConstraints()
+        
+        createAdd()
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        bannerView.adUnitID = Utils.bannerId
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        print(correctAnswer)
-        print(wrongAnswer)
+    override func viewWillAppear(_ animated: Bool) {
+        if isAd == true {
+            self.dismiss(animated: true)
+            
+        }
+        if isinAd==true{
+            isinAd=false
+            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
 
+        }
     }
     @IBAction func playyTapped(_ sender: UIButton) {
         
@@ -107,10 +134,25 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     }
     @objc func exitTapped (){
         homeView.zoomIn()
-        self.dismiss(animated: true)
+        player?.stop()
+        if interstitial != nil {
+            interstitial?.present(fromRootViewController: self)
+            isAd = true
+        } else {
+            print("Ad wasn't ready")
+            self.dismiss(animated: true)
+        }
+      
     }
     @objc func homeTapped (){
         removeView.zoomIn()
+        if SKPaymentQueue.canMakePayments(){
+            let set :  Set<String> = [Products.removeAds.rawValue]
+            let productRequest = SKProductsRequest(productIdentifiers: set)
+            productRequest.delegate = self
+            productRequest.start()
+            
+        }
     }
 
     public func playMusic (name:String,type:String){
@@ -203,6 +245,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             isStop = false
             collectionAnimal1.reloadData()
             rightButton.backgroundColor = .green
+            adCounter+=1
             successAnimation()
             if selectedItemNumber > 2{
                 goNextView()
@@ -215,6 +258,17 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
                     self.collectionAnimal1.scrollToItem(at:IndexPath(item: self.selectedItemNumber+1, section: 0), at: .right, animated: false)
                     self.collectionAnimal1.reloadData()
                     
+                }
+                if adCounter >= 4{
+                    if interstitial != nil {
+                        interstitial?.present(fromRootViewController: self)
+                        adCounter = 0
+                        player?.stop()
+                        isinAd = true
+                    } else {
+                        print("Ad wasn't ready")
+                        adCounter+=1
+                    }
                 }
             }
         }else{
@@ -235,7 +289,6 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     @IBAction func midButtonTapped(_ sender: Any) {
         midButton.zoomIn()
         if cellIds[selectedItemNumber].letterImage.contains((midButton.titleLabel?.text)!) {
-            print("exists")
             if isFirestAnswer == true{
                 correctAnswer.append(cellIds[selectedItemNumber])
             }else{
@@ -246,6 +299,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             player?.stop()
 
             midButton.backgroundColor = .green
+            adCounter+=1
+
             successAnimation()
 
             if selectedItemNumber > 2{
@@ -258,6 +313,17 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
                 self.collectionAnimal1.scrollToItem(at:IndexPath(item: self.selectedItemNumber+1, section: 0), at: .right, animated: false)
                 self.collectionAnimal1.reloadData()
             }
+                if adCounter >= 4{
+                    if interstitial != nil {
+                        interstitial?.present(fromRootViewController: self)
+                        adCounter = 0
+                        player?.stop()
+                        isinAd = true
+                    } else {
+                        print("Ad wasn't ready")
+                        adCounter+=1
+                    }
+                }
             }
         }else{
             isFirestAnswer = false
@@ -293,6 +359,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             collectionAnimal1.reloadData()
             player?.stop()
             leftButton.backgroundColor = .green
+            adCounter+=1
+
             successAnimation()
 
             if selectedItemNumber > 2{
@@ -303,7 +371,19 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
                 self.leftButton.backgroundColor = .white
                 self.collectionAnimal1.scrollToItem(at:IndexPath(item: self.selectedItemNumber+1, section: 0), at: .right, animated: false)
                 self.collectionAnimal1.reloadData()
+                    
             }
+                if adCounter >= 4{
+                    if interstitial != nil {
+                        interstitial?.present(fromRootViewController: self)
+                        adCounter = 0
+                        player?.stop()
+                        isinAd = true
+                    } else {
+                        print("Ad wasn't ready")
+                        adCounter+=1
+                    }
+                }
             }
             
         }else{
@@ -403,7 +483,10 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
                 midButton.setTitle(String(buttonOptions[1].suffix(1)), for: .normal)
                 rightButton.setTitle(String(buttonOptions[2].suffix(1)), for: .normal)
             }
-            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+            if isinAd == false{
+                playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+
+            }
 
         }
           
@@ -461,3 +544,89 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
     
 }
 
+extension QuizViewController: SKProductsRequestDelegate, SKPaymentTransactionObserver{
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+
+        if let oproduct = response.products.first{
+            self.purchase(aproduct: oproduct)
+        }
+    }
+    
+    func purchase ( aproduct: SKProduct){
+        let payment = SKPayment(product: aproduct)
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().add(payment)
+
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState{
+            case .purchasing:
+                print("pur")
+            case .purchased:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .failed:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .restored:
+                print("restore")
+            case .deferred:
+                print("deffered")
+            default: break
+            }
+        
+        }
+    }
+    
+    func fetchProducts(){
+        let request = SKProductsRequest(productIdentifiers: Set(Products.allCases.compactMap({$0.rawValue})))
+        request.delegate = self
+        request.start()
+    }
+    
+}
+extension QuizViewController: GADBannerViewDelegate, GADFullScreenContentDelegate{
+    func createAdd() {
+        let request = GADRequest()
+        interstitial?.fullScreenContentDelegate = self
+        GADInterstitialAd.load(withAdUnitID:Utils.fullScreenAdId,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+        }
+        )
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitialAd) {
+        print("interstitialWillDismissScreen")
+    }
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
+}

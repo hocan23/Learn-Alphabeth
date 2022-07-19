@@ -7,6 +7,9 @@
 
 import UIKit
 import AVFAudio
+import StoreKit
+import GoogleMobileAds
+
 class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     var name : String = ""
     var type : String = ""
@@ -20,6 +23,8 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     var isautoPlay : Bool = false
     var firstScrollİndex : Int?
     var isFirstOpen : Bool = true
+    var adCounter = 0
+    var isinAd = false
     @IBOutlet weak var animalImage: UIImageView!
     @IBOutlet weak var homeView: UIImageView!
     
@@ -50,8 +55,12 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     @IBOutlet weak var autoNextBtn: UIButton!
     @IBOutlet weak var bottomView: UIView!
     
-    
-    
+    var models = [SKProduct]()
+    enum Products : String,CaseIterable{
+        case removeAds = "com.temporary.id"
+    }
+    var bannerView: GADBannerView!
+    private var interstitial: GADInterstitialAd?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,11 +79,20 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
 //        self.collectionAnimal.backgroundColor = UIColor(red: 194/255, green: 213/255, blue: 236/255, alpha: 1)
         
         collectionAnimal.contentInset = UIEdgeInsets(top: 0, left: view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05)
-        
+        createAdd()
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        bannerView.adUnitID = Utils.bannerId
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
 
     }
     override func viewWillAppear(_ animated: Bool) {
-       
+        if isinAd==true{
+            isinAd=false
+            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+
+        }
        
     }
     
@@ -84,6 +102,20 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         self.dismiss(animated: true)
     }
     
+    @IBAction func removeButtonTapped(_ sender: Any) {
+        removeBtn.zoomIn()
+        if SKPaymentQueue.canMakePayments(){
+            let set :  Set<String> = [Products.removeAds.rawValue]
+            let productRequest = SKProductsRequest(productIdentifiers: set)
+            productRequest.delegate = self
+            productRequest.start()
+            
+        }
+        
+        
+       
+        
+    }
     
     
 //
@@ -282,6 +314,30 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
 
             }
         }
+        adCounter+=1
+        if isAuto == true{
+            if adCounter >= 8{
+                if interstitial != nil {
+                    interstitial?.present(fromRootViewController: self)
+                    adCounter = 0
+                    player?.stop()
+                    isinAd = true
+                } else {
+                    print("Ad wasn't ready")
+                }
+            }
+        }else{
+        if adCounter >= 4{
+            if interstitial != nil {
+                interstitial?.present(fromRootViewController: self)
+                adCounter = 0
+                player?.stop()
+                isinAd = true
+            } else {
+                print("Ad wasn't ready")
+            }
+        }
+        }
         print("Visible cell's index is : \(visibleIndexPath?.row)!")
     }
     
@@ -332,4 +388,90 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
     
     
     
+}
+extension DetailViewController: SKProductsRequestDelegate, SKPaymentTransactionObserver{
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+
+        if let oproduct = response.products.first{
+            self.purchase(aproduct: oproduct)
+        }
+    }
+    
+    func purchase ( aproduct: SKProduct){
+        let payment = SKPayment(product: aproduct)
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().add(payment)
+
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState{
+            case .purchasing:
+                print("pur")
+            case .purchased:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .failed:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .restored:
+                print("restore")
+            case .deferred:
+                print("deffered")
+            default: break
+            }
+        
+        }
+    }
+    
+    func fetchProducts(){
+        let request = SKProductsRequest(productIdentifiers: Set(Products.allCases.compactMap({$0.rawValue})))
+        request.delegate = self
+        request.start()
+    }
+    
+}
+extension DetailViewController: GADBannerViewDelegate, GADFullScreenContentDelegate{
+    func createAdd() {
+        let request = GADRequest()
+        interstitial?.fullScreenContentDelegate = self
+        GADInterstitialAd.load(withAdUnitID:Utils.fullScreenAdId,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+        }
+        )
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitialAd) {
+        print("interstitialWillDismissScreen")
+    }
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
 }

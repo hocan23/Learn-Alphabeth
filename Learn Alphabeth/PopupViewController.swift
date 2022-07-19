@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFAudio
+import GoogleMobileAds
 class PopupViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBOutlet weak var switchSmall: UISwitch!
@@ -19,7 +20,8 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     var cellIds : [Alphabeth] = Utils.cellIds
     var selectedItemNumber : Int = 0
     var player : AVAudioPlayer?
-
+    var bannerView: GADBannerView!
+    private var interstitial: GADInterstitialAd?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +30,8 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
         playView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playTapped)))
         exitView.isUserInteractionEnabled = true
         exitView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
+        
+        
     }
     func setupConstraits (){
         viewCard.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.24, paddingBottom: -view.frame.height*0.24, paddingLeft: view.frame.width*0.07, paddingRight: -view.frame.width*0.07, width: 0, height: 0)
@@ -37,7 +41,24 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
         switchSmall.anchor(top: nil, bottom: nil, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 40, height: 40)
         switchLabel.anchor(top: nil, bottom: nil, leading: nil, trailing: switchSmall.leadingAnchor, paddingTop:0, paddingBottom: 0, paddingLeft: 0, paddingRight: -5, width:180, height: 40)
         viewCard.layer.cornerRadius = 20
+        
+        createAdd()
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        bannerView.adUnitID = Utils.bannerId
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+        {
+            let touch = touches.first
+            if touch?.view != self.viewCard {
+
+              dismiss(animated: true)
+            }
+        }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         if isSmall == false{
             letterLabel.text = String(cellIds[selectedItemNumber].letterImage.prefix(1))
@@ -116,4 +137,59 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     }
     */
 
+}
+extension PopupViewController: GADBannerViewDelegate, GADFullScreenContentDelegate{
+    func createAdd() {
+        let request = GADRequest()
+        interstitial?.fullScreenContentDelegate = self
+        GADInterstitialAd.load(withAdUnitID:Utils.fullScreenAdId,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+        }
+        )
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitialAd) {
+        print("interstitialWillDismissScreen")
+    }
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
+}
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        self.dismiss(animated: true)
+        
+    }
 }

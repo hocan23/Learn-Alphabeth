@@ -1,0 +1,33 @@
+{
+  "identifier" : "18FA9BAB",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "3.99",
+      "familyShareable" : false,
+      "internalID" : "31AA9546",
+      "localizations" : [
+        {
+          "description" : "You can remove Ads forever.",
+          "displayName" : "Remove all ads- Forever!",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.temporary.id",
+      "referenceName" : "Remove Ads",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 2
+  }
+}

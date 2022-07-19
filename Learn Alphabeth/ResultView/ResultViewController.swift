@@ -7,7 +7,7 @@
 
 import UIKit
 import Lottie
-
+import GoogleMobileAds
 class ResultViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     
@@ -21,7 +21,9 @@ class ResultViewController: UIViewController {
     var correctAnswer : [Alphabeth] = []
     var wrongAnswer : [Alphabeth] = []
     let animationView = AnimationView()
-
+    var bannerView: GADBannerView!
+    private var interstitial: GADInterstitialAd?
+    var isAd = false
     var selectedItemNumber = 0
     var isSmall : Bool = false
     let insets = UIEdgeInsets(top: 10, left: 15, bottom: 60, right: 15)
@@ -34,6 +36,8 @@ class ResultViewController: UIViewController {
         collectionBottom.dataSource = self
         setupConstraits()
         resultAnimation()
+        createAdd()
+
         // Do any additional setup after loading the view.
     }
     func setupConstraits(){
@@ -49,9 +53,25 @@ class ResultViewController: UIViewController {
         doneButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doneTapped)))
     }
     @objc func doneTapped(){
-        let destinationVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        destinationVC.modalPresentationStyle = .fullScreen
-        self.present(destinationVC, animated: true, completion: nil)
+        if interstitial != nil {
+            interstitial?.present(fromRootViewController: self)
+            isAd = true
+        } else {
+            print("Ad wasn't ready")
+            let destinationVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            destinationVC.modalPresentationStyle = .fullScreen
+            self.present(destinationVC, animated: true, completion: nil)
+            
+        }
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if isAd == true{
+            isAd=false
+            let destinationVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            destinationVC.modalPresentationStyle = .fullScreen
+            self.present(destinationVC, animated: true, completion: nil)
+        }
     }
     func resultAnimation () {
         animationView.animation = Animation.named("result")
@@ -179,5 +199,49 @@ extension Array where Element: Hashable {
         let thisSet = Set(self)
         let otherSet = Set(other)
         return Array(thisSet.subtracting(otherSet))
+    }
+}
+extension ResultViewController: GADBannerViewDelegate, GADFullScreenContentDelegate{
+    func createAdd() {
+        let request = GADRequest()
+        interstitial?.fullScreenContentDelegate = self
+        GADInterstitialAd.load(withAdUnitID:Utils.fullScreenAdId,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+        }
+        )
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitialAd) {
+        print("interstitialWillDismissScreen")
+    }
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
     }
 }

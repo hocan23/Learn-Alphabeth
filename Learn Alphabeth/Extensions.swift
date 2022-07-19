@@ -84,6 +84,9 @@ class Utils{
         
         
     ]
+    static var fullScreenAdId = "ca-app-pub-3940256099942544/4411468910"
+    static var  bannerId = "ca-app-pub-3940256099942544/2934735716"
+    
     
     
 

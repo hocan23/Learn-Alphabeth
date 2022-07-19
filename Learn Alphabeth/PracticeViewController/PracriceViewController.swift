@@ -6,9 +6,12 @@
 //
 
 import UIKit
-
+import StoreKit
+import GoogleMobileAds
 class PracriceViewController: UIViewController {
-    
+    var isAd = false
+    var isinAd = false
+    var tappedCounter = 0
     @IBOutlet weak var homeView: UIImageView!
     @IBOutlet weak var labelSwitch: UILabel!
     @IBOutlet weak var switchLetter: UISwitch!
@@ -19,7 +22,12 @@ class PracriceViewController: UIViewController {
     var isSmall : Bool = false
     let insets = UIEdgeInsets(top: 10, left: 15, bottom: 60, right: 15)
     let spacing = CGSize(width: 5, height: 10)
-    
+    var models = [SKProduct]()
+    enum Products : String,CaseIterable{
+        case removeAds = "com.temporary.id"
+    }
+    var bannerView: GADBannerView!
+    private var interstitial: GADInterstitialAd?
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionLetter.delegate = self
@@ -27,19 +35,35 @@ class PracriceViewController: UIViewController {
         setupConstraints()
         homeView.isUserInteractionEnabled = true
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
+        removeView.isUserInteractionEnabled = true
+        removeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeTapped)))
+        
+        createAdd()
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        bannerView.adUnitID = Utils.bannerId
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        //        if isSmall == false{
-        //            leftButton.setTitle(String(buttonOptions[0].prefix(1)), for: .normal)
-        //            midButton.setTitle(String(buttonOptions[1].prefix(1)), for: .normal)
-        //            rightButton.setTitle(String(buttonOptions[2].prefix(1)), for: .normal)
-        //
-        //        }else{
-        //            leftButton.setTitle(String(buttonOptions[0].suffix(1)), for: .normal)
-        //        midButton.setTitle(String(buttonOptions[1].suffix(1)), for: .normal)
-        //        rightButton.setTitle(String(buttonOptions[2].suffix(1)), for: .normal)
-        //        }
+        if isAd == true {
+            self.dismiss(animated: true)
+            
+        }
+        if isinAd == true{
+            isinAd = false
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
+            vc.isSmall = isSmall
+            vc.selectedItemNumber = selectedItemNumber
+            vc.providesPresentationContextTransitionStyle = true;
+            
+            vc.definesPresentationContext = true;
+            
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            
+            self.present(vc, animated: false, completion: nil)
+        }
     }
     
     func setupConstraints (){
@@ -53,8 +77,28 @@ class PracriceViewController: UIViewController {
        
         
     }
+   
+        
+    
+    @objc func removeTapped (){
+        removeView.zoomIn()
+        if SKPaymentQueue.canMakePayments(){
+            let set :  Set<String> = [Products.removeAds.rawValue]
+            let productRequest = SKProductsRequest(productIdentifiers: set)
+            productRequest.delegate = self
+            productRequest.start()
+        }
+    }
     @objc func exitTapped (){
-        self.dismiss(animated: true)
+        homeView.zoomIn()
+        if interstitial != nil {
+            interstitial?.present(fromRootViewController: self)
+            isAd = true
+        } else {
+            print("Ad wasn't ready")
+            self.dismiss(animated: true)
+        }
+       
     }
     @IBAction func switchPositionChanged(_ sender: UISwitch) {
         if sender.isOn {
@@ -107,11 +151,21 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        
+        tappedCounter+=1
+        print(tappedCounter)
+        if tappedCounter >= 4{
+            if interstitial != nil {
+                interstitial?.present(fromRootViewController: self)
+                tappedCounter = 0
+                isinAd = true
+            } else {
+                print("Ad wasn't ready")
+                tappedCounter+=1
+            }
+        }
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
-        
-        //        vc.delegate = self
         vc.isSmall = isSmall
+        selectedItemNumber = indexPath.row
         vc.selectedItemNumber = indexPath.row
         vc.providesPresentationContextTransitionStyle = true;
         
@@ -173,3 +227,89 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
     
 }
 
+extension PracriceViewController: SKProductsRequestDelegate, SKPaymentTransactionObserver{
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+
+        if let oproduct = response.products.first{
+            self.purchase(aproduct: oproduct)
+        }
+    }
+    
+    func purchase ( aproduct: SKProduct){
+        let payment = SKPayment(product: aproduct)
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().add(payment)
+
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState{
+            case .purchasing:
+                print("pur")
+            case .purchased:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .failed:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .restored:
+                print("restore")
+            case .deferred:
+                print("deffered")
+            default: break
+            }
+        
+        }
+    }
+    
+    func fetchProducts(){
+        let request = SKProductsRequest(productIdentifiers: Set(Products.allCases.compactMap({$0.rawValue})))
+        request.delegate = self
+        request.start()
+    }
+    
+}
+extension PracriceViewController: GADBannerViewDelegate, GADFullScreenContentDelegate{
+    func createAdd() {
+        let request = GADRequest()
+        interstitial?.fullScreenContentDelegate = self
+        GADInterstitialAd.load(withAdUnitID:Utils.fullScreenAdId,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+        }
+        )
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitialAd) {
+        print("interstitialWillDismissScreen")
+    }
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
+}

@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import StoreKit
+import GoogleMobileAds
 class Alphabeth {
 
     
@@ -62,14 +63,21 @@ let cellIds: [Alphabeth] = [
 
 private let reuseIdentifier = "Cell"
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+   var isAd = false
+    var bannerView: GADBannerView!
+    private var interstitial: GADInterstitialAd?
+   var adCounter = 0
+    
     @IBOutlet weak var collectionLetter: UICollectionView!
     
     @IBOutlet weak var homeView: UIImageView!
     
     @IBOutlet weak var removeView: UIImageView!
-    
-    
+    var models = [SKProduct]()
+    enum Products : String,CaseIterable{
+        case removeAds = "com.temporary.id"
+    }
     
     let insets = UIEdgeInsets(top: 10, left: 15, bottom: 60, right: 15)
        let spacing = CGSize(width: 5, height: 10)
@@ -78,7 +86,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
 
+        SKPaymentQueue.default().add(self)
         removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -15, width: view.frame.width*0.35, height: view.frame.height*0.05)
         
         homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
@@ -87,15 +97,50 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
         removeView.isUserInteractionEnabled = true
         removeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeTapped)))
+        
+        createAdd()
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        bannerView.adUnitID = Utils.bannerId
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
     }
+  
+    override func viewWillAppear(_ animated: Bool) {
+        if isAd == true {
+            self.dismiss(animated: true)
+            
+        }
+    }
+    
+    
     
     @objc func exitTapped (){
         homeView.zoomIn()
-        self.dismiss(animated: true)
+        if interstitial != nil {
+            interstitial?.present(fromRootViewController: self)
+            isAd = true
+        } else {
+            print("Ad wasn't ready")
+            self.dismiss(animated: true)
+        }
     }
     @objc func removeTapped (){
         removeView.zoomIn()
+        if SKPaymentQueue.canMakePayments(){
+            let set :  Set<String> = [Products.removeAds.rawValue]
+            let productRequest = SKProductsRequest(productIdentifiers: set)
+            productRequest.delegate = self
+            productRequest.start()
+            
+        }
+       
+
     }
+    
+ 
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       
@@ -196,4 +241,90 @@ extension ViewController: DetailViewControllerDelegate{
     
     
     
+}
+extension ViewController: SKProductsRequestDelegate, SKPaymentTransactionObserver{
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+
+        if let oproduct = response.products.first{
+            self.purchase(aproduct: oproduct)
+        }
+    }
+    
+    func purchase ( aproduct: SKProduct){
+        let payment = SKPayment(product: aproduct)
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().add(payment)
+
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState{
+            case .purchasing:
+                print("pur")
+            case .purchased:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .failed:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .restored:
+                print("restore")
+            case .deferred:
+                print("deffered")
+            default: break
+            }
+        
+        }
+    }
+    
+    func fetchProducts(){
+        let request = SKProductsRequest(productIdentifiers: Set(Products.allCases.compactMap({$0.rawValue})))
+        request.delegate = self
+        request.start()
+    }
+    
+}
+extension ViewController: GADBannerViewDelegate, GADFullScreenContentDelegate{
+    func createAdd() {
+        let request = GADRequest()
+        interstitial?.fullScreenContentDelegate = self
+        GADInterstitialAd.load(withAdUnitID:Utils.fullScreenAdId,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+        }
+        )
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitialAd) {
+        print("interstitialWillDismissScreen")
+    }
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
 }

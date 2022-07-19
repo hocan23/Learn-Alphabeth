@@ -227,6 +227,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="removeButtonTapped:" destination="swe-Hy-Q9y" eventType="touchUpInside" id="bZW-gA-HUN"/>
+                                        </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="tpB-wF-JcO">
                                         <rect key="frame" x="80" y="8" width="40" height="33"/>
@@ -413,7 +416,6 @@
                         <outlet property="playView" destination="r5O-N0-t8w" id="mFk-zB-Jvo"/>
                         <outlet property="prevBtn" destination="Sa9-zq-w60" id="mUq-Qb-XLU"/>
                         <outlet property="prevView" destination="7o5-oU-4zE" id="mzN-Ji-hiI"/>
-                        <outlet property="removeAdsBtn" destination="IIK-xJ-oer" id="jL3-Pc-lPh"/>
                         <outlet property="removeBtn" destination="IIK-xJ-oer" id="mHS-8j-Hb5"/>
                         <outlet property="removeView" destination="eLV-d4-GJ6" id="49p-rK-CGg"/>
                         <outlet property="topView" destination="Zc2-yf-Dv4" id="0js-Op-Gwo"/>
