@@ -246,6 +246,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             collectionAnimal1.reloadData()
             rightButton.backgroundColor = .green
             adCounter+=1
+            playMusic(name: "correctSound", type: "mp3")
+
             successAnimation()
             if selectedItemNumber > 2{
                 goNextView()
@@ -274,6 +276,10 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }else{
             isFirestAnswer = false
             rightButton.backgroundColor = .red
+            player?.stop()
+
+            playMusic(name: "wrongSound", type: "mp3")
+
             failAnimation()
 
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
@@ -300,7 +306,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
 
             midButton.backgroundColor = .green
             adCounter+=1
-
+            playMusic(name: "correctSound", type: "mp3")
             successAnimation()
 
             if selectedItemNumber > 2{
@@ -329,6 +335,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             isFirestAnswer = false
             
             midButton.backgroundColor = .red
+            player?.stop()
+            playMusic(name: "wrongSound", type: "mp3")
+
             failAnimation()
 
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
@@ -360,6 +369,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             player?.stop()
             leftButton.backgroundColor = .green
             adCounter+=1
+            playMusic(name: "correctSound", type: "mp3")
 
             successAnimation()
 
@@ -390,6 +400,10 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             isFirestAnswer = false
             
             leftButton.backgroundColor = .red
+            player?.stop()
+
+            playMusic(name: "wrongSound", type: "mp3")
+
             failAnimation()
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 self.leftButton.backgroundColor = .white
