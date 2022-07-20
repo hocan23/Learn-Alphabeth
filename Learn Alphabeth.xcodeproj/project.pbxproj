@@ -42,6 +42,11 @@
 		766E88FC288013F9008F04CB /* QuizCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E88FB288013F9008F04CB /* QuizCollectionViewCell.swift */; };
 		76811FC32887355000503365 /* correctSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 76811FC22887355000503365 /* correctSound.mp3 */; };
 		76811FC52887355C00503365 /* wrongSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 76811FC42887355C00503365 /* wrongSound.mp3 */; };
+		76811FC82887464400503365 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76811FC72887464400503365 /* SettingsTableViewCell.swift */; };
+		768310D02888246B00A8AE52 /* detail2.json in Resources */ = {isa = PBXBuildFile; fileRef = 768310CF2888246B00A8AE52 /* detail2.json */; };
+		768310D2288824A800A8AE52 /* detail1.json in Resources */ = {isa = PBXBuildFile; fileRef = 768310D1288824A800A8AE52 /* detail1.json */; };
+		768310D4288824B700A8AE52 /* detail4.json in Resources */ = {isa = PBXBuildFile; fileRef = 768310D3288824B700A8AE52 /* detail4.json */; };
+		768310D6288824BE00A8AE52 /* detail3.json in Resources */ = {isa = PBXBuildFile; fileRef = 768310D5288824BE00A8AE52 /* detail3.json */; };
 		7687D2E32875784F00ACBC00 /* Cera Pro Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7687D2E22875784F00ACBC00 /* Cera Pro Medium.ttf */; };
 		7687D2E52875787900ACBC00 /* Cera Pro Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7687D2E42875787900ACBC00 /* Cera Pro Bold.ttf */; };
 		76AA15302882911100734A02 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA152F2882911100734A02 /* SettingsViewController.swift */; };
@@ -148,6 +153,11 @@
 		767B7D8A2886CA7D00CCB303 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		76811FC22887355000503365 /* correctSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correctSound.mp3; sourceTree = "<group>"; };
 		76811FC42887355C00503365 /* wrongSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrongSound.mp3; sourceTree = "<group>"; };
+		76811FC72887464400503365 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		768310CF2888246B00A8AE52 /* detail2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detail2.json; sourceTree = "<group>"; };
+		768310D1288824A800A8AE52 /* detail1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detail1.json; sourceTree = "<group>"; };
+		768310D3288824B700A8AE52 /* detail4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detail4.json; sourceTree = "<group>"; };
+		768310D5288824BE00A8AE52 /* detail3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = detail3.json; sourceTree = "<group>"; };
 		7687D2E22875784F00ACBC00 /* Cera Pro Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cera Pro Medium.ttf"; sourceTree = "<group>"; };
 		7687D2E42875787900ACBC00 /* Cera Pro Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cera Pro Bold.ttf"; sourceTree = "<group>"; };
 		76AA152F2882911100734A02 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +308,15 @@
 			path = QuizViewControllers;
 			sourceTree = "<group>";
 		};
+		76811FC62887461C00503365 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				76AA152F2882911100734A02 /* SettingsViewController.swift */,
+				76811FC72887464400503365 /* SettingsTableViewCell.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		76AA15312882916F00734A02 /* PracticeViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,13 +398,17 @@
 				7C693FF72870E72E0030BFDF /* SceneDelegate.swift */,
 				765B2C1B288226D8006901A9 /* HomeViewController.swift */,
 				767B7D8A2886CA7D00CCB303 /* Configuration.storekit */,
-				76AA152F2882911100734A02 /* SettingsViewController.swift */,
+				76811FC62887461C00503365 /* Settings */,
 				76E7363128843D5100A399DD /* ResultView */,
 				76AA15362882B36100734A02 /* PopupViewController.swift */,
 				76AA15312882916F00734A02 /* PracticeViewController */,
 				76260623287414B200BE102E /* Extensions.swift */,
 				76811FC22887355000503365 /* correctSound.mp3 */,
 				76811FC42887355C00503365 /* wrongSound.mp3 */,
+				768310D1288824A800A8AE52 /* detail1.json */,
+				768310CF2888246B00A8AE52 /* detail2.json */,
+				768310D5288824BE00A8AE52 /* detail3.json */,
+				768310D3288824B700A8AE52 /* detail4.json */,
 				76BEB7BF28851ED3004C9F6B /* result.json */,
 				76BEB7BB28851CC5004C9F6B /* success.json */,
 				76BEB7BD28851CD0004C9F6B /* fail.json */,
@@ -559,6 +582,8 @@
 				76AA15542882DB6F00734A02 /* C1.mp3 in Resources */,
 				76260659287418DD00BE102E /* B.mp3 in Resources */,
 				7626064E287418DD00BE102E /* A.mp3 in Resources */,
+				768310D02888246B00A8AE52 /* detail2.json in Resources */,
+				768310D4288824B700A8AE52 /* detail4.json in Resources */,
 				76811FC32887355000503365 /* correctSound.mp3 in Resources */,
 				76260649287418DD00BE102E /* W.mp3 in Resources */,
 				76811FC52887355C00503365 /* wrongSound.mp3 in Resources */,
@@ -573,6 +598,7 @@
 				76AA15632882DB6F00734A02 /* Z1.mp3 in Resources */,
 				76AA15562882DB6F00734A02 /* Y1.mp3 in Resources */,
 				76260642287418DD00BE102E /* F.mp3 in Resources */,
+				768310D2288824A800A8AE52 /* detail1.json in Resources */,
 				76AA155F2882DB6F00734A02 /* O1.mp3 in Resources */,
 				76AA15622882DB6F00734A02 /* A1.mp3 in Resources */,
 				76AA155A2882DB6F00734A02 /* H1.mp3 in Resources */,
@@ -598,6 +624,7 @@
 				76260654287418DD00BE102E /* K.mp3 in Resources */,
 				76260651287418DD00BE102E /* E.mp3 in Resources */,
 				7C693FFD2870E72E0030BFDF /* Main.storyboard in Resources */,
+				768310D6288824BE00A8AE52 /* detail3.json in Resources */,
 				76AA155C2882DB6F00734A02 /* V1.mp3 in Resources */,
 				7626064C287418DD00BE102E /* M.mp3 in Resources */,
 				76260648287418DD00BE102E /* T.mp3 in Resources */,
@@ -744,6 +771,7 @@
 			files = (
 				765AEDB82874DFA3004EA8B2 /* DetailCollectionViewCell.swift in Sources */,
 				7C318B3B28722259003B0C36 /* ViewController.swift in Sources */,
+				76811FC82887464400503365 /* SettingsTableViewCell.swift in Sources */,
 				76AA15352882A59300734A02 /* PracticeCollectionViewCell.swift in Sources */,
 				76AA15302882911100734A02 /* SettingsViewController.swift in Sources */,
 				76260624287414B200BE102E /* Extensions.swift in Sources */,

@@ -87,7 +87,21 @@ class Utils{
     static var fullScreenAdId = "ca-app-pub-3940256099942544/4411468910"
     static var  bannerId = "ca-app-pub-3940256099942544/2934735716"
     
-    
+    static func saveLocal (array:[Alphabeth], key : String){
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(array) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "SavedPerson")
+        }
+}
+    static func readLocal (key: String){
+        if let savedPerson = UserDefaults.standard.object(forKey: "SavedPerson") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedPerson = try? decoder.decode(Alphabeth.self, from: savedPerson) {
+                print(loadedPerson)
+            }
+        }
+    }
     
 
 }

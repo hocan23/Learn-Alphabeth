@@ -8,8 +8,8 @@
 import UIKit
 import StoreKit
 import GoogleMobileAds
-class Alphabeth {
-
+class Alphabeth:Codable {
+    
     
     var letterImage: String
     var animalImage: String
@@ -17,7 +17,7 @@ class Alphabeth {
     var animalName: String
     
     init(letterImage: String, animalImage: String, letterSound: String, animalName: String) {
-       
+        
         self.letterImage = letterImage
         self.animalImage = animalImage
         self.letterSound = letterSound
@@ -64,10 +64,10 @@ let cellIds: [Alphabeth] = [
 private let reuseIdentifier = "Cell"
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
-   var isAd = false
+    var isAd = false
     var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?
-   var adCounter = 0
+    var adCounter = 0
     
     @IBOutlet weak var collectionLetter: UICollectionView!
     
@@ -80,18 +80,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     let insets = UIEdgeInsets(top: 10, left: 15, bottom: 60, right: 15)
-       let spacing = CGSize(width: 5, height: 10)
-
+    let spacing = CGSize(width: 5, height: 10)
+    
     @IBOutlet weak var lettersCW: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-
-        SKPaymentQueue.default().add(self)
-        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -15, width: view.frame.width*0.35, height: view.frame.height*0.05)
         
-        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        
+        SKPaymentQueue.default().add(self)
+        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -view.frame.width*0.05, width: view.frame.width*0.11, height: view.frame.height*0.05)
+        
+        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
         collectionLetter.anchor(top: removeView.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.02, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
         homeView.isUserInteractionEnabled = true
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
@@ -105,7 +105,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         bannerView.load(GADRequest())
         bannerView.delegate = self
     }
-  
+    
     override func viewWillAppear(_ animated: Bool) {
         if isAd == true {
             self.dismiss(animated: true)
@@ -134,16 +134,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             productRequest.start()
             
         }
-       
-
+        
+        
     }
     
- 
+    
     
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      
+        
         if (collectionView == lettersCW) {
             
             return cellIds.count
@@ -152,22 +152,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         return cellIds.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = lettersCW.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
         cell.animalImage.image = UIImage(named: cellIds[indexPath.item].animalImage)
         cell.letterImage.image = UIImage(named: String(cellIds[indexPath.item].letterImage.prefix(1)))
         cell.layer.masksToBounds = false
-               cell.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
-               cell.layer.shadowOffset = CGSize(width: -3, height: 4)
-               cell.layer.shadowRadius = 10
-               cell.layer.shadowOpacity = 1
+        cell.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
+        cell.layer.shadowOffset = CGSize(width: -3, height: 4)
+        cell.layer.shadowRadius = 10
+        cell.layer.shadowOpacity = 1
         
         return cell
-
+        
     }
-  
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let destinationVC = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as! DetailViewController
@@ -245,7 +245,7 @@ extension ViewController: DetailViewControllerDelegate{
 extension ViewController: SKProductsRequestDelegate, SKPaymentTransactionObserver{
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-
+        
         if let oproduct = response.products.first{
             self.purchase(aproduct: oproduct)
         }
@@ -255,7 +255,7 @@ extension ViewController: SKProductsRequestDelegate, SKPaymentTransactionObserve
         let payment = SKPayment(product: aproduct)
         SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().add(payment)
-
+        
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -273,7 +273,7 @@ extension ViewController: SKProductsRequestDelegate, SKPaymentTransactionObserve
                 print("deffered")
             default: break
             }
-        
+            
         }
     }
     

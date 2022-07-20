@@ -21,7 +21,7 @@ class PracriceViewController: UIViewController {
     var selectedItemNumber = 0
     var isSmall : Bool = false
     let insets = UIEdgeInsets(top: 10, left: 15, bottom: 60, right: 15)
-    let spacing = CGSize(width: 5, height: 10)
+    let spacing = CGSize(width: 7, height: 10)
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
         case removeAds = "com.temporary.id"
@@ -67,18 +67,18 @@ class PracriceViewController: UIViewController {
     }
     
     func setupConstraints (){
-       
-        switchLetter.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
-        labelSwitch.anchor(top: nil, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop:0, paddingBottom: 0, paddingLeft: 0, paddingRight: -5, width:180, height: 40)
-        collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
-        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -15, width: view.frame.width*0.35, height: view.frame.height*0.05)
         
-        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
-       
+        switchLetter.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
+        labelSwitch.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.024, paddingBottom: 0, paddingLeft: 0, paddingRight: -5, width:180, height: 40)
+        collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
+        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -view.frame.width*0.05, width: view.frame.width*0.11, height: view.frame.height*0.05)
+        
+        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        labelSwitch.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
         
     }
-   
-        
+    
+    
     
     @objc func removeTapped (){
         removeView.zoomIn()
@@ -98,7 +98,7 @@ class PracriceViewController: UIViewController {
             print("Ad wasn't ready")
             self.dismiss(animated: true)
         }
-       
+        
     }
     @IBAction func switchPositionChanged(_ sender: UISwitch) {
         if sender.isOn {
@@ -138,12 +138,13 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
             
         }
         
-        cell.layer.masksToBounds = false
+        cell.layer.cornerRadius = 20
         cell.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
         cell.layer.shadowOffset = CGSize(width: -3, height: 4)
         cell.layer.shadowRadius = 10
         cell.layer.shadowOpacity = 1
-        
+        cell.backgroundColor = UIColor.white
+        cell.layer.masksToBounds = false
         return cell
         
     }
@@ -207,7 +208,7 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
         
         if UIDevice.current.userInterfaceIdiom == .pad  {
             
-            let numberOfVisibleCellHorizontal: CGFloat = 4
+            let numberOfVisibleCellHorizontal: CGFloat = 5
             let horizontalOtherValues = insets.right + insets.left + (spacing.width * numberOfVisibleCellHorizontal)
             let width = (collectionView.bounds.width - horizontalOtherValues) / numberOfVisibleCellHorizontal
             
@@ -230,7 +231,7 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
 extension PracriceViewController: SKProductsRequestDelegate, SKPaymentTransactionObserver{
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-
+        
         if let oproduct = response.products.first{
             self.purchase(aproduct: oproduct)
         }
@@ -240,7 +241,7 @@ extension PracriceViewController: SKProductsRequestDelegate, SKPaymentTransactio
         let payment = SKPayment(product: aproduct)
         SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().add(payment)
-
+        
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -258,7 +259,7 @@ extension PracriceViewController: SKProductsRequestDelegate, SKPaymentTransactio
                 print("deffered")
             default: break
             }
-        
+            
         }
     }
     

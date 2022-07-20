@@ -15,5 +15,6 @@ class PracticeCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         viewCard.layer.cornerRadius = 20
+
     }
 }
