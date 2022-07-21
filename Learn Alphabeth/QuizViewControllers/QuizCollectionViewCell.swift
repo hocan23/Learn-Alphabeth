@@ -36,7 +36,7 @@ class QuizCollectionViewCell: UICollectionViewCell {
         cardView.layer.cornerRadius = 20
         cardView.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
         cardView.layer.shadowOffset = CGSize(width: -3, height: 4)
-        cardView.layer.shadowRadius = 10
+        cardView.layer.shadowRadius = 4
         cardView.layer.shadowOpacity = 1
         cardView.backgroundColor = UIColor.white
         cardView.layer.masksToBounds = false

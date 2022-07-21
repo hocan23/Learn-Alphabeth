@@ -72,7 +72,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         collectionAnimal.delegate = self
         collectionAnimal.dataSource = self
         print(selectedItemNumber)
-        collectionAnimal.contentInset
+        
         //        removeBtn.layer.cornerRadius = (view.frame.height*0.045)/2
         //
         //        autoNextBtn.layer.cornerRadius = (view.frame.height*0.09)/2
@@ -81,8 +81,8 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         //        playBtn.layer.cornerRadius = (view.frame.height*0.09)/2
         //        self.collectionAnimal.backgroundColor = UIColor(red: 194/255, green: 213/255, blue: 236/255, alpha: 1)
         
-        collectionAnimal.contentInset = UIEdgeInsets(top: 0, left: view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05)
        
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +103,9 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             bannerView.delegate = self
         }
     }
+    
+    
+    
     func homeAnimation (name:String) {
         animationView.animation = Animation.named(name)
         animationView.frame = CGRect(x: view.frame.width*0.3, y: 0, width: view.bounds.height*0.22, height: view.bounds.height*0.22)
@@ -156,7 +159,12 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     
     
     func setupConstraints (){
-        
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+
+        collectionAnimal.contentInset = UIEdgeInsets(top: 0, left:view.frame.width*0.15, bottom: 0, right: view.frame.width*0.15);
+        }else{
+            collectionAnimal.contentInset = UIEdgeInsets(top: 0, left:view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05);
+        }
         topView.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.12)
         collectionAnimal.anchor(top: topView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.66)
         print(view.bounds.height)
@@ -348,7 +356,7 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
         homeAnimation(name: "detail\(1)")
         adCounter+=1
         if isAuto == true{
-            if adCounter >= 8{
+            if adCounter >= 6{
                 if interstitial != nil {
                     interstitial?.present(fromRootViewController: self)
                     adCounter = 0
@@ -359,7 +367,7 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
                 }
             }
         }else{
-            if adCounter >= 4{
+            if adCounter >= 6{
                 if interstitial != nil {
                     interstitial?.present(fromRootViewController: self)
                     adCounter = 0
@@ -415,7 +423,15 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
     //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     //        return view.frame.width*0.05
     //    }
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+        return view.frame.width*0.15
+        }else{
+            return view.frame.width*0.05
+
+        }
+    }
+
     internal func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         print(selectedItemNumber)
@@ -517,4 +533,15 @@ extension DetailViewController: GADBannerViewDelegate, GADFullScreenContentDeleg
                                 constant: 0)
             ])
     }
+}
+extension UIView {
+    func bounce(){
+        UIView.animate(withDuration: 1.7, delay: 0.0, options: .curveEaseIn, animations: {
+          self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+      }) { (finished) in
+          UIView.animate(withDuration: 2, animations: {
+          self.transform = CGAffineTransform.identity
+      })
+}
+}
 }

@@ -55,7 +55,12 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         //        collectionAnimal1.isUserInteractionEnabled = false
         self.collectionAnimal1.isScrollEnabled = false
         SetupConstraints()
-        collectionAnimal1.contentInset = UIEdgeInsets(top: 0, left:view.frame.width*0.15, bottom: 0, right: view.frame.width*0.15);
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            collectionAnimal1.contentInset = UIEdgeInsets(top: 0, left:view.frame.width*0.15, bottom: 0, right: view.frame.width*0.15);
+        }else{
+            collectionAnimal1.contentInset = UIEdgeInsets(top: 0, left:view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05);
+        }
+     
        
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -101,8 +106,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         removeBtn.anchor(top: top1View.topAnchor, bottom: top1View.bottomAnchor, leading: nil, trailing: top1View.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.35, height: view.frame.height*0.05)
         
         leftButton.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: bottom1View.frame.height*0.1, paddingBottom: -bottom1View.frame.height*0.1, paddingLeft:  view.frame.width*0.1, paddingRight: 0, width: view.frame.width*0.237, height: view.frame.height*0.11)
-        midButton.anchor(top: nil, bottom: nil, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.width*0.237, height: view.frame.height*0.11)
-        rightButton.anchor(top: nil, bottom: nil, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.width*0.237, height: view.frame.height*0.11)
+        midButton.anchor(top: nil, bottom: nil, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.11, height: view.frame.height*0.11)
+        rightButton.anchor(top: nil, bottom: nil, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.11, height: view.frame.height*0.11)
         
         removeView.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04, width: view.frame.width*0.11, height: view.frame.height*0.05)
         
@@ -259,7 +264,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             playMusic(name: "correctSound", type: "mp3")
             
             successAnimation()
-            if selectedItemNumber > 23{
+            if selectedItemNumber > 25{
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(correctAnswer), forKey:"correctAnswers")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(wrongAnswer), forKey:"wrongAnswers")
                 goNextView()
@@ -273,7 +278,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
                     self.collectionAnimal1.reloadData()
                     
                 }
-                if adCounter >= 4{
+                if adCounter >= 6{
                     if interstitial != nil {
                         interstitial?.present(fromRootViewController: self)
                         adCounter = 0
@@ -321,7 +326,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             playMusic(name: "correctSound", type: "mp3")
             successAnimation()
             
-            if selectedItemNumber > 23{
+            if selectedItemNumber > 25{
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(correctAnswer), forKey:"correctAnswers")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(wrongAnswer), forKey:"wrongAnswers")
                 goNextView()
@@ -333,7 +338,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
                     self.collectionAnimal1.scrollToItem(at:IndexPath(item: self.selectedItemNumber+1, section: 0), at: .right, animated: false)
                     self.collectionAnimal1.reloadData()
                 }
-                if adCounter >= 4{
+                if adCounter >= 6{
                     if interstitial != nil {
                         interstitial?.present(fromRootViewController: self)
                         adCounter = 0
@@ -387,7 +392,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             
             successAnimation()
             
-            if selectedItemNumber > 23{
+            if selectedItemNumber > 25{
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(correctAnswer), forKey:"correctAnswers")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(wrongAnswer), forKey:"wrongAnswers")
                 goNextView()
@@ -399,7 +404,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
                     self.collectionAnimal1.reloadData()
                     
                 }
-                if adCounter >= 4{
+                if adCounter >= 6{
                     if interstitial != nil {
                         interstitial?.present(fromRootViewController: self)
                         adCounter = 0
@@ -559,7 +564,14 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return view.frame.width*0.15
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            return view.frame.width*0.15
+
+        }else{
+            return view.frame.width*0.05
+
+        }
+
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

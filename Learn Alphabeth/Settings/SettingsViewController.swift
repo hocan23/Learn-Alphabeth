@@ -29,6 +29,7 @@ class SettingsViewController: UIViewController{
         homeView.isUserInteractionEnabled = true
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
         SKPaymentQueue.default().add(self)
+        tableView.isScrollEnabled = false
        
     }
     
@@ -73,14 +74,21 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath) as! SettingsTableViewCell
         cell.tableLabel.text = headers[indexPath.row]
         cell.tableLabel.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
-
-        cell.selectionStyle = .none
+        if cell.isSelected {
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+         } else {
+            tableView.deselectRow(at: indexPath, animated: true)
+         }
+        cell.selectionStyle = .default;
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }
         switch indexPath.row{
         case 0 :
             if let name = URL(string: "https://apps.apple.com/us/app/islamic-wallpaper-hd-pro/id1632238123"), !name.absoluteString.isEmpty {
