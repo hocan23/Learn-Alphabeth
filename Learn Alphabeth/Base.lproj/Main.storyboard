@@ -238,7 +238,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.8474983573" green="0.82692378759999996" blue="0.85170429940000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.96414047479999998" green="0.984171927" blue="0.99678260090000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0g-ym-ixs">
                                 <rect key="frame" x="-1" y="627" width="430" height="200"/>
