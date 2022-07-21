@@ -11,11 +11,11 @@
       "localizations" : [
         {
           "description" : "You can remove Ads forever.",
-          "displayName" : "Remove all ads- Forever!",
+          "displayName" : "Remove all ads Forever!",
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.temporary.id",
+      "productID" : "com.SIX11.learnABC.removeAds\ncom.SIX11.learnABC.removeAds\n",
       "referenceName" : "Remove Ads",
       "type" : "NonConsumable"
     }

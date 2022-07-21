@@ -56,7 +56,9 @@ class HomeViewController: UIViewController {
         
         
     }
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     override func viewWillAppear(_ animated: Bool) {
         //        homeAnimation()
         if Utils.isPremium == "premium"{

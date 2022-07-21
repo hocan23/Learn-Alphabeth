@@ -498,6 +498,7 @@
                                     <constraint firstItem="W01-Ta-GiQ" firstAttribute="centerY" secondItem="IYm-p0-jVh" secondAttribute="centerY" id="a52-Ef-OnN"/>
                                     <constraint firstItem="W01-Ta-GiQ" firstAttribute="centerY" secondItem="Pxw-Jz-1k3" secondAttribute="centerY" id="mBN-eI-jpz"/>
                                     <constraint firstItem="IYm-p0-jVh" firstAttribute="centerY" secondItem="5VS-0d-KPN" secondAttribute="centerY" id="us8-EE-UHd"/>
+                                    <constraint firstItem="IYm-p0-jVh" firstAttribute="centerX" secondItem="Pxw-Jz-1k3" secondAttribute="centerX" id="z0B-j2-gwR"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Is2-xM-hhZ" userLabel="Collection Animal1">
@@ -542,8 +543,8 @@
                                                             <color key="backgroundColor" red="0.90980392156862744" green="0.94117647058823528" blue="1" alpha="0.69455623" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="tintColor" red="0.36470588235294116" green="0.67843137254901964" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                                         </progressView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1/26" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p97-vt-RIR">
-                                                            <rect key="frame" x="349" y="295.00000000000006" width="42" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="25/26" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p97-vt-RIR">
+                                                            <rect key="frame" x="335" y="295" width="56" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <color key="textColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="0.75" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>

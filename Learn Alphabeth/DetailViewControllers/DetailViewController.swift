@@ -26,6 +26,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     var isFirstOpen : Bool = true
     var adCounter = 0
     var isinAd = false
+    var animationCount = 1
     let animationView = AnimationView()
    
     @IBOutlet weak var animalImage: UIImageView!
@@ -103,13 +104,15 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             bannerView.delegate = self
         }
     }
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     
     
     func homeAnimation (name:String) {
         animationView.animation = Animation.named(name)
-        animationView.frame = CGRect(x: view.frame.width*0.3, y: 0, width: view.bounds.height*0.22, height: view.bounds.height*0.22)
-        
+        animationView.frame = CGRect(x: 0, y: view.frame.height*0.16, width: 350, height: 350)
+
         //        animationView.center = view.center
         animationView.loopMode = .loop
         self.animationView.isHidden = false
@@ -194,6 +197,8 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     @IBAction func autoPlaySwitchPressed(_ sender: UISwitch) {
         print(sender.isOn)
         if sender.isOn {
+            homeAnimation(name: "detail\(animationCount)")
+
             isautoPlay = true
         }else{
             isautoPlay = false
@@ -202,7 +207,9 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     }
     
     @IBAction func playTapped(_ sender: UIButton) {
-        
+       
+        homeAnimation(name: "detail\(animationCount)")
+
         playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
         print(isautoPlay)
         
@@ -241,6 +248,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         print("finished")//It is working now! printed "finished"!
         playView.image = UIImage(named: "playBtn")
+        animationView.isHidden=true
         if selectedItemNumber < cellIds.count-1{
             if isAuto == true{
                 selectedItemNumber += 1
@@ -256,6 +264,8 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     
     
     @IBAction func autoNextPressed(_ sender: UIButton) {
+        isautoPlay = true
+        collectionAnimal.reloadData()
         autonextView.zoomIn()
         player?.stop()
         if isAuto == false{
@@ -353,7 +363,14 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
                 
             }
         }
-        homeAnimation(name: "detail\(1)")
+        if animationCount<5{
+            homeAnimation(name: "detail\(animationCount)")
+            animationCount+=1
+        }else{
+            animationCount=1
+            homeAnimation(name: "detail\(animationCount)")
+
+        }
         adCounter+=1
         if isAuto == true{
             if adCounter >= 6{
@@ -536,12 +553,17 @@ extension DetailViewController: GADBannerViewDelegate, GADFullScreenContentDeleg
 }
 extension UIView {
     func bounce(){
-        UIView.animate(withDuration: 1.7, delay: 0.0, options: .curveEaseIn, animations: {
-          self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
-      }) { (finished) in
-          UIView.animate(withDuration: 2, animations: {
-          self.transform = CGAffineTransform.identity
-      })
-}
-}
+        var timer =  Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+                // Do what you need to do repeatedly
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
+              self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+          }) { (finished) in
+              UIView.animate(withDuration: 0.5, animations: {
+              self.transform = CGAffineTransform.identity
+          })
+    }
+    }
+        
+            }
+        
 }

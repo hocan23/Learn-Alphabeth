@@ -13,6 +13,8 @@ import GoogleMobileAds
 
 
 class QuizViewController: UIViewController, AVAudioPlayerDelegate {
+    var timer = Timer()
+
     var adCounter = 0
     @IBOutlet weak var removeView: UIImageView!
     @IBOutlet weak var homeView: UIImageView!
@@ -88,7 +90,6 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
   
 
     @IBAction func playyTapped(_ sender: UIButton) {
-        
         playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
         
     }
@@ -105,7 +106,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         
         removeBtn.anchor(top: top1View.topAnchor, bottom: top1View.bottomAnchor, leading: nil, trailing: top1View.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.35, height: view.frame.height*0.05)
         
-        leftButton.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: bottom1View.frame.height*0.1, paddingBottom: -bottom1View.frame.height*0.1, paddingLeft:  view.frame.width*0.1, paddingRight: 0, width: view.frame.width*0.237, height: view.frame.height*0.11)
+        leftButton.anchor(top: nil, bottom: nil, leading: nil, trailing: midButton.leadingAnchor, paddingTop: bottom1View.frame.height*0.1, paddingBottom: -bottom1View.frame.height*0.1, paddingLeft:  0, paddingRight: -view.frame.width*0.05, width: view.frame.height*0.11, height: view.frame.height*0.11)
         midButton.anchor(top: nil, bottom: nil, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.11, height: view.frame.height*0.11)
         rightButton.anchor(top: nil, bottom: nil, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.11, height: view.frame.height*0.11)
         
@@ -221,6 +222,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }
         
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     func failAnimation () {
         animationView.animation = Animation.named("fail")
         animationView.frame = CGRect(x: 0, y: view.frame.height*0.27, width: 200, height: 200)
@@ -264,7 +268,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             playMusic(name: "correctSound", type: "mp3")
             
             successAnimation()
-            if selectedItemNumber > 25{
+            if selectedItemNumber > 24{
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(correctAnswer), forKey:"correctAnswers")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(wrongAnswer), forKey:"wrongAnswers")
                 goNextView()
@@ -326,7 +330,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             playMusic(name: "correctSound", type: "mp3")
             successAnimation()
             
-            if selectedItemNumber > 25{
+            if selectedItemNumber > 24{
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(correctAnswer), forKey:"correctAnswers")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(wrongAnswer), forKey:"wrongAnswers")
                 goNextView()
@@ -392,7 +396,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             
             successAnimation()
             
-            if selectedItemNumber > 25{
+            if selectedItemNumber > 24{
+                print(selectedItemNumber)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(correctAnswer), forKey:"correctAnswers")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(wrongAnswer), forKey:"wrongAnswers")
                 goNextView()

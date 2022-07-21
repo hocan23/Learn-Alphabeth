@@ -115,7 +115,9 @@ class ResultViewController: UIViewController {
         doneButton.isUserInteractionEnabled = true
         doneButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doneTapped)))
     }
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     @objc func removeTapped (){
         removeView.zoomIn()
         if SKPaymentQueue.canMakePayments(){

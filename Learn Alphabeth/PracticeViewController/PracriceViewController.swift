@@ -41,6 +41,9 @@ class PracriceViewController: UIViewController {
        
         // Do any additional setup after loading the view.
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     override func viewWillAppear(_ animated: Bool) {
         if isAd == true {
             self.dismiss(animated: true)

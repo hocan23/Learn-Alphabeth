@@ -51,6 +51,9 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
         bannerView.load(GADRequest())
         bannerView.delegate = self
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
         {
             let touch = touches.first

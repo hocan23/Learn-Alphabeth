@@ -9,7 +9,8 @@ import UIKit
 
 class QuizCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cardView: UIView!
-    
+    var timer = Timer()
+
     @IBOutlet weak var switchLabel: UILabel!
     @IBOutlet weak var playImage: UIImageView!
     @IBOutlet weak var playButton: UIButton!
@@ -32,7 +33,7 @@ class QuizCollectionViewCell: UICollectionViewCell {
         switchLabel.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: autoSwitch.leadingAnchor, paddingTop: 7, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width: 120, height: 40)
         autoSwitch.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: cardView.trailingAnchor, paddingTop: 10, paddingBottom: 0, paddingLeft:-3, paddingRight: -20, width: 40, height: 40)
         progressBar.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: progressLabel.leadingAnchor, paddingTop: 0, paddingBottom: -30, paddingLeft: 10, paddingRight: 0, width:contentWight*0.6, height: 15)
-        progressLabel.anchor(top: nil, bottom: cardView.bottomAnchor, leading: progressBar.trailingAnchor, trailing: cardView.trailingAnchor, paddingTop: 0, paddingBottom: -20, paddingLeft: 0, paddingRight: -10, width:40, height: 15)
+        progressLabel.anchor(top: nil, bottom: cardView.bottomAnchor, leading: progressBar.trailingAnchor, trailing: cardView.trailingAnchor, paddingTop: 0, paddingBottom: -20, paddingLeft: 0, paddingRight: -10, width:60, height: 15)
         cardView.layer.cornerRadius = 20
         cardView.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
         cardView.layer.shadowOffset = CGSize(width: -3, height: 4)
@@ -49,7 +50,10 @@ class QuizCollectionViewCell: UICollectionViewCell {
         // Set the rounded edge for the inner bar
         progressBar.layer.sublayers![1].cornerRadius = 7
         progressBar.subviews[1].clipsToBounds = true
+        timer.invalidate()
 
+        animalImg.bounce()
+        
         
     }
    
