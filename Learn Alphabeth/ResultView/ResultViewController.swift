@@ -48,8 +48,7 @@ class ResultViewController: UIViewController {
         if let data = UserDefaults.standard.value(forKey:"wrongAnswers") as? Data {
             wrongAnswer = try! PropertyListDecoder().decode(Array<Alphabeth>.self, from: data)
         }
-        print(correctAnswer)
-        print(wrongAnswer)
+     
         
         collectionTop.delegate = self
         collectionTop.dataSource = self
@@ -67,8 +66,11 @@ class ResultViewController: UIViewController {
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
         removeView.isUserInteractionEnabled = true
         removeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeTapped)))
+        
+      
         // Do any additional setup after loading the view.
     }
+   
     func isFirstStup(){
         if correctAnswer.count == 0 && wrongAnswer.count == 0 {
             collectionTop.isHidden = true
@@ -79,31 +81,35 @@ class ResultViewController: UIViewController {
             collectionBottom.isHidden = true
             collectionBottom.isHidden = true
             emptyLabel.isHidden = false
+            animationView.isHidden = true
+            
         }
+        headerLabel.text = "Last Solo \nTest Results"
+
 //        animationView.isHidden=true
         doneButton.image = UIImage(named: "startt")
     }
     
     func setupConstraits(){
-        headerLabel.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.2, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.12)
-        correctView.anchor(top: headerLabel.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.04)
+        headerLabel.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.21, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.12)
+        correctView.anchor(top: headerLabel.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.04)
         if correctAnswer.count<13{
-            collectionTop.anchor(top: correctView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.15)
+            collectionTop.anchor(top: correctView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.12)
         }else{
-            collectionTop.anchor(top: correctView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.2)
+            collectionTop.anchor(top: correctView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.23)
             
         }
         
-        wrongView.anchor(top: collectionTop.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.04)
-        doneButton.anchor(top: nil, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -65, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: view.frame.height*0.08)
+        wrongView.anchor(top: collectionTop.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.02, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.04)
+        doneButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.025, paddingBottom: -65, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: view.frame.height*0.08)
         if wrongAnswer.count<13{
-        collectionBottom.anchor(top: wrongView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.15)
+        collectionBottom.anchor(top: wrongView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.12)
         } else{
-                collectionBottom.anchor(top: wrongView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.2)
+                collectionBottom.anchor(top: wrongView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.23)
             }
-        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -view.frame.width*0.05, width: view.frame.width*0.11, height: view.frame.height*0.05)
+        removeView.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04, width: view.frame.width*0.11, height: view.frame.height*0.05)
         
-        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        homeView.anchor(top:view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: view.frame.height*0.04, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
         
         
         doneButton.isUserInteractionEnabled = true
@@ -152,10 +158,20 @@ class ResultViewController: UIViewController {
             destinationVC.modalPresentationStyle = .fullScreen
             self.present(destinationVC, animated: true, completion: nil)
         }
+        if Utils.isPremium == "premium"{
+            removeView.isHidden = true
+        }else{
+            removeView.isHidden = false
+            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            bannerView.adUnitID = Utils.bannerId
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
     }
     func resultAnimation () {
         animationView.animation = Animation.named("result")
-        animationView.frame = CGRect(x: view.frame.width*0.34, y: 0, width: view.bounds.height*0.22, height: view.bounds.height*0.22)
+        animationView.frame = CGRect(x: view.frame.width*0.34, y: 20, width: view.bounds.height*0.22, height: view.bounds.height*0.22)
         
         //        animationView.center = view.center
         animationView.loopMode = .loop
@@ -244,7 +260,7 @@ extension ResultViewController : UICollectionViewDataSource,UICollectionViewDele
         if UIDevice.current.userInterfaceIdiom == .phone {
             
             
-            let numberOfVisibleCellHorizontal: CGFloat = 9
+            let numberOfVisibleCellHorizontal: CGFloat = 7
             let horizontalOtherValues = insets.right + insets.left + (spacing.width * numberOfVisibleCellHorizontal)
             let width = (collectionView.bounds.width - horizontalOtherValues) / numberOfVisibleCellHorizontal
             print(width)
@@ -349,10 +365,14 @@ extension ResultViewController: SKProductsRequestDelegate, SKPaymentTransactionO
                 print("pur")
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
+                Utils.saveLocal(array: "premium", key: "purchase")
+
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
             case .restored:
                 print("restore")
+                Utils.saveLocal(array: "premium", key: "purchase")
+
             case .deferred:
                 print("deffered")
             default: break

@@ -54,15 +54,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         //        collectionAnimal1.isScrollEnabled = false
         //        collectionAnimal1.isUserInteractionEnabled = false
         self.collectionAnimal1.isScrollEnabled = false
-        
         SetupConstraints()
-        
-        createAdd()
-        bannerView = GADBannerView(adSize: GADAdSizeBanner)
-        bannerView.adUnitID = Utils.bannerId
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
+        collectionAnimal1.contentInset = UIEdgeInsets(top: 0, left:view.frame.width*0.15, bottom: 0, right: view.frame.width*0.15);
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         if isAd == true {
@@ -74,7 +68,20 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
             
         }
+        if Utils.isPremium == "premium"{
+            removeView.isHidden = true
+        }else{
+            createAdd()
+            removeView.isHidden = false
+            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            bannerView.adUnitID = Utils.bannerId
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
     }
+  
+
     @IBAction func playyTapped(_ sender: UIButton) {
         
         playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
@@ -97,9 +104,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         midButton.anchor(top: nil, bottom: nil, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.width*0.237, height: view.frame.height*0.11)
         rightButton.anchor(top: nil, bottom: nil, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.width*0.237, height: view.frame.height*0.11)
         
-        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -view.frame.width*0.05, width: view.frame.width*0.11, height: view.frame.height*0.05)
+        removeView.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04, width: view.frame.width*0.11, height: view.frame.height*0.05)
         
-        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        homeView.anchor(top:view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: view.frame.height*0.04, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
         homeView.isUserInteractionEnabled = true
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
         
@@ -132,6 +139,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         rightButton.backgroundColor = UIColor.white
         rightButton.layer.masksToBounds = false
     }
+    
+    
+    
     @objc func exitTapped (){
         homeView.zoomIn()
         player?.stop()
@@ -192,7 +202,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     
     func successAnimation () {
         animationView.animation = Animation.named("success")
-        animationView.frame = CGRect(x: 0, y: view.frame.height*0.2, width: 300, height: 300)
+        animationView.frame = CGRect(x: 0, y: view.frame.height*0.16, width: 350, height: 350)
         animationView.center.x = view.center.x
         animationView.loopMode = .playOnce
         self.animationView.isHidden = false
@@ -208,7 +218,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     }
     func failAnimation () {
         animationView.animation = Animation.named("fail")
-        animationView.frame = CGRect(x: 0, y: view.frame.height*0.2, width: 300, height: 300)
+        animationView.frame = CGRect(x: 0, y: view.frame.height*0.27, width: 200, height: 200)
         animationView.center.x = view.center.x
         animationView.loopMode = .playOnce
         self.animationView.isHidden = false
@@ -426,6 +436,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }
         if isSmall == false{
             leftButton.setTitle(String(buttonOption[0].prefix(1)), for: .normal)
+            
             midButton.setTitle(String(buttonOption[1].prefix(1)), for: .normal)
             rightButton.setTitle(String(buttonOption[2].prefix(1)), for: .normal)
             
@@ -527,6 +538,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionAnimal1.dequeueReusableCell(withReuseIdentifier: "quizcell", for: indexPath) as! QuizCollectionViewCell
+        
         cell.animalImg.image = UIImage(named:  cellIds[indexPath.row].animalImage)
         cell.progressLabel.text = "\(selectedItemNumber)/26"
         cell.progressBar.setProgress(Float(selectedItemNumber)/26, animated: true)
@@ -546,9 +558,26 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return view.frame.width*0.15
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 100
+    }
+
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: view.frame.size.width*0.9, height: view.frame.size.height*0.6-10)
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            return CGSize(width: view.frame.size.width*0.7, height: view.frame.size.height*0.6-50)
+
+        }else{
+            return CGSize(width: view.frame.size.width*0.9, height: view.frame.size.height*0.6-10)
+
+
+        }
     }
     //
     //    }
@@ -587,10 +616,14 @@ extension QuizViewController: SKProductsRequestDelegate, SKPaymentTransactionObs
                 print("pur")
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
+                Utils.saveLocal(array: "premium", key: "purchase")
+
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
             case .restored:
                 print("restore")
+                Utils.saveLocal(array: "premium", key: "purchase")
+
             case .deferred:
                 print("deffered")
             default: break

@@ -86,7 +86,7 @@ class Utils{
     ]
     static var fullScreenAdId = "ca-app-pub-3940256099942544/4411468910"
     static var  bannerId = "ca-app-pub-3940256099942544/2934735716"
-    
+    static var isPremium = ""
     static func saveLocal (array:[Alphabeth], key : String){
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(array) {
@@ -102,6 +102,16 @@ class Utils{
             }
         }
     }
+    static func saveLocal (array:String, key : String){
+    let defaults = UserDefaults.standard
+    defaults.set(array, forKey: key)
+}
+    static func readLocal (key: String)->String{
+        let defaults = UserDefaults.standard
+        let myarray = defaults.string(forKey: key) ?? String()
+        return myarray
+    }
+  
     
 
 }

@@ -38,6 +38,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Utils.isPremium = Utils.readLocal(key: "purchase")
+        print(Utils.isPremium)
         setupConstraits()
         topLeftView.isUserInteractionEnabled = true
         topLeftView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(topLeftTapped)))
@@ -49,38 +51,58 @@ class HomeViewController: UIViewController {
         bottomRightView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bottomRightTapped)))
         removeView.isUserInteractionEnabled = true
         removeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeTapped)))
-        createAdd()
-        bannerView = GADBannerView(adSize: GADAdSizeBanner)
-        bannerView.adUnitID = Utils.bannerId
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
+        
         Utils.saveLocal(array: [Utils.cellIds[0]], key: "SavedPerson")
-        print(Utils.readLocal(key: "SavedPerson"))
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //        homeAnimation()
+        if Utils.isPremium == "premium"{
+            removeView.isHidden = true
+        }else{
+            createAdd()
+            removeView.isHidden = false
+            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            bannerView.adUnitID = Utils.bannerId
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
     }
     
     
     func setupConstraits (){
         print(view.frame.width)
         if UIDevice.current.userInterfaceIdiom == .pad  {
-            topLeftView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: 30, paddingBottom: 0, paddingLeft: 40, paddingRight: 0, width: (view.frame.width-100)/2, height: view.frame.height*0.3)
-            topRightView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: topLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingBottom: 0, paddingLeft: 40, paddingRight: -40, width: (view.frame.width-100)/2, height: view.frame.height*0.3)
-            bottomLeftView.anchor(top: topLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop:20, paddingBottom: 0, paddingLeft: 40, paddingRight: 40, width:  (view.frame.width-100)/2, height: view.frame.height*0.3)
-            bottomRightView.anchor(top: topRightView.bottomAnchor, bottom: nil, leading: bottomLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: 20, paddingBottom: 0, paddingLeft: 40, paddingRight: -40, width: (view.frame.width-100)/2, height: view.frame.height*0.3)
-            removeView.anchor(top: bottomLeftView.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -75, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: 0)
-            
+            topLeftView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: 0, width: (view.frame.width)*0.35, height: view.frame.height*0.3)
+            topRightView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: topLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: -(view.frame.width)*0.1, width: (view.frame.width)*0.35, height: view.frame.height*0.3)
+            bottomLeftView.anchor(top: topLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop:view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: 40, width:  (view.frame.width)*0.35, height: view.frame.height*0.3)
+            bottomRightView.anchor(top: topRightView.bottomAnchor, bottom: nil, leading: bottomLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: (view.frame.width)*0.35, height: view.frame.height*0.3)
+            removeView.anchor(top: bottomLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -75, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: 0, height: 0)
+            headerView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.width*0.124, paddingRight: -view.frame.width*0.124, width: 0, height: view.frame.height*0.08)
         }else{
-            topLeftView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: 30, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: (view.frame.width-60)/2, height: view.frame.height*0.25)
-            topRightView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: topLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingBottom: 0, paddingLeft: 20, paddingRight: -20, width: (view.frame.width-60)/2, height: view.frame.height*0.25)
-            bottomLeftView.anchor(top: topLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop:20, paddingBottom: 0, paddingLeft: 20, paddingRight: 20, width:  (view.frame.width-60)/2, height: view.frame.height*0.25)
-            bottomRightView.anchor(top: topRightView.bottomAnchor, bottom: nil, leading: bottomLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: 20, paddingBottom: 0, paddingLeft: 20, paddingRight: -20, width: (view.frame.width-60)/2, height: view.frame.height*0.25)
-            removeView.anchor(top: bottomLeftView.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.026, paddingBottom: -65, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: 0, height: 0)
+            if Utils.isPremium == "premium"{
+                topLeftView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: 40, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: (view.frame.width-60)/2, height: view.frame.height*0.3)
+                topRightView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: topLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: 40, paddingBottom: 0, paddingLeft: 20, paddingRight: -20, width: (view.frame.width-60)/2, height: view.frame.height*0.3)
+                bottomLeftView.anchor(top: topLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop:40, paddingBottom: 0, paddingLeft: 20, paddingRight: 20, width:  (view.frame.width-60)/2, height: view.frame.height*0.3)
+                bottomRightView.anchor(top: topRightView.bottomAnchor, bottom: nil, leading: bottomLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: 40, paddingBottom: 0, paddingLeft: 20, paddingRight: -20, width: (view.frame.width-60)/2, height: view.frame.height*0.3)
+                removeView.anchor(top: bottomLeftView.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.026, paddingBottom: -65, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: 0, height: 0)
+                headerView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 40, paddingBottom: 0, paddingLeft: view.frame.width*0.124, paddingRight: -view.frame.width*0.124, width: 0, height: view.frame.height*0.08)
+            }else{
+                topLeftView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: 30, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: (view.frame.width-60)/2, height: view.frame.height*0.25)
+                topRightView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: topLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingBottom: 0, paddingLeft: 20, paddingRight: -20, width: (view.frame.width-60)/2, height: view.frame.height*0.25)
+                bottomLeftView.anchor(top: topLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop:20, paddingBottom: 0, paddingLeft: 20, paddingRight: 20, width:  (view.frame.width-60)/2, height: view.frame.height*0.25)
+                bottomRightView.anchor(top: topRightView.bottomAnchor, bottom: nil, leading: bottomLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: 20, paddingBottom: 0, paddingLeft: 20, paddingRight: -20, width: (view.frame.width-60)/2, height: view.frame.height*0.25)
+                removeView.anchor(top: bottomLeftView.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.026, paddingBottom: -65, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: 0, height: 0)
+                headerView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 20, paddingBottom: 0, paddingLeft: view.frame.width*0.124, paddingRight: -view.frame.width*0.124, width: 0, height: view.frame.height*0.08)
+            }
+            
         }
         
-        headerView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 20, paddingBottom: 0, paddingLeft: view.frame.width*0.124, paddingRight: -view.frame.width*0.124, width: 0, height: view.frame.height*0.08)
-       
+        
+        
         topLeftImage.anchor(top: topLeftView.topAnchor, bottom: nil, leading: topLeftView.leadingAnchor, trailing: topLeftView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: view.frame.height*0.1)
         topLeftLabel.anchor(top: topLeftImage.bottomAnchor, bottom: topLeftView.bottomAnchor, leading: topLeftView.leadingAnchor, trailing: topLeftView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: -view.frame.height*0.032, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: 0)
         topRightImage.anchor(top: topRightView.topAnchor, bottom: nil, leading: topRightView.leadingAnchor, trailing: topRightView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: view.frame.height*0.1)
@@ -89,7 +111,7 @@ class HomeViewController: UIViewController {
         bottomRightLabel.anchor(top: bottomRightImage.bottomAnchor, bottom: bottomRightView.bottomAnchor, leading: bottomRightView.leadingAnchor, trailing: bottomRightView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: -view.frame.height*0.032, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: 0)
         bottomLeftImage.anchor(top: bottomLeftView.topAnchor, bottom: nil, leading: bottomLeftView.leadingAnchor, trailing: bottomLeftView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: view.frame.height*0.1)
         bottomLeftLABEL.anchor(top: bottomLeftImage.bottomAnchor, bottom: bottomLeftView.bottomAnchor, leading: bottomLeftView.leadingAnchor, trailing: bottomLeftView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: -view.frame.height*0.032, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: 0)
-       
+        
         topLeftView.layer.cornerRadius = 20
         topRightView.layer.cornerRadius = 20
         bottomLeftView.layer.cornerRadius = 20
@@ -102,10 +124,8 @@ class HomeViewController: UIViewController {
         
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-//        homeAnimation()
-
-    }
+    
+    
     
     
     @objc func topLeftTapped (){
@@ -164,8 +184,8 @@ class HomeViewController: UIViewController {
         animationView.animation = Animation.named("detail4")
         animationView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         self.view.sendSubviewToBack(animationView)
-
-                animationView.center = view.center
+        
+        animationView.center = view.center
         animationView.loopMode = .loop
         self.animationView.isHidden = false
         animationView.play()
@@ -210,9 +230,11 @@ extension HomeViewController: SKProductsRequestDelegate, SKPaymentTransactionObs
                 print("pur")
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
+                Utils.saveLocal(array: "premium", key: "purchase")
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
             case .restored:
+                Utils.saveLocal(array: "premium", key: "purchase")
                 print("restore")
             case .deferred:
                 print("deffered")

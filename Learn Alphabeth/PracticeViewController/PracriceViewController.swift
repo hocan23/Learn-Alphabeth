@@ -38,12 +38,7 @@ class PracriceViewController: UIViewController {
         removeView.isUserInteractionEnabled = true
         removeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeTapped)))
         
-        createAdd()
-        bannerView = GADBannerView(adSize: GADAdSizeBanner)
-        bannerView.adUnitID = Utils.bannerId
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
+       
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -64,21 +59,39 @@ class PracriceViewController: UIViewController {
             
             self.present(vc, animated: false, completion: nil)
         }
+        if Utils.isPremium == "premium"{
+            removeView.isHidden = true
+        }else{
+            createAdd()
+            removeView.isHidden = false
+            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            bannerView.adUnitID = Utils.bannerId
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        
+    }
     }
     
     func setupConstraints (){
         
-        switchLetter.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
-        labelSwitch.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.024, paddingBottom: 0, paddingLeft: 0, paddingRight: -5, width:180, height: 40)
+        
         collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
-        removeView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.01, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -view.frame.width*0.05, width: view.frame.width*0.11, height: view.frame.height*0.05)
+        removeView.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04, width: view.frame.width*0.11, height: view.frame.height*0.05)
         
-        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        homeView.anchor(top:view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: view.frame.height*0.04, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
         labelSwitch.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
-        
+        if Utils.isPremium == "premium"{
+            switchLetter.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04, width: view.frame.width*0.11, height: view.frame.height*0.05)
+            labelSwitch.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.07-5, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width:180, height: 40)
+            
+            
+        }else{
+            switchLetter.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
+            labelSwitch.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.024, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width:180, height: 40)
     }
     
-    
+    }
     
     @objc func removeTapped (){
         removeView.zoomIn()
@@ -251,10 +264,14 @@ extension PracriceViewController: SKProductsRequestDelegate, SKPaymentTransactio
                 print("pur")
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
+                Utils.saveLocal(array: "premium", key: "purchase")
+
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
             case .restored:
                 print("restore")
+                Utils.saveLocal(array: "premium", key: "purchase")
+
             case .deferred:
                 print("deffered")
             default: break

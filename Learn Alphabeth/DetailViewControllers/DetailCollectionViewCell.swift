@@ -28,12 +28,12 @@ class DetailCollectionViewCell: UICollectionViewCell {
         print(contentView.frame.height)
         inimalLatter.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 10, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: 0, height: contentHeight*0.17)
         `switch`.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: cardView.trailingAnchor, paddingTop: 20, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
-        switchLabel.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: `switch`.leadingAnchor, paddingTop: 17, paddingBottom: 0, paddingLeft: 0, paddingRight: -7, width: 100, height: 40)
+        switchLabel.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: `switch`.leadingAnchor, paddingTop: 17, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width: 100, height: 40)
         print(contentWight)
         print(contentHeight)
         animalImg.anchor(top: inimalLatter.bottomAnchor, bottom: animalLabel.topAnchor, leading: nil, trailing: nil, paddingTop: 10, paddingBottom: -10, paddingLeft: 0, paddingRight: 0, width: contentWight*0.5, height: contentHeight*0.35)
-        animalLabel.anchor(top: animalImg.bottomAnchor, bottom: nil, leading: nil, trailing: nil, paddingTop:30, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: contentHeight*0.06)
-        line.anchor(top: animalLabel.bottomAnchor, bottom: nil, leading: nil, trailing: nil, paddingTop: 15, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: contentWight*0.5, height: 2)
+        animalLabel.anchor(top: animalImg.bottomAnchor, bottom: nil, leading: nil, trailing: nil, paddingTop:0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: contentHeight*0.06)
+        line.anchor(top: animalLabel.bottomAnchor, bottom: nil, leading: nil, trailing: nil, paddingTop: 15, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: contentWight*0.3, height: 2)
         print(cardView.frame.height)
         
         

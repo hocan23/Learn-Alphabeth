@@ -7,6 +7,9 @@
 
 import UIKit
 import StoreKit
+import GoogleMobileAds
+
+
 
 class SettingsViewController: UIViewController{
     @IBOutlet weak var homeView: UIImageView!
@@ -15,6 +18,8 @@ class SettingsViewController: UIViewController{
     enum Products : String,CaseIterable{
         case removeAds = "com.temporary.id"
     }
+    var bannerView: GADBannerView!
+    private var interstitial: GADInterstitialAd?
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +28,25 @@ class SettingsViewController: UIViewController{
         setupUi()
         homeView.isUserInteractionEnabled = true
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
+        SKPaymentQueue.default().add(self)
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if Utils.isPremium == "premium"{
+        }else{
+            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            bannerView.adUnitID = Utils.bannerId
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        
+    }
     }
     
     func setupUi(){
-        homeView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.01, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
+        
+        homeView.anchor(top:view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: view.frame.height*0.04, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
         tableView.anchor(top: homeView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingBottom: 0, paddingLeft: 20, paddingRight: -20, width: 0, height: 250)
         tableView.layer.cornerRadius = 20
     }
@@ -85,6 +105,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
                 productRequest.delegate = self
                 productRequest.start()
             }
+        case 4:
+            SKPaymentQueue.default().restoreCompletedTransactions()
         default: break
         }
         
@@ -115,10 +137,15 @@ extension SettingsViewController: SKProductsRequestDelegate, SKPaymentTransactio
                 print("pur")
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
+                Utils.saveLocal(array: "premium", key: "purchase")
+
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
+                
             case .restored:
                 print("restore")
+                Utils.saveLocal(array: "premium", key: "purchase")
+
             case .deferred:
                 print("deffered")
             default: break
@@ -133,4 +160,48 @@ extension SettingsViewController: SKProductsRequestDelegate, SKPaymentTransactio
         request.start()
     }
     
+}
+extension SettingsViewController: GADBannerViewDelegate, GADFullScreenContentDelegate{
+    func createAdd() {
+        let request = GADRequest()
+        interstitial?.fullScreenContentDelegate = self
+        GADInterstitialAd.load(withAdUnitID:Utils.fullScreenAdId,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+        }
+        )
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitialAd) {
+        print("interstitialWillDismissScreen")
+    }
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
 }
