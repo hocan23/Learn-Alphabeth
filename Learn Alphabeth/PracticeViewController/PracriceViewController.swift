@@ -79,9 +79,14 @@ class PracriceViewController: UIViewController {
     }
     
     func setupConstraints (){
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 40, paddingRight: -40, width: 0, height: 0)
+        }else{
+            collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 10, paddingRight: -10, width: 0, height: 0)
+        }
+
         
         
-        collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
         removeView.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04, width: view.frame.width*0.11, height: view.frame.height*0.05)
         
         homeView.anchor(top:view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: view.frame.height*0.04, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)

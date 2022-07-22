@@ -558,8 +558,8 @@
                                                                 <action selector="playyTapped:" destination="1hI-Cm-wH2" eventType="touchUpInside" id="Fp0-Hh-zMH"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="playBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Gmd-ao-Bte">
-                                                            <rect key="frame" x="46" y="8" width="109" height="48"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="playBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Gmd-ao-Bte">
+                                                            <rect key="frame" x="46" y="8" width="55" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                     </subviews>
