@@ -150,7 +150,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     
     @objc func exitTapped (){
         homeView.zoomIn()
-
+        player?.stop()
         if selectedItemNumber < 25{
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "QuizPopupViewController") as! QuizPopupViewController
             vc.providesPresentationContextTransitionStyle = true;

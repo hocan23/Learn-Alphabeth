@@ -38,7 +38,7 @@ class DetailCollectionViewCell: UICollectionViewCell {
         line.anchor(top: animalLabel.bottomAnchor, bottom: nil, leading: nil, trailing: nil, paddingTop: 15, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: contentWight*0.3, height: 2)
         print(cardView.frame.height)
         
-        
+        animalImg.bounce()
         cardView.layer.cornerRadius = 20
         cardView.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor
         cardView.layer.shadowOffset = CGSize(width: -3, height: 4)
@@ -59,12 +59,7 @@ class DetailCollectionViewCell: UICollectionViewCell {
 //          cell.layer.shadowOpacity = 1
     }
    
-    func animate(){
-        
-            animalImg.bounce()
-            inimalLatter.bounce()
-        
-    }
+    
     }
     
        

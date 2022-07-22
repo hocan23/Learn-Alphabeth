@@ -114,7 +114,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         animationView.frame = CGRect(x: view.frame.width*0.2, y: view.frame.height*0.16, width: view.frame.width*0.6, height: view.frame.height*0.4)
         animationView.backgroundColor = .clear
         //        animationView.center = view.center
-        animationView.loopMode = .loop
+        animationView.loopMode = .playOnce
         self.animationView.isHidden = false
         
         animationView.play()

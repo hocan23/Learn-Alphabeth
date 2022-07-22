@@ -30,8 +30,7 @@ class QuizCollectionViewCell: UICollectionViewCell {
       
            
         playButton.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 10, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 30, height: 30)
-        playImage.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 10, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 50, height: 50)
-        playImage.contentMode = .scaleAspectFit
+        playImage.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 10, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: contentWight*0.08, height: contentWight*0.5)
         switchLabel.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: autoSwitch.leadingAnchor, paddingTop: 7, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width: 120, height: 40)
         autoSwitch.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: cardView.trailingAnchor, paddingTop: 10, paddingBottom: 0, paddingLeft:-3, paddingRight: -20, width: 40, height: 40)
         progressBar.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: progressLabel.leadingAnchor, paddingTop: 0, paddingBottom: -30, paddingLeft: 10, paddingRight: 0, width:contentWight*0.6, height: 15)
@@ -48,6 +47,7 @@ class QuizCollectionViewCell: UICollectionViewCell {
         switchLabel.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
         progressBar.layer.cornerRadius = 7
         progressBar.clipsToBounds = true
+        switchLabel.font = switchLabel.font.withSize(contentHeight*0.02)
 
         // Set the rounded edge for the inner bar
         progressBar.layer.sublayers![1].cornerRadius = 7
