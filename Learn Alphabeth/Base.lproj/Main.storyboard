@@ -774,7 +774,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uuz-4k-ghK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3318.2242990654204" y="-588.33693304535643"/>
+            <point key="canvasLocation" x="3730" y="-529"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="9aQ-5G-FTk">
@@ -1001,6 +1001,48 @@ YET</string>
             </objects>
             <point key="canvasLocation" x="3678.5046728971961" y="275.37796976241901"/>
         </scene>
+        <!--Quiz Popup View Controller-->
+        <scene sceneID="EKA-2x-doZ">
+            <objects>
+                <viewController storyboardIdentifier="QuizPopupViewController" id="Olm-J7-Z9U" customClass="QuizPopupViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MZ3-g8-8az">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-ZN-arr">
+                                <rect key="frame" x="65" y="364" width="325" height="236"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 163" translatesAutoresizingMaskIntoConstraints="NO" id="G26-5d-PAc">
+                                        <rect key="frame" x="8" y="112" width="146" height="88"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 161" translatesAutoresizingMaskIntoConstraints="NO" id="oUl-6q-QYB">
+                                        <rect key="frame" x="93" y="8" width="132" height="81"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 162" translatesAutoresizingMaskIntoConstraints="NO" id="TtE-M8-udT">
+                                        <rect key="frame" x="180" y="124" width="99" height="76"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="d4l-WE-9wb"/>
+                        <color key="backgroundColor" red="0.066666666669999999" green="0.098039215690000001" blue="0.1843137255" alpha="0.75" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="cardView" destination="WhX-ZN-arr" id="0Id-eb-lUm"/>
+                        <outlet property="dialogView" destination="oUl-6q-QYB" id="J3x-uY-2XH"/>
+                        <outlet property="noView" destination="TtE-M8-udT" id="aYT-ve-aEg"/>
+                        <outlet property="yesView" destination="G26-5d-PAc" id="AgJ-JA-Vkr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7tF-dh-eQw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4833.6448598130837" y="-529.37365010799135"/>
+        </scene>
     </scenes>
     <resources>
         <image name="D" width="244" height="316"/>
@@ -1008,6 +1050,9 @@ YET</string>
         <image name="Group 146" width="230" height="32"/>
         <image name="Group 147" width="222" height="32"/>
         <image name="Group 153" width="46" height="44"/>
+        <image name="Group 161" width="274.66665649414062" height="228"/>
+        <image name="Group 162" width="122" height="63"/>
+        <image name="Group 163" width="124" height="63"/>
         <image name="Group 82" width="245" height="53"/>
         <image name="Group 89" width="64.333335876464844" height="64"/>
         <image name="autoNextPassive" width="266" height="63"/>

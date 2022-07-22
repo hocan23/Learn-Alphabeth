@@ -150,14 +150,32 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     
     @objc func exitTapped (){
         homeView.zoomIn()
-        player?.stop()
-        if interstitial != nil {
-            interstitial?.present(fromRootViewController: self)
-            isAd = true
-        } else {
-            print("Ad wasn't ready")
-            self.dismiss(animated: true)
+
+        if selectedItemNumber < 25{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "QuizPopupViewController") as! QuizPopupViewController
+            vc.providesPresentationContextTransitionStyle = true;
+            vc.definesPresentationContext = true;
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+//            if interstitial != nil {
+//                interstitial?.present(fromRootViewController: self)
+//                isAd = true
+//            } else {
+//                print("Ad wasn't ready")
+//                self.dismiss(animated: true)
+//            }
+            self.present(vc, animated: false, completion: nil)
+            
+        }else{
+            player?.stop()
+            if interstitial != nil {
+                interstitial?.present(fromRootViewController: self)
+                isAd = true
+            } else {
+                print("Ad wasn't ready")
+                self.dismiss(animated: true)
+            }
         }
+        
         
     }
     @objc func homeTapped (){
