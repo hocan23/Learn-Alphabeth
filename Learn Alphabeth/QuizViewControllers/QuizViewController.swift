@@ -44,7 +44,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     enum Products : String,CaseIterable{
         case removeAds = "com.SIX11.learnABC.removeAds"
     }
-    
+    var animationCount = 0
     
     
     override func viewDidLoad() {
@@ -239,6 +239,30 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             self.animationView.isHidden = true
             
         }
+        
+    }
+    func homeAnimation (name:String) {
+        animationView.animation = Animation.named(name)
+        animationView.frame = CGRect(x: 0, y: view.frame.height*0.16, width: 350, height: 350)
+
+        //        animationView.center = view.center
+        animationView.loopMode = .loop
+        self.animationView.isHidden = false
+        
+        animationView.play()
+        
+        view.addSubview(animationView)
+        
+        
+        /*
+         // MARK: - Navigation
+         
+         // In a storyboard-based application, you will often want to do a little preparation before navigation
+         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destination.
+         // Pass the selected object to the new view controller.
+         }
+         */
         
     }
     /*
@@ -507,8 +531,16 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
                     
                 }
             }
-            
-            
+            if animationCount<5{
+    //            homeAnimation(name: "detail\(animationCount)")
+                animationCount+=1
+            }else{
+                animationCount=1
+    //            homeAnimation(name: "detail\(animationCount)")
+
+            }
+            homeAnimation(name: "detail\(animationCount)")
+
             print(visibleIndexPath)
             print((cellIds[visibleIndexPath!.row].letterImage))
             var buttonOptions = [(cellIds[visibleIndexPath!.row].letterImage),cellIds[firstRandom].letterImage,cellIds[secondRandom].letterImage]

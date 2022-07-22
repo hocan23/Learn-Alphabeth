@@ -38,6 +38,9 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         Utils.isPremium = Utils.readLocal(key: "purchase")
         print(Utils.isPremium)
         setupConstraits()
