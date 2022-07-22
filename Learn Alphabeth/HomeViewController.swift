@@ -41,7 +41,6 @@ class HomeViewController: UIViewController {
         
         
         
-        Utils.isPremium = Utils.readLocal(key: "purchase")
         print(Utils.isPremium)
         setupConstraits()
         topLeftView.isUserInteractionEnabled = true
@@ -64,6 +63,8 @@ class HomeViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         //        homeAnimation()
+        Utils.isPremium = Utils.readLocal(key: "purchase")
+
         if Utils.isPremium == "premium"{
             removeView.isHidden = true
         }else{
@@ -237,10 +238,14 @@ extension HomeViewController: SKProductsRequestDelegate, SKPaymentTransactionObs
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 Utils.saveLocal(array: "premium", key: "purchase")
+                Utils.isPremium = "premium"
+
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
             case .restored:
                 Utils.saveLocal(array: "premium", key: "purchase")
+                Utils.isPremium = "premium"
+
                 print("restore")
             case .deferred:
                 print("deffered")

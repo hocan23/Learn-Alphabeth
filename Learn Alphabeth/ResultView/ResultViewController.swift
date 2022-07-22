@@ -368,12 +368,14 @@ extension ResultViewController: SKProductsRequestDelegate, SKPaymentTransactionO
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 Utils.saveLocal(array: "premium", key: "purchase")
+                Utils.isPremium = "premium"
 
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
             case .restored:
                 print("restore")
                 Utils.saveLocal(array: "premium", key: "purchase")
+                Utils.isPremium = "premium"
 
             case .deferred:
                 print("deffered")
