@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     let animationView = AnimationView()
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.temporary.id"
+        case removeAds = "com.SIX11.learnABC.removeAds"
     }
     var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?
@@ -212,8 +212,9 @@ class HomeViewController: UIViewController {
 extension HomeViewController: SKProductsRequestDelegate, SKPaymentTransactionObserver{
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        
+        print(response.products.first)
         if let oproduct = response.products.first{
+            
             self.purchase(aproduct: oproduct)
         }
     }

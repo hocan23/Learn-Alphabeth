@@ -15,7 +15,7 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.SIX11.learnABC.removeAds\ncom.SIX11.learnABC.removeAds\n",
+      "productID" : "com.SIX11.learnABC.removeAds",
       "referenceName" : "Remove Ads",
       "type" : "NonConsumable"
     }

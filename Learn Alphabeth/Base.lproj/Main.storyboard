@@ -380,7 +380,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="431" height="355"/>
                                         <connections>
-                                            <outlet property="animalImg" destination="Lkd-RU-l9d" id="bGW-FW-jag"/>
+                                            <outlet property="animalImg" destination="Lkd-RU-l9d" id="zSt-Ez-4gl"/>
                                             <outlet property="animalLabel" destination="Bvk-ZI-ddx" id="Nb6-CD-2YL"/>
                                             <outlet property="cardView" destination="6nd-Jf-wom" id="rZr-7N-qr2"/>
                                             <outlet property="inimalLatter" destination="bpl-kP-EZ0" id="DdH-Te-4fI"/>

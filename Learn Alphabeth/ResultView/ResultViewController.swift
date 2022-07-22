@@ -18,7 +18,7 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var homeView: UIImageView!
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.temporary.id"
+        case removeAds = "com.SIX11.learnABC.removeAds"
     }
     var isFirst = false
     @IBOutlet weak var doneButton: UIImageView!

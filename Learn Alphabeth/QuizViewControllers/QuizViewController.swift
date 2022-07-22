@@ -42,7 +42,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     var isinAd = false
     private var interstitial: GADInterstitialAd?
     enum Products : String,CaseIterable{
-        case removeAds = "com.temporary.id"
+        case removeAds = "com.SIX11.learnABC.removeAds"
     }
     
     

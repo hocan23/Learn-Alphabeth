@@ -24,7 +24,7 @@ class PracriceViewController: UIViewController {
     let spacing = CGSize(width: 7, height: 10)
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.temporary.id"
+        case removeAds = "com.SIX11.learnABC.removeAds"
     }
     var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?

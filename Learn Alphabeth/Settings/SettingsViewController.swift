@@ -16,7 +16,7 @@ class SettingsViewController: UIViewController{
     var headers = ["Share App","Other Apps",  "Rate App",  "Remove Ads - $3.99",  "Restore Purchase"]
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.temporary.id"
+        case removeAds = "com.SIX11.learnABC.removeAds"
     }
     var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?

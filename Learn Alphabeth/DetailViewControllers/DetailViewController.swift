@@ -28,7 +28,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     var isinAd = false
     var animationCount = 1
     let animationView = AnimationView()
-   
+    var isAnimate = false
     @IBOutlet weak var animalImage: UIImageView!
     @IBOutlet weak var homeView: UIImageView!
     
@@ -61,18 +61,19 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.temporary.id"
+        case removeAds = "com.SIX11.learnABC.removeAds"
+
     }
     var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         //        setupUi()
         setupConstraints()
         collectionAnimal.delegate = self
         collectionAnimal.dataSource = self
-        print(selectedItemNumber)
         
         //        removeBtn.layer.cornerRadius = (view.frame.height*0.045)/2
         //
@@ -90,7 +91,6 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         if isinAd==true{
             isinAd=false
             playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
-            
         }
         if Utils.isPremium == "premium"{
             removeView.isHidden = true
@@ -134,8 +134,6 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         
     }
     @IBAction func homeBtnTap(_ sender: Any) {
-        
-        
         self.dismiss(animated: true)
     }
     
@@ -197,19 +195,17 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     @IBAction func autoPlaySwitchPressed(_ sender: UISwitch) {
         print(sender.isOn)
         if sender.isOn {
-            homeAnimation(name: "detail\(animationCount)")
+//            homeAnimation(name: "detail\(animationCount)")
 
             isautoPlay = true
         }else{
+            animationView.isHidden = true
             isautoPlay = false
         }
         collectionAnimal.reloadData()
     }
     
     @IBAction func playTapped(_ sender: UIButton) {
-       
-        homeAnimation(name: "detail\(animationCount)")
-
         playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
         print(isautoPlay)
         
@@ -219,8 +215,13 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         if let player = player, player.isPlaying{
             player.stop()
             playView.image = UIImage(named: "playBtn")
+            animationView.isHidden=true
+            isAnimate = false
+             collectionAnimal.reloadData()
         }else{
-            
+            homeAnimation(name: "detail\(animationCount)")
+            isAnimate = true
+             collectionAnimal.reloadData()
             let urlString = Bundle.main.path(forResource: name, ofType: type)
             
             
@@ -364,11 +365,11 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
             }
         }
         if animationCount<5{
-            homeAnimation(name: "detail\(animationCount)")
+//            homeAnimation(name: "detail\(animationCount)")
             animationCount+=1
         }else{
             animationCount=1
-            homeAnimation(name: "detail\(animationCount)")
+//            homeAnimation(name: "detail\(animationCount)")
 
         }
         adCounter+=1
@@ -422,7 +423,8 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
         cell.inimalLatter.text = cellIds[indexPath.row].letterImage
         cell.inimalLatter.font = cell.inimalLatter.font.withSize(view.frame.height*0.09)
         cell.animalLabel.font = cell.animalLabel.font.withSize(view.frame.height*0.04)
-
+       
+      
         //        cell.animalImg.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: collectionAnimal.frame.height*0.22, paddingBottom: -collectionAnimal.frame.height*0.22, paddingLeft: collectionAnimal.frame.width*0.25, paddingRight: collectionAnimal.frame.width*0.25, width: 0, height: collectionAnimal.frame.height*0.6)
         
         return cell
@@ -553,6 +555,7 @@ extension DetailViewController: GADBannerViewDelegate, GADFullScreenContentDeleg
 }
 extension UIView {
     func bounce(){
+        
         var timer =  Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
                 // Do what you need to do repeatedly
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
