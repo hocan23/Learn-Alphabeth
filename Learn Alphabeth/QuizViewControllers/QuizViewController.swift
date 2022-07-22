@@ -226,8 +226,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     
     func successAnimation () {
         animationView.animation = Animation.named("success")
-        animationView.frame = CGRect(x: 0, y: view.frame.height*0.16, width: 350, height: 350)
-        animationView.center.x = view.center.x
+        animationView.frame = CGRect(x: view.frame.width*0.1, y: view.frame.height*0.03, width: view.frame.width*0.8, height: view.frame.height*0.8)
         animationView.loopMode = .playOnce
         self.animationView.isHidden = false
         
@@ -245,8 +244,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     }
     func failAnimation () {
         animationView.animation = Animation.named("fail")
-        animationView.frame = CGRect(x: 0, y: view.frame.height*0.27, width: 200, height: 200)
-        animationView.center.x = view.center.x
+        animationView.frame = CGRect(x: view.frame.width*0.3, y: view.frame.height*0.12, width: view.frame.width*0.4, height: view.frame.height*0.6)
         animationView.loopMode = .playOnce
         self.animationView.isHidden = false
         
@@ -259,30 +257,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }
         
     }
-    func homeAnimation (name:String) {
-        animationView.animation = Animation.named(name)
-        animationView.frame = CGRect(x: 0, y: view.frame.height*0.16, width: 350, height: 350)
-
-        //        animationView.center = view.center
-        animationView.loopMode = .loop
-        self.animationView.isHidden = false
-        
-        animationView.play()
-        
-        view.addSubview(animationView)
-        
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-         }
-         */
-        
-    }
+    
     /*
      // MARK: - Navigation
      
@@ -557,7 +532,6 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
     //            homeAnimation(name: "detail\(animationCount)")
 
             }
-            homeAnimation(name: "detail\(animationCount)")
 
             print(visibleIndexPath)
             print((cellIds[visibleIndexPath!.row].letterImage))

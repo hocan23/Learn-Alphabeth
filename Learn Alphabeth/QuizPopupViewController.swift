@@ -16,14 +16,15 @@ class QuizPopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         cardView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.24, paddingBottom: -view.frame.height*0.24, paddingLeft: view.frame.width*0.07, paddingRight: -view.frame.width*0.07, width: 0, height: 0)
-        yesView.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -cardView.frame.height*0.15, paddingLeft: cardView.frame.width*0.1, paddingRight: 0, width: cardView.frame.width*0.35, height: cardView.frame.height*0.2)
-        noView.anchor(top: nil, bottom: cardView.bottomAnchor, leading: nil, trailing: cardView.trailingAnchor, paddingTop: 0, paddingBottom: -cardView.frame.height*0.15, paddingLeft: cardView.frame.width*0.1, paddingRight: -30, width: cardView.frame.width*0.35, height: cardView.frame.height*0.2)
-        dialogView.anchor(top: cardView.topAnchor, bottom: yesView.topAnchor, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.045, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: 0, height: 0)
+        yesView.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.05, paddingLeft: view.frame.width*0.13, paddingRight: 0, width: view.frame.width*0.25, height: view.frame.width*0.12)
+        noView.anchor(top: nil, bottom: cardView.bottomAnchor, leading: nil , trailing: cardView.trailingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.05, paddingLeft: 0, paddingRight: -view.frame.width*0.13, width: view.frame.width*0.25, height: view.frame.width*0.12)
+        dialogView.anchor(top: cardView.topAnchor, bottom: yesView.topAnchor, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor, paddingTop: cardView.frame.height*0.1, paddingBottom: -view.frame.height*0.05, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: 0, height: 0)
         yesView.isUserInteractionEnabled = true
         yesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
         noView.isUserInteractionEnabled = true
         noView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notExitTapped)))
-        
+        cardView.layer.cornerRadius = 20
+
         // Do any additional setup after loading the view.
     }
     @objc func exitTapped (){

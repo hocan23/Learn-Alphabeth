@@ -1016,6 +1016,7 @@ YET</string>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 163" translatesAutoresizingMaskIntoConstraints="NO" id="G26-5d-PAc">
                                         <rect key="frame" x="8" y="112" width="146" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 161" translatesAutoresizingMaskIntoConstraints="NO" id="oUl-6q-QYB">
                                         <rect key="frame" x="93" y="8" width="132" height="81"/>

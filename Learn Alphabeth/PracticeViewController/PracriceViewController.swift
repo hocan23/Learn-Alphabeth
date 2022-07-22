@@ -93,7 +93,7 @@ class PracriceViewController: UIViewController {
             
         }else{
             switchLetter.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
-            labelSwitch.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.024, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width:180, height: 40)
+            labelSwitch.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.023, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width:180, height: 40)
     }
     
     }
@@ -154,6 +154,9 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
         }else{
             cell.letterLabel.text = String(cellIds[indexPath.row].letterImage.suffix(1))
             
+        }
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            cell.letterLabel.font = cell.letterLabel.font.withSize(50)
         }
         
         cell.layer.cornerRadius = 20
@@ -226,7 +229,7 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
         
         if UIDevice.current.userInterfaceIdiom == .pad  {
             
-            let numberOfVisibleCellHorizontal: CGFloat = 5
+            let numberOfVisibleCellHorizontal: CGFloat = 6
             let horizontalOtherValues = insets.right + insets.left + (spacing.width * numberOfVisibleCellHorizontal)
             let width = (collectionView.bounds.width - horizontalOtherValues) / numberOfVisibleCellHorizontal
             
