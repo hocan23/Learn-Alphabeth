@@ -27,6 +27,13 @@ class QuizPopupViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+
+        }
+    }
     @objc func exitTapped (){
         let destinationVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         destinationVC.modalPresentationStyle = .fullScreen

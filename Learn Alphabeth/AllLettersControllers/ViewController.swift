@@ -100,7 +100,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
        
     }
-    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+
+        }
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
     }

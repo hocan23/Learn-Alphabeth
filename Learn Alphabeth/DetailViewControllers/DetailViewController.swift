@@ -189,6 +189,12 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         //        animalImage.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: nil, trailing: nil, paddingTop: view.frame.height*0.165, paddingBottom: view.frame.height*0.165, paddingLeft: 0, paddingRight: 0, width: view.frame.height*0.22, height: view.frame.height*0.22)
         
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+
+        }
+    }
     
     
     
@@ -562,8 +568,22 @@ extension UIView {
         var timer =  Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
                 // Do what you need to do repeatedly
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
-              self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
-          }) { (finished) in
+                if UIDevice.current.userInterfaceIdiom == .pad  {
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.9, y: 1.9)
+
+                }else{
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+
+                    
+                }
+                if UIDevice.current.userInterfaceIdiom == .pad  {
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.9, y: 1.9)
+
+                }else{
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+
+                    
+                }          }) { (finished) in
               UIView.animate(withDuration: 0.5, animations: {
               self.transform = CGAffineTransform.identity
           })

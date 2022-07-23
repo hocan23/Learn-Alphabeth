@@ -88,7 +88,12 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
   
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
 
+        }
+    }
     @IBAction func playyTapped(_ sender: UIButton) {
         playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
         

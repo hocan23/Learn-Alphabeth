@@ -149,9 +149,12 @@ class HomeViewController: UIViewController {
         
         
     }
-    
-    
-    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+
+        }
+    }
     
     @objc func topLeftTapped (){
         topLeftView.zoomIn()

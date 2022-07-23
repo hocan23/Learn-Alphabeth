@@ -51,6 +51,12 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
         bannerView.load(GADRequest())
         bannerView.delegate = self
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+
+        }
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
     }

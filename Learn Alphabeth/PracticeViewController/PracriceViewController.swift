@@ -41,6 +41,12 @@ class PracriceViewController: UIViewController {
        
         // Do any additional setup after loading the view.
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+
+        }
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
     }
