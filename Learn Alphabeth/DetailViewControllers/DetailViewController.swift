@@ -21,7 +21,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     weak var delegate : DetailViewControllerDelegate?
     var isAuto : Bool = false
     var isPlay : Bool = false
-    var isautoPlay : Bool = false
+    var isautoPlay : Bool = true
     var firstScrollİndex : Int?
     var isFirstOpen : Bool = true
     var adCounter = 0
@@ -69,7 +69,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //        setupUi()
         setupConstraints()
         collectionAnimal.delegate = self
@@ -426,7 +426,7 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
         let cell = collectionAnimal.dequeueReusableCell(withReuseIdentifier: "colcell", for: indexPath) as! DetailCollectionViewCell
         cell.animalImg.image = UIImage(named:  cellIds[indexPath.row].animalImage)
         cell.animalLabel.text = cellIds[indexPath.row].animalName
-        cell.switch.setOn(isautoPlay, animated: true)
+//        cell.switch.setOn(isautoPlay, animated: true)
         cell.inimalLatter.text = cellIds[indexPath.row].letterImage
         cell.inimalLatter.font = cell.inimalLatter.font.withSize(view.frame.height*0.09)
         cell.animalLabel.font = cell.animalLabel.font.withSize(view.frame.height*0.04)

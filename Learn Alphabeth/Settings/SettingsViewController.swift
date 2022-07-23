@@ -34,6 +34,8 @@ class SettingsViewController: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        view.overrideUserInterfaceStyle = .light
+
         if Utils.isPremium == "premium"{
         }else{
             bannerView = GADBannerView(adSize: GADAdSizeBanner)
@@ -44,6 +46,7 @@ class SettingsViewController: UIViewController{
         
     }
     }
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         get {
             return .portrait
@@ -99,7 +102,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
                 }
         switch indexPath.row{
         case 0 :
-            if let name = URL(string: "https://apps.apple.com/us/app/islamic-wallpaper-hd-pro/id1632238123"), !name.absoluteString.isEmpty {
+            if let name = URL(string: "https://apps.apple.com/us/app/learn-abc-letter-zoo/id1412549968"), !name.absoluteString.isEmpty {
                 let objectsToShare = [name]
                 let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                 self.present(activityVC, animated: true, completion: nil)
@@ -111,7 +114,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
                 UIApplication.shared.open(url)
             }
         case 2:
-            if let url = URL(string: "https://apps.apple.com/tr/developer/mehmet-rasit-arisu/id1346135076?see-all=i-phonei-pad-apps") {
+            if let url = URL(string: "https://apps.apple.com/us/app/learn-abc-letter-zoo/id1412549968") {
                 UIApplication.shared.open(url)
             }
         case 3:

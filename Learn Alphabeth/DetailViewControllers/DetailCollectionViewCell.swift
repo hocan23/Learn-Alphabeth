@@ -47,7 +47,7 @@ class DetailCollectionViewCell: UICollectionViewCell {
         cardView.backgroundColor = UIColor.white
         cardView.layer.masksToBounds = false
         
-        
+       
         
 //        cell.layer.cornerRadius = 20
 //          cell.contentView.layer.cornerRadius = 20

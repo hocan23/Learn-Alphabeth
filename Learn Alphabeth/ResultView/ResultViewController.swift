@@ -288,6 +288,12 @@ extension ResultViewController : UICollectionViewDataSource,UICollectionViewDele
         return CGSize(width: width, height: width)
         
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+
+        }
+    }
     
     
     

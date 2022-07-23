@@ -47,7 +47,13 @@ class QuizCollectionViewCell: UICollectionViewCell {
         switchLabel.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
         progressBar.layer.cornerRadius = 7
         progressBar.clipsToBounds = true
-        switchLabel.font = switchLabel.font.withSize(contentHeight*0.02)
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            switchLabel.font = switchLabel.font.withSize(contentHeight*0.02)
+
+        }else{
+            switchLabel.font = switchLabel.font.withSize(contentHeight*0.033)
+
+        }
 
         // Set the rounded edge for the inner bar
         progressBar.layer.sublayers![1].cornerRadius = 7
