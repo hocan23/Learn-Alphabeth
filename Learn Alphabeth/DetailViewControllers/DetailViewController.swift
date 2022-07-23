@@ -88,6 +88,9 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        isautoPlay=true
+        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+
         if isinAd==true{
             isinAd=false
             playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
@@ -569,7 +572,7 @@ extension UIView {
                 // Do what you need to do repeatedly
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
                 if UIDevice.current.userInterfaceIdiom == .pad  {
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.9, y: 1.9)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
 
                 }else{
                     self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
@@ -577,7 +580,7 @@ extension UIView {
                     
                 }
                 if UIDevice.current.userInterfaceIdiom == .pad  {
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.9, y: 1.9)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
 
                 }else{
                     self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
