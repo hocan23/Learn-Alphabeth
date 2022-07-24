@@ -84,10 +84,10 @@ class ResultViewController: UIViewController {
             animationView.isHidden = true
             
         }
-        headerLabel.text = "Last Solo \nTest Results"
+//        headerLabel.text = "HENÜZ TEST  \nSONUCU YOK"
 
 //        animationView.isHidden=true
-        doneButton.image = UIImage(named: "startt")
+        doneButton.image = UIImage(named: "testStartBtn")
     }
     
     func setupConstraits(){

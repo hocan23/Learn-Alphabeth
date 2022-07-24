@@ -17,15 +17,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var topRightView: UIView!
     @IBOutlet weak var topLeftView: UIView!
     @IBOutlet weak var bottomRightView: UIView!
-    @IBOutlet weak var topLeftLabel: UILabel!
     @IBOutlet weak var topLeftImage: UIImageView!
     @IBOutlet weak var topRightImage: UIImageView!
-    @IBOutlet weak var topRightLabel: UILabel!
     @IBOutlet weak var bottomLeftImage: UIImageView!
-    @IBOutlet weak var bottomLeftLABEL: UILabel!
     @IBOutlet weak var bottomRightImage: UIImageView!
-    @IBOutlet weak var bottomRightLabel: UILabel!
-    
     @IBOutlet weak var removeView: UIImageView!
     let animationView = AnimationView()
     var models = [SKProduct]()
@@ -88,28 +83,23 @@ class HomeViewController: UIViewController {
             removeView.anchor(top: bottomLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -75, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: 0, height: 0)
             headerView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.width*0.124, paddingRight: -view.frame.width*0.124, width: 0, height: view.frame.height*0.08)
             
-            topLeftImage.anchor(top: topLeftView.topAnchor, bottom: nil, leading: topLeftView.leadingAnchor, trailing: topLeftView.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.height*0.01, paddingRight: -view.frame.height*0.01, width: 0, height: view.frame.height*0.16)
-            topLeftLabel.anchor(top: topLeftImage.bottomAnchor, bottom: topLeftView.bottomAnchor, leading: topLeftView.leadingAnchor, trailing: topLeftView.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -view.frame.height*0.02, paddingLeft: view.frame.height*0.003, paddingRight: -view.frame.height*0.01, width: 0, height: 0)
-            topRightImage.anchor(top: topRightView.topAnchor, bottom: nil, leading: topRightView.leadingAnchor, trailing: topRightView.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.height*0.01, paddingRight: -view.frame.height*0.01, width: 0, height: view.frame.height*0.16)
-            topRightLabel.anchor(top: topRightImage.bottomAnchor, bottom: topRightView.bottomAnchor, leading: topRightView.leadingAnchor, trailing: topRightView.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -view.frame.height*0.02, paddingLeft: view.frame.height*0.003, paddingRight: -view.frame.height*0.01, width: 0, height: 0)
-            bottomRightImage.anchor(top: bottomRightView.topAnchor, bottom: nil, leading: bottomRightView.leadingAnchor, trailing: bottomRightView.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.height*0.01, paddingRight: -view.frame.height*0.01, width: 0, height: view.frame.height*0.16)
-            bottomRightLabel.anchor(top: bottomRightImage.bottomAnchor, bottom: bottomRightView.bottomAnchor, leading: bottomRightView.leadingAnchor, trailing: bottomRightView.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -view.frame.height*0.02, paddingLeft: view.frame.height*0.01, paddingRight: -view.frame.height*0.01, width: 0, height: 0)
-            bottomLeftImage.anchor(top: bottomLeftView.topAnchor, bottom: nil, leading: bottomLeftView.leadingAnchor, trailing: bottomLeftView.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.height*0.01, paddingRight: -view.frame.height*0.01, width: 0, height: view.frame.height*0.16)
-            bottomLeftLABEL.anchor(top: bottomLeftImage.bottomAnchor, bottom: bottomLeftView.bottomAnchor, leading: bottomLeftView.leadingAnchor, trailing: bottomLeftView.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -view.frame.height*0.02, paddingLeft: view.frame.height*0.01, paddingRight: -view.frame.height*0.01, width: 0, height: 0)
-            topLeftLabel.font = topLeftLabel.font.withSize(27)
-            topRightLabel.font = topLeftLabel.font.withSize(27)
-            bottomLeftLABEL.font = topLeftLabel.font.withSize(27)
-            bottomRightLabel.font = topLeftLabel.font.withSize(27)
-
+            topLeftImage.anchor(top: topLeftView.topAnchor, bottom: topLeftView.bottomAnchor, leading: topLeftView.leadingAnchor, trailing: topLeftView.trailingAnchor, paddingTop: 10, paddingBottom:-10, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.16)
+            
+            topRightImage.anchor(top: topRightView.topAnchor, bottom: topRightView.bottomAnchor, leading: topRightView.leadingAnchor, trailing: topRightView.trailingAnchor, paddingTop: 10, paddingBottom: -10, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.16)
+            
+            bottomRightImage.anchor(top: bottomRightView.topAnchor, bottom: bottomRightView.bottomAnchor, leading: bottomRightView.leadingAnchor, trailing: bottomRightView.trailingAnchor, paddingTop: 10, paddingBottom: -10, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.16)
+           
+            bottomLeftImage.anchor(top: bottomLeftView.topAnchor, bottom: bottomLeftView.bottomAnchor, leading: bottomLeftView.leadingAnchor, trailing: bottomLeftView.trailingAnchor, paddingTop: 10, paddingBottom: -10, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.16)
+            
         }else{
-            topLeftImage.anchor(top: topLeftView.topAnchor, bottom: nil, leading: topLeftView.leadingAnchor, trailing: topLeftView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: view.frame.height*0.1)
-            topLeftLabel.anchor(top: topLeftImage.bottomAnchor, bottom: topLeftView.bottomAnchor, leading: topLeftView.leadingAnchor, trailing: topLeftView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: -view.frame.height*0.032, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: 0)
-            topRightImage.anchor(top: topRightView.topAnchor, bottom: nil, leading: topRightView.leadingAnchor, trailing: topRightView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: view.frame.height*0.1)
-            topRightLabel.anchor(top: topRightImage.bottomAnchor, bottom: topRightView.bottomAnchor, leading: topRightView.leadingAnchor, trailing: topRightView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: -view.frame.height*0.032, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: 0)
-            bottomRightImage.anchor(top: bottomRightView.topAnchor, bottom: nil, leading: bottomRightView.leadingAnchor, trailing: bottomRightView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: view.frame.height*0.1)
-            bottomRightLabel.anchor(top: bottomRightImage.bottomAnchor, bottom: bottomRightView.bottomAnchor, leading: bottomRightView.leadingAnchor, trailing: bottomRightView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: -view.frame.height*0.032, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: 0)
-            bottomLeftImage.anchor(top: bottomLeftView.topAnchor, bottom: nil, leading: bottomLeftView.leadingAnchor, trailing: bottomLeftView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: view.frame.height*0.1)
-            bottomLeftLABEL.anchor(top: bottomLeftImage.bottomAnchor, bottom: bottomLeftView.bottomAnchor, leading: bottomLeftView.leadingAnchor, trailing: bottomLeftView.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: -view.frame.height*0.032, paddingLeft: view.frame.height*0.02, paddingRight: -view.frame.height*0.02, width: 0, height: 0)
+            topLeftImage.anchor(top: topLeftView.topAnchor, bottom: topLeftView.bottomAnchor, leading: topLeftView.leadingAnchor, trailing: topLeftView.trailingAnchor, paddingTop: 10, paddingBottom: -10, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.1)
+           
+            topRightImage.anchor(top: topRightView.topAnchor, bottom: topRightView.bottomAnchor, leading: topRightView.leadingAnchor, trailing: topRightView.trailingAnchor, paddingTop: 10, paddingBottom: -10, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.1)
+           
+            bottomRightImage.anchor(top: bottomRightView.topAnchor, bottom: bottomRightView.bottomAnchor, leading: bottomRightView.leadingAnchor, trailing: bottomRightView.trailingAnchor, paddingTop: 10, paddingBottom: -10, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.1)
+          
+            bottomLeftImage.anchor(top: bottomLeftView.topAnchor, bottom: bottomRightView.bottomAnchor, leading: bottomLeftView.leadingAnchor, trailing: bottomLeftView.trailingAnchor, paddingTop: 10, paddingBottom: -10, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.1)
+           
             
             if Utils.isPremium == "premium"{
                 topLeftView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: 40, paddingBottom: 0, paddingLeft: 20, paddingRight: 0, width: (view.frame.width-60)/2, height: view.frame.height*0.3)

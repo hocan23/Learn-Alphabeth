@@ -10,8 +10,8 @@ import UIKit
 class PracticeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewCard: UIView!
     
-    @IBOutlet weak var letterLabel: UILabel!
     
+    @IBOutlet weak var practiceImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         viewCard.layer.cornerRadius = 20

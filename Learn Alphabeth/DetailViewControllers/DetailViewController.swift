@@ -29,18 +29,13 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     var animationCount = 1
     let animationView = AnimationView()
     var isAnimate = false
-    @IBOutlet weak var animalImage: UIImageView!
+
     @IBOutlet weak var homeView: UIImageView!
     
     @IBOutlet weak var removeView: UIImageView!
     @IBOutlet weak var collectionAnimal: UICollectionView!
-    @IBOutlet weak var animalLetter: UIImageView!
     
-    @IBOutlet weak var lineView: UIView!
-    @IBOutlet weak var animalLabel: UILabel!
-    
-    
-    @IBOutlet weak var removeAdsBtn: UIButton!
+
     
     @IBOutlet weak var prevView: UIImageView!
     
@@ -89,11 +84,11 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         isautoPlay=true
-        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+        playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
 
         if isinAd==true{
             isinAd=false
-            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+            playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
         }
         if Utils.isPremium == "premium"{
             removeView.isHidden = true
@@ -215,7 +210,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     }
     
     @IBAction func playTapped(_ sender: UIButton) {
-        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+        playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
         print(isautoPlay)
         
     }
@@ -259,11 +254,11 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         print("finished")//It is working now! printed "finished"!
         playView.image = UIImage(named: "playBtn")
         animationView.isHidden=true
-        if selectedItemNumber < cellIds.count-1{
+        if selectedItemNumber < 27-1{
             if isAuto == true{
                 selectedItemNumber += 1
                 //                setupUi()
-                playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+                playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
                 self.collectionAnimal.scrollToItem(at:IndexPath(item: selectedItemNumber, section: 0), at: .right, animated: false)
             }
         }else{
@@ -281,11 +276,11 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         if isAuto == false{
             autonextView.image = UIImage(named: "autoNextActive")
             
-            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+            playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
             isAuto = true
         }else{
             isAuto = false
-            autonextView.image = UIImage(named: "autoNextPassive")
+            autonextView.image = UIImage(named: "autoNextActive")
             playView.image = UIImage(named: "playBtn")
             animationView.isHidden=true
 
@@ -299,7 +294,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             selectedItemNumber -= 1
             
         }else{
-            selectedItemNumber = cellIds.count-1
+            selectedItemNumber = 27
         }
         self.collectionAnimal.scrollToItem(at:IndexPath(item: selectedItemNumber, section: 0), at: .right, animated: false)
         if isAuto == false{
@@ -313,10 +308,10 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     @IBAction func nextPressed(_ sender: UIButton) {
         nextView.zoomIn()
         player?.stop()
-        if selectedItemNumber < cellIds.count-1{
+        if selectedItemNumber < 27{
             selectedItemNumber += 1
             if isautoPlay == true {
-                playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+                playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
             }else{
                 playView.image = UIImage(named: "playBtn")
                 
@@ -335,7 +330,6 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         //
         //        }
         //        setupUi()
-        print(cellIds[selectedItemNumber].letterSound)
         //        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
         
     }
@@ -352,7 +346,7 @@ protocol DetailViewControllerDelegate: AnyObject{
 
 extension DetailViewController: UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellIds.count
+        return 28
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
@@ -370,7 +364,7 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
         player?.stop()
         if let number = selectedItemNumber  {
             if isautoPlay == true || isAuto == true{
-                playMusic(name: cellIds[number].letterSound, type: "mp3")
+                playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
                 
             }
         }
@@ -427,12 +421,9 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionAnimal.dequeueReusableCell(withReuseIdentifier: "colcell", for: indexPath) as! DetailCollectionViewCell
-        cell.animalImg.image = UIImage(named:  cellIds[indexPath.row].animalImage)
-        cell.animalLabel.text = cellIds[indexPath.row].animalName
-//        cell.switch.setOn(isautoPlay, animated: true)
-        cell.inimalLatter.text = cellIds[indexPath.row].letterImage
-        cell.inimalLatter.font = cell.inimalLatter.font.withSize(view.frame.height*0.09)
-        cell.animalLabel.font = cell.animalLabel.font.withSize(view.frame.height*0.04)
+        cell.animalImg.image = UIImage(named:  "\(selectedItemNumber+1)c")
+       
+       
        
       
         //        cell.animalImg.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: collectionAnimal.frame.height*0.22, paddingBottom: -collectionAnimal.frame.height*0.22, paddingLeft: collectionAnimal.frame.width*0.25, paddingRight: collectionAnimal.frame.width*0.25, width: 0, height: collectionAnimal.frame.height*0.6)

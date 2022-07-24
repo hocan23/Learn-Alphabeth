@@ -86,9 +86,9 @@ class PracriceViewController: UIViewController {
     
     func setupConstraints (){
         if UIDevice.current.userInterfaceIdiom == .pad  {
-            collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 40, paddingRight: -40, width: 0, height: 0)
+            collectionLetter.anchor(top: removeView.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 40, paddingRight: -40, width: 0, height: 0)
         }else{
-            collectionLetter.anchor(top: switchLetter.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 10, paddingRight: -10, width: 0, height: 0)
+            collectionLetter.anchor(top: removeView.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop:  view.frame.height*0.02, paddingBottom: -65, paddingLeft: 10, paddingRight: -10, width: 0, height: 0)
         }
 
         
@@ -96,18 +96,16 @@ class PracriceViewController: UIViewController {
         removeView.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04, width: view.frame.width*0.11, height: view.frame.height*0.05)
         
         homeView.anchor(top:view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: view.frame.height*0.04, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
-        labelSwitch.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
-        if Utils.isPremium == "premium"{
-            switchLetter.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04-(view.frame.width)*0.02, width: 0, height: 0)
-            labelSwitch.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.07-5, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width:180, height: 40)
-            
-            
-        }else{
-            print(view.frame.width)
-            switchLetter.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04-(view.frame.width)*0.02, width: 0, height: 0)
-            labelSwitch.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.023, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width:180, height: 40)
-    }
-        labelSwitch.font = labelSwitch.font.withSize(view.frame.height*0.018)
+//        if Utils.isPremium == "premium"{
+//            switchLetter.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04-(view.frame.width)*0.02, width: 0, height: 0)
+//            labelSwitch.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.07-5, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width:180, height: 40)
+//
+//
+//        }else{
+//            print(view.frame.width)
+//            switchLetter.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04-(view.frame.width)*0.02, width: 0, height: 0)
+//            labelSwitch.anchor(top: removeView.bottomAnchor, bottom: nil, leading: nil, trailing: switchLetter.leadingAnchor, paddingTop: view.frame.height*0.023, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width:180, height: 40)
+//    }
 
     
     }
@@ -162,16 +160,13 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PracticeCell", for: indexPath) as! PracticeCollectionViewCell
-        if isSmall == false{
-            cell.letterLabel.text = String(cellIds[indexPath.row].letterImage.prefix(1))
+        print("\(indexPath.row+1)")
+            cell.practiceImage.image = UIImage(named: "\(indexPath.row+1)")
             
-        }else{
-            cell.letterLabel.text = String(cellIds[indexPath.row].letterImage.suffix(1))
-            
-        }
-        if UIDevice.current.userInterfaceIdiom == .pad  {
-            cell.letterLabel.font = cell.letterLabel.font.withSize(60)
-        }
+       
+//        if UIDevice.current.userInterfaceIdiom == .pad  {
+//            cell.letterLabel.font = cell.letterLabel.font.withSize(60)
+//        }
         
         cell.layer.cornerRadius = 20
         cell.layer.shadowColor = UIColor(red: 0.762, green: 0.893, blue: 1, alpha: 0.51).cgColor

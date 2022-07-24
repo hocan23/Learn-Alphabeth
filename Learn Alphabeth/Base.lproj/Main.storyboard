@@ -18,7 +18,7 @@
         <!--View Controller-->
         <scene sceneID="0fP-hc-7nG">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="cSq-IA-AlD" customClass="ViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="cSq-IA-AlD" customClass="ViewController" customModule="Elifba_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rgN-S4-bcI">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,19 +34,15 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="NNp-CZ-f7e" customClass="CollectionViewCell" customModule="Learn_Alphabeth" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="NNp-CZ-f7e" customClass="CollectionViewCell" customModule="Elifba_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IYJ-iL-0f0">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="D" translatesAutoresizingMaskIntoConstraints="NO" id="t15-yY-Mxh">
-                                                    <rect key="frame" x="9" y="10" width="22" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DD" translatesAutoresizingMaskIntoConstraints="NO" id="4yM-9D-tTu">
-                                                    <rect key="frame" x="17" y="36" width="95" height="77"/>
+                                                    <rect key="frame" x="17" y="8" width="95" height="105"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -54,7 +50,6 @@
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="animalImage" destination="4yM-9D-tTu" id="n5Y-4C-Ggp"/>
-                                            <outlet property="letterImage" destination="t15-yY-Mxh" id="2dv-lh-mRl"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -63,11 +58,11 @@
                                     <outlet property="delegate" destination="cSq-IA-AlD" id="HFa-WF-BXi"/>
                                 </connections>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 153" translatesAutoresizingMaskIntoConstraints="NO" id="sjw-hV-AVB">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="proBtnSmall" translatesAutoresizingMaskIntoConstraints="NO" id="sjw-hV-AVB">
                                 <rect key="frame" x="163" y="437" width="101" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="Wap-pY-dZe">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Wap-pY-dZe">
                                 <rect key="frame" x="189" y="437" width="49" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -89,7 +84,7 @@
         <!--Home View Controller-->
         <scene sceneID="5pb-AI-5Ec">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="n06-m8-0AF" customClass="HomeViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="n06-m8-0AF" customClass="HomeViewController" customModule="Elifba_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PAv-He-ZN1">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,17 +93,10 @@
                                 <rect key="frame" x="20" y="133" width="163" height="234"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="leterZooIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jIO-az-Hug">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="elıfBaBtn" translatesAutoresizingMaskIntoConstraints="NO" id="jIO-az-Hug">
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="67"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Letter Zoo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBj-FZ-Fbx">
-                                        <rect key="frame" x="60" y="170" width="95" height="56"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                        <color key="textColor" red="0.14509803921568626" green="0.24313725490196078" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -116,17 +104,10 @@
                                 <rect key="frame" x="245" y="133" width="163" height="234"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="soloTestIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4F1-yM-f39">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="soloTestBtn" translatesAutoresizingMaskIntoConstraints="NO" id="4F1-yM-f39">
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="67"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Solo Test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wig-MP-IAV">
-                                        <rect key="frame" x="60" y="170" width="95" height="56"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                        <color key="textColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -134,17 +115,10 @@
                                 <rect key="frame" x="20" y="447" width="163" height="234"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="practiceIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hoJ-yw-2gx">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="praıtkYapBtn" translatesAutoresizingMaskIntoConstraints="NO" id="hoJ-yw-2gx">
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="67"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Practice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJF-IM-iz0">
-                                        <rect key="frame" x="60" y="170" width="95" height="56"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                        <color key="textColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -152,25 +126,18 @@
                                 <rect key="frame" x="245" y="447" width="163" height="234"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="settingsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="z2p-XW-5DG">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ayarlarBtn" translatesAutoresizingMaskIntoConstraints="NO" id="z2p-XW-5DG">
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="67"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqx-wS-CJJ">
-                                        <rect key="frame" x="60" y="170" width="95" height="56"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <color key="textColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="removeAdsBtn-1" translatesAutoresizingMaskIntoConstraints="NO" id="SuE-ex-Xv3">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="proBtnBig" translatesAutoresizingMaskIntoConstraints="NO" id="SuE-ex-Xv3">
                                 <rect key="frame" x="94" y="786" width="240" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 82" translatesAutoresizingMaskIntoConstraints="NO" id="uH3-hE-0OX">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="elıfBaHeaderImage" translatesAutoresizingMaskIntoConstraints="NO" id="uH3-hE-0OX">
                                 <rect key="frame" x="78" y="69" width="233" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -180,18 +147,14 @@
                     </view>
                     <connections>
                         <outlet property="bottomLeftImage" destination="hoJ-yw-2gx" id="6hq-2v-5D4"/>
-                        <outlet property="bottomLeftLABEL" destination="KJF-IM-iz0" id="lk9-3y-FqS"/>
                         <outlet property="bottomLeftView" destination="bpB-dJ-kN2" id="I1L-HX-4ID"/>
                         <outlet property="bottomRightImage" destination="z2p-XW-5DG" id="6ov-ed-EEO"/>
-                        <outlet property="bottomRightLabel" destination="dqx-wS-CJJ" id="95O-GQ-L52"/>
                         <outlet property="bottomRightView" destination="wrY-cG-Rtb" id="7uq-Yq-VCy"/>
                         <outlet property="headerView" destination="uH3-hE-0OX" id="ABL-pD-1yk"/>
                         <outlet property="removeView" destination="SuE-ex-Xv3" id="hB6-P3-8Hf"/>
                         <outlet property="topLeftImage" destination="jIO-az-Hug" id="nix-mj-MP4"/>
-                        <outlet property="topLeftLabel" destination="cBj-FZ-Fbx" id="0Zf-Ne-au8"/>
                         <outlet property="topLeftView" destination="ceN-29-BcZ" id="9sJ-MT-pOf"/>
                         <outlet property="topRightImage" destination="4F1-yM-f39" id="Soe-hI-QY3"/>
-                        <outlet property="topRightLabel" destination="wig-MP-IAV" id="SJ1-Af-fqo"/>
                         <outlet property="topRightView" destination="Dud-Nc-DBR" id="H4T-2m-DDT"/>
                     </connections>
                 </viewController>
@@ -202,7 +165,7 @@
         <!--Detail View Controller-->
         <scene sceneID="QyJ-Ja-SVo">
             <objects>
-                <viewController storyboardIdentifier="DetailVC" id="swe-Hy-Q9y" customClass="DetailViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailVC" id="swe-Hy-Q9y" customClass="DetailViewController" customModule="Elifba_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ymO-i9-swk">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,11 +192,11 @@
                                             <action selector="removeButtonTapped:" destination="swe-Hy-Q9y" eventType="touchUpInside" id="bZW-gA-HUN"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="tpB-wF-JcO">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backBtn" translatesAutoresizingMaskIntoConstraints="NO" id="tpB-wF-JcO">
                                         <rect key="frame" x="80" y="8" width="40" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 153" translatesAutoresizingMaskIntoConstraints="NO" id="eLV-d4-GJ6">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="proBtnSmall" translatesAutoresizingMaskIntoConstraints="NO" id="eLV-d4-GJ6">
                                         <rect key="frame" x="194" y="31" width="40" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -278,11 +241,11 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="autoNextPassive" translatesAutoresizingMaskIntoConstraints="NO" id="EXT-Xu-SNd">
                                         <rect key="frame" x="8" y="133" width="106" height="54"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nextBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Gnb-xx-HMp">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 46" translatesAutoresizingMaskIntoConstraints="NO" id="Gnb-xx-HMp">
                                         <rect key="frame" x="342" y="15" width="32" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prevBtn" translatesAutoresizingMaskIntoConstraints="NO" id="7o5-oU-4zE">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 47" translatesAutoresizingMaskIntoConstraints="NO" id="7o5-oU-4zE">
                                         <rect key="frame" x="70" y="8" width="32" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -309,7 +272,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="colcell" id="Mcy-i9-NpQ" customClass="DetailCollectionViewCell" customModule="Learn_Alphabeth" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="colcell" id="Mcy-i9-NpQ" customClass="DetailCollectionViewCell" customModule="Elifba_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="58.666666666666664" width="431" height="355"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="f4b-hz-eRF">
@@ -343,32 +306,16 @@
                                                     <rect key="frame" x="49" y="100" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bvk-ZI-ddx">
-                                                    <rect key="frame" x="148" y="236.00000000000003" width="173" height="21"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="tintColor" systemColor="labelColor"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
-                                                    <color key="textColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hFd-LZ-dAo" userLabel="line">
                                                     <rect key="frame" x="98" y="280" width="191" height="32"/>
                                                     <color key="backgroundColor" red="0.32156862745098036" green="0.63137254901960782" blue="0.97254901960784312" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="tintColor" white="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpl-kP-EZ0">
-                                                    <rect key="frame" x="40" y="34.999999999999964" width="85" height="84"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="70"/>
-                                                    <color key="textColor" red="0.14509803921568626" green="0.24313725490196078" blue="0.42352941176470588" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.95686274509803915" green="0.98039215686274506" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="hFd-LZ-dAo" firstAttribute="centerX" secondItem="f4b-hz-eRF" secondAttribute="centerX" id="3KB-8Z-yGK"/>
                                                 <constraint firstItem="Lkd-RU-l9d" firstAttribute="centerX" secondItem="f4b-hz-eRF" secondAttribute="centerX" id="6sU-OQ-MJS"/>
-                                                <constraint firstItem="Bvk-ZI-ddx" firstAttribute="centerX" secondItem="6nd-Jf-wom" secondAttribute="centerX" id="ETC-9o-ShT"/>
                                                 <constraint firstAttribute="bottom" secondItem="6nd-Jf-wom" secondAttribute="bottom" constant="15" id="NbD-JP-lgD"/>
                                                 <constraint firstItem="Lkd-RU-l9d" firstAttribute="centerY" secondItem="f4b-hz-eRF" secondAttribute="centerY" id="VHa-GW-f8b"/>
                                                 <constraint firstItem="6nd-Jf-wom" firstAttribute="leading" secondItem="f4b-hz-eRF" secondAttribute="leading" constant="8" id="gHI-ho-FtR"/>
@@ -381,9 +328,7 @@
                                         <size key="customSize" width="431" height="355"/>
                                         <connections>
                                             <outlet property="animalImg" destination="Lkd-RU-l9d" id="zSt-Ez-4gl"/>
-                                            <outlet property="animalLabel" destination="Bvk-ZI-ddx" id="Nb6-CD-2YL"/>
                                             <outlet property="cardView" destination="6nd-Jf-wom" id="rZr-7N-qr2"/>
-                                            <outlet property="inimalLatter" destination="bpl-kP-EZ0" id="DdH-Te-4fI"/>
                                             <outlet property="line" destination="hFd-LZ-dAo" id="tre-TW-uf5"/>
                                             <outlet property="switch" destination="1XN-cD-Gml" id="Uq1-Dy-v5q"/>
                                             <outlet property="switchLabel" destination="qzQ-cV-2h3" id="Q1v-t2-vEU"/>
@@ -425,7 +370,7 @@
         <!--Quiz View Controller-->
         <scene sceneID="j9J-f4-ler">
             <objects>
-                <viewController storyboardIdentifier="QuizViewController" id="1hI-Cm-wH2" customClass="QuizViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuizViewController" id="1hI-Cm-wH2" customClass="QuizViewController" customModule="Elifba_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6lc-zO-swR">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -445,11 +390,11 @@
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="zX8-Fk-MDr">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backBtn" translatesAutoresizingMaskIntoConstraints="NO" id="zX8-Fk-MDr">
                                         <rect key="frame" x="89" y="34" width="55" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 153" translatesAutoresizingMaskIntoConstraints="NO" id="GrH-Hf-UNS">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="proBtnSmall" translatesAutoresizingMaskIntoConstraints="NO" id="GrH-Hf-UNS">
                                         <rect key="frame" x="273" y="75" width="55" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -465,7 +410,6 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="60"/>
                                         <color key="tintColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="B"/>
                                         <connections>
                                             <action selector="midButtonTapped:" destination="1hI-Cm-wH2" eventType="touchUpInside" id="iS0-ze-yJ3"/>
                                         </connections>
@@ -476,7 +420,6 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="60"/>
                                         <color key="tintColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="C"/>
                                         <connections>
                                             <action selector="rightButtonTapped:" destination="1hI-Cm-wH2" eventType="touchUpInside" id="bGz-zv-2TO"/>
                                         </connections>
@@ -487,7 +430,6 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="60"/>
                                         <color key="tintColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="A"/>
                                         <connections>
                                             <action selector="leftButtonTapped:" destination="1hI-Cm-wH2" eventType="touchUpInside" id="H7u-ZL-zlS"/>
                                         </connections>
@@ -513,7 +455,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="quizcell" id="qIk-F1-qQU" customClass="QuizCollectionViewCell" customModule="Learn_Alphabeth" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="quizcell" id="qIk-F1-qQU" customClass="QuizCollectionViewCell" customModule="Elifba_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="58.666666666666664" width="431" height="355"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7AP-mQ-3DG">
@@ -523,21 +465,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGn-oG-0is">
                                                     <rect key="frame" x="8" y="15" width="415" height="325"/>
                                                     <subviews>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1CC-Ld-M9g">
-                                                            <rect key="frame" x="346" y="20" width="51" height="31"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <color key="onTintColor" red="0.37647058820000001" green="0.91764705879999997" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                            <connections>
-                                                                <action selector="switchPositionChanged:" destination="1hI-Cm-wH2" eventType="valueChanged" id="Hn4-a1-dBg"/>
-                                                            </connections>
-                                                        </switch>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lower Case" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dE-Aa-y8r">
-                                                            <rect key="frame" x="273" y="24.999999999999964" width="72" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                            <color key="textColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Eow-4r-uWq">
                                                             <rect key="frame" x="113" y="305" width="150" height="4"/>
                                                             <color key="backgroundColor" red="0.90980392156862744" green="0.94117647058823528" blue="1" alpha="0.69455623" colorSpace="custom" customColorSpace="sRGB"/>
@@ -558,7 +485,7 @@
                                                                 <action selector="playyTapped:" destination="1hI-Cm-wH2" eventType="touchUpInside" id="Fp0-Hh-zMH"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="playBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Gmd-ao-Bte">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 48" translatesAutoresizingMaskIntoConstraints="NO" id="Gmd-ao-Bte">
                                                             <rect key="frame" x="46" y="8" width="55" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
@@ -587,13 +514,11 @@
                                         <size key="customSize" width="431" height="355"/>
                                         <connections>
                                             <outlet property="animalImg" destination="Q1v-ix-8xg" id="5Ee-Xk-WlD"/>
-                                            <outlet property="autoSwitch" destination="1CC-Ld-M9g" id="Ly9-AX-zMd"/>
                                             <outlet property="cardView" destination="hGn-oG-0is" id="cJr-hp-rUf"/>
                                             <outlet property="playButton" destination="K70-0c-voG" id="W0M-c2-3aT"/>
                                             <outlet property="playImage" destination="Gmd-ao-Bte" id="q0f-Kl-lRa"/>
                                             <outlet property="progressBar" destination="Eow-4r-uWq" id="fXU-yC-6Ep"/>
                                             <outlet property="progressLabel" destination="p97-vt-RIR" id="77c-HJ-3ov"/>
-                                            <outlet property="switchLabel" destination="3dE-Aa-y8r" id="Gbu-pf-5WM"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -622,7 +547,7 @@
         <!--Pracrice View Controller-->
         <scene sceneID="eO4-sH-EtD">
             <objects>
-                <viewController storyboardIdentifier="PracriceViewController" id="jaU-YH-MrG" customClass="PracriceViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PracriceViewController" id="jaU-YH-MrG" customClass="PracriceViewController" customModule="Elifba_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J4O-2f-Y2u">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -638,7 +563,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PracticeCell" id="UQF-CB-e08" customClass="PracticeCollectionViewCell" customModule="Learn_Alphabeth" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PracticeCell" id="UQF-CB-e08" customClass="PracticeCollectionViewCell" customModule="Elifba_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="L7q-rY-MoY">
@@ -647,67 +572,50 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxH-fZ-gHi">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cRZ-bi-SIa">
+                                                            <rect key="frame" x="10" y="10" width="108" height="108"/>
+                                                        </imageView>
+                                                    </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="cRZ-bi-SIa" firstAttribute="leading" secondItem="FxH-fZ-gHi" secondAttribute="leading" constant="10" id="5p3-Gh-TPt"/>
+                                                        <constraint firstAttribute="trailing" secondItem="cRZ-bi-SIa" secondAttribute="trailing" constant="10" id="U8S-w0-m73"/>
+                                                        <constraint firstItem="cRZ-bi-SIa" firstAttribute="top" secondItem="FxH-fZ-gHi" secondAttribute="top" constant="10" id="f4Y-mb-dFQ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="cRZ-bi-SIa" secondAttribute="bottom" constant="10" id="fCY-I7-qCJ"/>
+                                                    </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoQ-bI-bNK">
-                                                    <rect key="frame" x="2" y="2" width="124" height="124"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
-                                                    <color key="textColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="FxH-fZ-gHi" secondAttribute="trailing" id="O1O-0s-5gJ"/>
-                                                <constraint firstItem="ZoQ-bI-bNK" firstAttribute="top" secondItem="L7q-rY-MoY" secondAttribute="top" constant="2" id="SpC-W0-tGN"/>
                                                 <constraint firstItem="FxH-fZ-gHi" firstAttribute="top" secondItem="L7q-rY-MoY" secondAttribute="top" id="dq6-AK-cBQ"/>
-                                                <constraint firstItem="ZoQ-bI-bNK" firstAttribute="leading" secondItem="L7q-rY-MoY" secondAttribute="leading" constant="2" id="kpM-6o-Ajz"/>
                                                 <constraint firstAttribute="bottom" secondItem="FxH-fZ-gHi" secondAttribute="bottom" id="lZ7-Xj-9gX"/>
                                                 <constraint firstItem="FxH-fZ-gHi" firstAttribute="leading" secondItem="L7q-rY-MoY" secondAttribute="leading" id="pOf-Mp-KCg"/>
-                                                <constraint firstAttribute="trailing" secondItem="ZoQ-bI-bNK" secondAttribute="trailing" constant="2" id="pjf-XC-H9k"/>
-                                                <constraint firstAttribute="bottom" secondItem="ZoQ-bI-bNK" secondAttribute="bottom" constant="2" id="qok-lh-lja"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="letterLabel" destination="ZoQ-bI-bNK" id="kfD-s6-cuI"/>
+                                            <outlet property="practiceImage" destination="cRZ-bi-SIa" id="4fM-PH-w4p"/>
                                             <outlet property="viewCard" destination="FxH-fZ-gHi" id="3Kf-fr-XwD"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Group 153" translatesAutoresizingMaskIntoConstraints="NO" id="GEo-9U-gKz">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="proBtnSmall" translatesAutoresizingMaskIntoConstraints="NO" id="GEo-9U-gKz">
                                 <rect key="frame" x="275" y="44" width="133" height="55"/>
-                            </imageView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3Sc-Cu-21U">
-                                <rect key="frame" x="348" y="107" width="49" height="31"/>
-                                <color key="onTintColor" red="0.37647058820000001" green="0.91764705879999997" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="switchPositionChanged:" destination="jaU-YH-MrG" eventType="valueChanged" id="nE0-4z-Ynx"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lower Case" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTY-Wi-j9a">
-                                <rect key="frame" x="289" y="112" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="F02-mM-UhZ">
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backBtn" translatesAutoresizingMaskIntoConstraints="NO" id="F02-mM-UhZ">
                                 <rect key="frame" x="37" y="55" width="40" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="p1U-Jc-6cw"/>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.98039215686274506" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="3Sc-Cu-21U" firstAttribute="trailing" secondItem="GEo-9U-gKz" secondAttribute="trailing" id="g46-I8-kyZ"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionLetter" destination="l2N-hb-XJo" id="G4R-KN-Wnj"/>
                         <outlet property="homeView" destination="F02-mM-UhZ" id="BDR-qS-hrC"/>
-                        <outlet property="labelSwitch" destination="aTY-Wi-j9a" id="1jX-pb-c5m"/>
                         <outlet property="removeView" destination="GEo-9U-gKz" id="feg-e1-oD3"/>
-                        <outlet property="switchLetter" destination="3Sc-Cu-21U" id="rSQ-p6-BNd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WtP-ev-e5M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -717,7 +625,7 @@
         <!--Popup View Controller-->
         <scene sceneID="Auz-3x-wGB">
             <objects>
-                <viewController storyboardIdentifier="PopupViewController" id="5mp-bq-hyU" customClass="PopupViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopupViewController" id="5mp-bq-hyU" customClass="PopupViewController" customModule="Elifba_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B1y-l8-Mgr">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -726,37 +634,18 @@
                                 <rect key="frame" x="65" y="364" width="325" height="236"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="playBtn" translatesAutoresizingMaskIntoConstraints="NO" id="G8u-iR-w8m">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 48" translatesAutoresizingMaskIntoConstraints="NO" id="G8u-iR-w8m">
                                         <rect key="frame" x="8" y="112" width="146" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 89" translatesAutoresizingMaskIntoConstraints="NO" id="Zvc-MT-kk2">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Zvc-MT-kk2">
                                         <rect key="frame" x="171" y="112" width="146" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6T-Dw-WSe">
-                                        <rect key="frame" x="39" y="46" width="126" height="47"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nie-Hv-TUV">
+                                        <rect key="frame" x="43" y="10" width="121" height="84"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="140"/>
-                                        <color key="textColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lower Case" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exq-So-jeb">
-                                        <rect key="frame" x="190" y="10" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ua3-rb-03i">
-                                        <rect key="frame" x="259" y="5" width="51" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="onTintColor" red="0.37647058823529411" green="0.91764705882352937" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="switchChanged:" destination="5mp-bq-hyU" eventType="valueChanged" id="PO5-TL-mlM"/>
-                                        </connections>
-                                    </switch>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -766,21 +655,19 @@
                     </view>
                     <connections>
                         <outlet property="exitView" destination="Zvc-MT-kk2" id="px2-Rk-yc4"/>
-                        <outlet property="letterLabel" destination="A6T-Dw-WSe" id="RC5-jD-AmD"/>
+                        <outlet property="letterImage" destination="nie-Hv-TUV" id="C9B-GH-SR0"/>
                         <outlet property="playView" destination="G8u-iR-w8m" id="tDp-su-0c8"/>
-                        <outlet property="switchLabel" destination="Exq-So-jeb" id="zfm-hY-AJd"/>
-                        <outlet property="switchSmall" destination="ua3-rb-03i" id="ZLg-kd-UgR"/>
                         <outlet property="viewCard" destination="b9c-mc-Trc" id="5ng-lQ-HMT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uuz-4k-ghK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3730" y="-529"/>
+            <point key="canvasLocation" x="3728.9719626168221" y="-529.37365010799135"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="9aQ-5G-FTk">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="14H-Pu-4D6" customClass="SettingsViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" id="14H-Pu-4D6" customClass="SettingsViewController" customModule="Elifba_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NdE-6Y-mne">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -790,7 +677,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SettingsTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="eVY-fc-tH4" customClass="SettingsTableViewCell" customModule="Learn_Alphabeth" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SettingsTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="eVY-fc-tH4" customClass="SettingsTableViewCell" customModule="Elifba_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="399" height="47.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eVY-fc-tH4" id="hof-FS-fGf">
@@ -833,7 +720,7 @@
                                     <outlet property="delegate" destination="14H-Pu-4D6" id="ogZ-wB-0el"/>
                                 </connections>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="e7x-Tc-0pa">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backBtn" translatesAutoresizingMaskIntoConstraints="NO" id="e7x-Tc-0pa">
                                 <rect key="frame" x="32" y="32" width="51" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -853,7 +740,7 @@
         <!--Result View Controller-->
         <scene sceneID="Txn-5G-ukN">
             <objects>
-                <viewController storyboardIdentifier="ResultViewController" id="X7E-Nt-tlg" customClass="ResultViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultViewController" id="X7E-Nt-tlg" customClass="ResultViewController" customModule="Elifba_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vBX-7m-FOj">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -869,7 +756,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="resultTwoCell" id="9Gb-2X-LGO" customClass="ResultTwoCollectionViewCell" customModule="Learn_Alphabeth" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="resultTwoCell" id="9Gb-2X-LGO" customClass="ResultTwoCollectionViewCell" customModule="Elifba_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ang-tq-EHB">
@@ -908,7 +795,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="resultCell" id="bTf-pL-AU8" customClass="ResultCollectionViewCell" customModule="Learn_Alphabeth" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="resultCell" id="bTf-pL-AU8" customClass="ResultCollectionViewCell" customModule="Elifba_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AyF-AP-Jg9">
@@ -939,29 +826,29 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hcb-pt-w1G">
                                 <rect key="frame" x="80" y="145" width="186" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Solo Test 
-Results</string>
+                                <string key="text">Son Testin
+Sonuçları</string>
                                 <fontDescription key="fontDescription" name="CeraPro-Medium" family="Cera Pro" pointSize="25"/>
                                 <color key="textColor" red="0.066666666669999999" green="0.098039215690000001" blue="0.1843137255" alpha="0.75" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 146" translatesAutoresizingMaskIntoConstraints="NO" id="Nkd-46-ffb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dogruCevaplar" translatesAutoresizingMaskIntoConstraints="NO" id="Nkd-46-ffb">
                                 <rect key="frame" x="37" y="311" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 147" translatesAutoresizingMaskIntoConstraints="NO" id="8ZK-cj-3si">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yanlisCevaplar" translatesAutoresizingMaskIntoConstraints="NO" id="8ZK-cj-3si">
                                 <rect key="frame" x="37" y="540" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="doneBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Me7-mY-Zj3">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tekrarBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Me7-mY-Zj3">
                                 <rect key="frame" x="80" y="811" width="239" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home" translatesAutoresizingMaskIntoConstraints="NO" id="eyN-Qq-G7P">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backBtn" translatesAutoresizingMaskIntoConstraints="NO" id="eyN-Qq-G7P">
                                 <rect key="frame" x="37" y="33" width="78" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 153" translatesAutoresizingMaskIntoConstraints="NO" id="aFo-db-NKF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="proBtnSmall" translatesAutoresizingMaskIntoConstraints="NO" id="aFo-db-NKF">
                                 <rect key="frame" x="322" y="44" width="71" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -971,9 +858,8 @@ Results</string>
                                     <constraint firstAttribute="width" constant="250" id="191-d9-mQh"/>
                                     <constraint firstAttribute="height" constant="150" id="Q76-QF-jQq"/>
                                 </constraints>
-                                <string key="text">NO SOLO 
-TEST RESULT 
-YET</string>
+                                <string key="text">HENÜZ TEST
+SONUCU YOK</string>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
                                 <color key="textColor" red="0.14509803921568626" green="0.24313725490196078" blue="0.42352941176470588" alpha="0.27000000000000002" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1005,7 +891,7 @@ YET</string>
         <!--Quiz Popup View Controller-->
         <scene sceneID="EKA-2x-doZ">
             <objects>
-                <viewController storyboardIdentifier="QuizPopupViewController" id="Olm-J7-Z9U" customClass="QuizPopupViewController" customModule="Learn_Alphabeth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuizPopupViewController" id="Olm-J7-Z9U" customClass="QuizPopupViewController" customModule="Elifba_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MZ3-g8-8az">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1014,16 +900,16 @@ YET</string>
                                 <rect key="frame" x="65" y="364" width="325" height="236"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 163" translatesAutoresizingMaskIntoConstraints="NO" id="G26-5d-PAc">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="evetBtn" translatesAutoresizingMaskIntoConstraints="NO" id="G26-5d-PAc">
                                         <rect key="frame" x="8" y="112" width="146" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 161" translatesAutoresizingMaskIntoConstraints="NO" id="oUl-6q-QYB">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="testExıtPopupImage" translatesAutoresizingMaskIntoConstraints="NO" id="oUl-6q-QYB">
                                         <rect key="frame" x="93" y="8" width="132" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group 162" translatesAutoresizingMaskIntoConstraints="NO" id="TtE-M8-udT">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hayırBtn" translatesAutoresizingMaskIntoConstraints="NO" id="TtE-M8-udT">
                                         <rect key="frame" x="180" y="124" width="99" height="76"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -1047,31 +933,27 @@ YET</string>
         </scene>
     </scenes>
     <resources>
-        <image name="D" width="244" height="316"/>
         <image name="DD" width="528" height="551"/>
-        <image name="Group 146" width="230" height="32"/>
-        <image name="Group 147" width="222" height="32"/>
-        <image name="Group 153" width="46" height="44"/>
-        <image name="Group 161" width="274.66665649414062" height="228"/>
-        <image name="Group 162" width="122" height="63"/>
-        <image name="Group 163" width="124" height="63"/>
-        <image name="Group 82" width="245" height="53"/>
-        <image name="Group 89" width="64.333335876464844" height="64"/>
+        <image name="Group 46" width="69" height="69"/>
+        <image name="Group 47" width="69" height="69"/>
+        <image name="Group 48" width="84" height="84"/>
         <image name="autoNextPassive" width="266" height="63"/>
+        <image name="ayarlarBtn" width="180" height="180"/>
+        <image name="backBtn" width="44" height="44"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
-        <image name="doneBtn" width="279" height="63"/>
-        <image name="home" width="44" height="44"/>
-        <image name="leterZooIcon" width="108" height="109"/>
-        <image name="nextBtn" width="69" height="69"/>
+        <image name="dogruCevaplar" width="225" height="32"/>
+        <image name="elıfBaBtn" width="180" height="180"/>
+        <image name="elıfBaHeaderImage" width="235.33332824707031" height="67"/>
+        <image name="evetBtn" width="136" height="63"/>
+        <image name="hayırBtn" width="134" height="63"/>
         <image name="playBtn" width="84" height="84"/>
-        <image name="practiceIcon" width="108" height="107.33333587646484"/>
-        <image name="prevBtn" width="69" height="69"/>
-        <image name="removeAdsBtn-1" width="386" height="77"/>
-        <image name="settingsIcon" width="96" height="96"/>
-        <image name="soloTestIcon" width="115" height="114"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="praıtkYapBtn" width="180" height="180"/>
+        <image name="proBtnBig" width="386" height="77"/>
+        <image name="proBtnSmall" width="46" height="44"/>
+        <image name="soloTestBtn" width="180" height="180"/>
+        <image name="tekrarBtn" width="279" height="63"/>
+        <image name="testExıtPopupImage" width="262" height="228"/>
+        <image name="yanlisCevaplar" width="219" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

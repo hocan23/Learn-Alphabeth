@@ -10,9 +10,9 @@ import AVFAudio
 import GoogleMobileAds
 class PopupViewController: UIViewController, AVAudioPlayerDelegate {
 
-    @IBOutlet weak var switchSmall: UISwitch!
-    @IBOutlet weak var switchLabel: UILabel!
-    @IBOutlet weak var letterLabel: UILabel!
+  
+    @IBOutlet weak var letterImage: UIImageView!
+    
     @IBOutlet weak var exitView: UIImageView!
     @IBOutlet weak var playView: UIImageView!
     @IBOutlet weak var viewCard: UIView!
@@ -41,14 +41,12 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
             viewCard.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.24, paddingBottom: -view.frame.height*0.24, paddingLeft: view.frame.width*0.07, paddingRight: -view.frame.width*0.07, width: 0, height: 0)
         }
       
-        letterLabel.anchor(top: switchLabel.bottomAnchor, bottom: playView.topAnchor, leading: viewCard.leadingAnchor, trailing: viewCard.trailingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.045, paddingLeft: view.frame.width*0.01, paddingRight: -view.frame.width*0.01, width: 0, height: 0)
+        letterImage.anchor(top: viewCard.topAnchor, bottom: playView.topAnchor, leading: viewCard.leadingAnchor, trailing: viewCard.trailingAnchor, paddingTop: 10, paddingBottom: -view.frame.height*0.045, paddingLeft: view.frame.width*0.01, paddingRight: -view.frame.width*0.01, width: 0, height: 0)
         playView.anchor(top: nil, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.29, paddingLeft: view.frame.width*0.31, paddingRight: 0, width: view.frame.height*0.07, height: view.frame.height*0.07)
         exitView.anchor(top: nil, bottom: view.bottomAnchor, leading: nil, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.29, paddingLeft: 0, paddingRight: -view.frame.width*0.31, width: view.frame.height*0.07, height: view.frame.height*0.07)
-        switchSmall.anchor(top: viewCard.topAnchor, bottom: nil, leading: nil, trailing: viewCard.trailingAnchor, paddingTop: 10, paddingBottom: 0, paddingLeft:0, paddingRight: -20, width: 40, height: 30)
-        switchLabel.anchor(top: viewCard.topAnchor, bottom: nil, leading: nil, trailing: switchSmall.leadingAnchor, paddingTop:7, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width:180, height: 40)
+       
         viewCard.layer.cornerRadius = 20
-        switchLabel.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
-        letterLabel.font = letterLabel.font.withSize(view.frame.height*0.24)
+       
         createAdd()
         bannerView = GADBannerView(adSize: GADAdSizeBanner)
         bannerView.adUnitID = Utils.bannerId
@@ -76,31 +74,14 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        if isSmall == false{
-            letterLabel.text = String(cellIds[selectedItemNumber].letterImage.prefix(1))
-
-        }else{
-            letterLabel.text = String(cellIds[selectedItemNumber].letterImage.suffix(1))
-        }
-        playMusic(name: "\(cellIds[selectedItemNumber].letterSound)1", type: "mp3")
+        letterImage.image=UIImage(named: "\(selectedItemNumber+1)t")
+        print("\(selectedItemNumber+1)p")
+        playMusic(name: "\(selectedItemNumber+1)p", type: "mp3")
 
     }
-    @IBAction func switchChanged(_ sender: UISwitch) {
-        if sender.isOn {
-            isSmall = true
-        }else{
-            isSmall = false
-        }
-        if isSmall == false{
-            letterLabel.text = String(cellIds[selectedItemNumber].letterImage.prefix(1))
-
-        }else{
-            letterLabel.text = String(cellIds[selectedItemNumber].letterImage.suffix(1))
-        }
-    
-    }
+  
     @objc func playTapped(){
-        playMusic(name: "\(cellIds[selectedItemNumber].letterSound)1", type: "mp3")
+        playMusic(name: "\(selectedItemNumber+1)p", type: "mp3")
 
     }
     

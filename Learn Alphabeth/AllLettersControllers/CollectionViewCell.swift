@@ -13,12 +13,12 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var animalImage: UIImageView!
     
-    @IBOutlet weak var letterImage: UIImageView!
     
     
     
      override func awakeFromNib() {
          super.awakeFromNib()
+//         animalImage.anchor(top: contentView.topAnchor, bottom: contentView.bottomAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 5, paddingBottom: 5, paddingLeft: 5, paddingRight: 5, width: 0, height: 0)
          contentView.layer.cornerRadius = 20
      }
 
