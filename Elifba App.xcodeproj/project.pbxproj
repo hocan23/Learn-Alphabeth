@@ -200,16 +200,16 @@
 		76E736342884425000A399DD /* ResultTwoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTwoCollectionViewCell.swift; sourceTree = "<group>"; };
 		7C318B3A28722259003B0C36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7C318B3C2872380D003B0C36 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		7C693FF22870E72E0030BFDF /* Learn Alphabeth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learn Alphabeth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C693FF22870E72E0030BFDF /* Elifba App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elifba App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C693FF52870E72E0030BFDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C693FF72870E72E0030BFDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7C693FFC2870E72E0030BFDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C693FFE2870E72F0030BFDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C6940012870E72F0030BFDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C6940032870E72F0030BFDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C6940082870E7300030BFDF /* Learn AlphabethTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Learn AlphabethTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C6940082870E7300030BFDF /* Elifba AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Elifba AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C69400C2870E7300030BFDF /* Learn_AlphabethTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learn_AlphabethTests.swift; sourceTree = "<group>"; };
-		7C6940122870E7300030BFDF /* Learn AlphabethUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Learn AlphabethUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C6940122870E7300030BFDF /* Elifba AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Elifba AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C6940162870E7300030BFDF /* Learn_AlphabethUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learn_AlphabethUITests.swift; sourceTree = "<group>"; };
 		7C6940182870E7300030BFDF /* Learn_AlphabethUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learn_AlphabethUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7CB142B4287121BB00E2F1D6 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -386,9 +386,9 @@
 		7C693FF32870E72E0030BFDF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7C693FF22870E72E0030BFDF /* Learn Alphabeth.app */,
-				7C6940082870E7300030BFDF /* Learn AlphabethTests.xctest */,
-				7C6940122870E7300030BFDF /* Learn AlphabethUITests.xctest */,
+				7C693FF22870E72E0030BFDF /* Elifba App.app */,
+				7C6940082870E7300030BFDF /* Elifba AppTests.xctest */,
+				7C6940122870E7300030BFDF /* Elifba AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -473,9 +473,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7C693FF12870E72E0030BFDF /* Learn Alphabeth */ = {
+		7C693FF12870E72E0030BFDF /* Elifba App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7C69401C2870E7300030BFDF /* Build configuration list for PBXNativeTarget "Learn Alphabeth" */;
+			buildConfigurationList = 7C69401C2870E7300030BFDF /* Build configuration list for PBXNativeTarget "Elifba App" */;
 			buildPhases = (
 				7BB64D3E4BA7E355B4577699 /* [CP] Check Pods Manifest.lock */,
 				7C693FEE2870E72E0030BFDF /* Sources */,
@@ -487,14 +487,14 @@
 			);
 			dependencies = (
 			);
-			name = "Learn Alphabeth";
+			name = "Elifba App";
 			productName = "Learn Alphabeth";
-			productReference = 7C693FF22870E72E0030BFDF /* Learn Alphabeth.app */;
+			productReference = 7C693FF22870E72E0030BFDF /* Elifba App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7C6940072870E7300030BFDF /* Learn AlphabethTests */ = {
+		7C6940072870E7300030BFDF /* Elifba AppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7C69401F2870E7300030BFDF /* Build configuration list for PBXNativeTarget "Learn AlphabethTests" */;
+			buildConfigurationList = 7C69401F2870E7300030BFDF /* Build configuration list for PBXNativeTarget "Elifba AppTests" */;
 			buildPhases = (
 				2EA95AEEBAEECDCAD0417EB2 /* [CP] Check Pods Manifest.lock */,
 				7C6940042870E7300030BFDF /* Sources */,
@@ -506,14 +506,14 @@
 			dependencies = (
 				7C69400A2870E7300030BFDF /* PBXTargetDependency */,
 			);
-			name = "Learn AlphabethTests";
+			name = "Elifba AppTests";
 			productName = "Learn AlphabethTests";
-			productReference = 7C6940082870E7300030BFDF /* Learn AlphabethTests.xctest */;
+			productReference = 7C6940082870E7300030BFDF /* Elifba AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7C6940112870E7300030BFDF /* Learn AlphabethUITests */ = {
+		7C6940112870E7300030BFDF /* Elifba AppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7C6940222870E7300030BFDF /* Build configuration list for PBXNativeTarget "Learn AlphabethUITests" */;
+			buildConfigurationList = 7C6940222870E7300030BFDF /* Build configuration list for PBXNativeTarget "Elifba AppUITests" */;
 			buildPhases = (
 				6B22C638F7E4D5EF6DB501EA /* [CP] Check Pods Manifest.lock */,
 				7C69400E2870E7300030BFDF /* Sources */,
@@ -526,9 +526,9 @@
 			dependencies = (
 				7C6940142870E7300030BFDF /* PBXTargetDependency */,
 			);
-			name = "Learn AlphabethUITests";
+			name = "Elifba AppUITests";
 			productName = "Learn AlphabethUITests";
-			productReference = 7C6940122870E7300030BFDF /* Learn AlphabethUITests.xctest */;
+			productReference = 7C6940122870E7300030BFDF /* Elifba AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -554,7 +554,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7C693FED2870E72E0030BFDF /* Build configuration list for PBXProject "Learn Alphabeth" */;
+			buildConfigurationList = 7C693FED2870E72E0030BFDF /* Build configuration list for PBXProject "Elifba App" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -567,9 +567,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7C693FF12870E72E0030BFDF /* Learn Alphabeth */,
-				7C6940072870E7300030BFDF /* Learn AlphabethTests */,
-				7C6940112870E7300030BFDF /* Learn AlphabethUITests */,
+				7C693FF12870E72E0030BFDF /* Elifba App */,
+				7C6940072870E7300030BFDF /* Elifba AppTests */,
+				7C6940112870E7300030BFDF /* Elifba AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -816,12 +816,12 @@
 /* Begin PBXTargetDependency section */
 		7C69400A2870E7300030BFDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7C693FF12870E72E0030BFDF /* Learn Alphabeth */;
+			target = 7C693FF12870E72E0030BFDF /* Elifba App */;
 			targetProxy = 7C6940092870E7300030BFDF /* PBXContainerItemProxy */;
 		};
 		7C6940142870E7300030BFDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7C693FF12870E72E0030BFDF /* Learn Alphabeth */;
+			target = 7C693FF12870E72E0030BFDF /* Elifba App */;
 			targetProxy = 7C6940132870E7300030BFDF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1039,7 +1039,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn Alphabeth.app/Learn Alphabeth";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elifba App.app/Elifba App";
 			};
 			name = Debug;
 		};
@@ -1060,7 +1060,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn Alphabeth.app/Learn Alphabeth";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elifba App.app/Elifba App";
 			};
 			name = Release;
 		};
@@ -1105,7 +1105,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7C693FED2870E72E0030BFDF /* Build configuration list for PBXProject "Learn Alphabeth" */ = {
+		7C693FED2870E72E0030BFDF /* Build configuration list for PBXProject "Elifba App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C69401A2870E7300030BFDF /* Debug */,
@@ -1114,7 +1114,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7C69401C2870E7300030BFDF /* Build configuration list for PBXNativeTarget "Learn Alphabeth" */ = {
+		7C69401C2870E7300030BFDF /* Build configuration list for PBXNativeTarget "Elifba App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C69401D2870E7300030BFDF /* Debug */,
@@ -1123,7 +1123,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7C69401F2870E7300030BFDF /* Build configuration list for PBXNativeTarget "Learn AlphabethTests" */ = {
+		7C69401F2870E7300030BFDF /* Build configuration list for PBXNativeTarget "Elifba AppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C6940202870E7300030BFDF /* Debug */,
@@ -1132,7 +1132,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7C6940222870E7300030BFDF /* Build configuration list for PBXNativeTarget "Learn AlphabethUITests" */ = {
+		7C6940222870E7300030BFDF /* Build configuration list for PBXNativeTarget "Elifba AppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C6940232870E7300030BFDF /* Debug */,
