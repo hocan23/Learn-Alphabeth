@@ -1,0 +1,6 @@
+framework module Pods_Learn_AlphabethTests {
+  umbrella header "Pods-Learn AlphabethTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
