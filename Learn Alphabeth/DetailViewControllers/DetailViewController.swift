@@ -285,7 +285,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             isAuto = true
         }else{
             isAuto = false
-            autonextView.image = UIImage(named: "autoNextActive")
+            autonextView.image = UIImage(named: "autoNextPassive")
             playView.image = UIImage(named: "playBtn")
             animationView.isHidden=true
 

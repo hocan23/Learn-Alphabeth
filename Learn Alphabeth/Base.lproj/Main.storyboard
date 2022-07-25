@@ -306,15 +306,9 @@
                                                     <rect key="frame" x="49" y="100" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hFd-LZ-dAo" userLabel="line">
-                                                    <rect key="frame" x="98" y="280" width="191" height="32"/>
-                                                    <color key="backgroundColor" red="0.32156862745098036" green="0.63137254901960782" blue="0.97254901960784312" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="tintColor" white="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.95686274509803915" green="0.98039215686274506" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="hFd-LZ-dAo" firstAttribute="centerX" secondItem="f4b-hz-eRF" secondAttribute="centerX" id="3KB-8Z-yGK"/>
                                                 <constraint firstItem="Lkd-RU-l9d" firstAttribute="centerX" secondItem="f4b-hz-eRF" secondAttribute="centerX" id="6sU-OQ-MJS"/>
                                                 <constraint firstAttribute="bottom" secondItem="6nd-Jf-wom" secondAttribute="bottom" constant="15" id="NbD-JP-lgD"/>
                                                 <constraint firstItem="Lkd-RU-l9d" firstAttribute="centerY" secondItem="f4b-hz-eRF" secondAttribute="centerY" id="VHa-GW-f8b"/>
@@ -329,7 +323,6 @@
                                         <connections>
                                             <outlet property="animalImg" destination="Lkd-RU-l9d" id="zSt-Ez-4gl"/>
                                             <outlet property="cardView" destination="6nd-Jf-wom" id="rZr-7N-qr2"/>
-                                            <outlet property="line" destination="hFd-LZ-dAo" id="tre-TW-uf5"/>
                                             <outlet property="switch" destination="1XN-cD-Gml" id="Uq1-Dy-v5q"/>
                                             <outlet property="switchLabel" destination="qzQ-cV-2h3" id="Q1v-t2-vEU"/>
                                         </connections>

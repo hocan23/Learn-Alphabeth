@@ -13,7 +13,6 @@ class DetailCollectionViewCell: UICollectionViewCell {
    
     
     @IBOutlet weak var cardView: UIView!
-    @IBOutlet weak var line: UIView!
     @IBOutlet weak var animalImg: UIImageView!
     
     @IBOutlet weak var switchLabel: UILabel!
@@ -27,16 +26,15 @@ class DetailCollectionViewCell: UICollectionViewCell {
 
         print(UIScreen.main.bounds.size.height)
         print(contentView.frame.height)
-        animalImg.superview?.bringSubviewToFront(switchLabel)
-        `switch`.superview?.bringSubviewToFront(animalImg)
+//        switchLabel.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
 
         `switch`.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: cardView.trailingAnchor, paddingTop: 20, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
         switchLabel.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: `switch`.leadingAnchor, paddingTop: 17, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width: 100, height: 40)
         print(contentWight)
         print(contentHeight)
-        animalImg.anchor(top: cardView.topAnchor, bottom: line.topAnchor, leading: nil, trailing: nil, paddingTop: 10, paddingBottom: -10, paddingLeft: 0, paddingRight: 0, width: contentWight*0.5, height: contentHeight*0.35)
+        animalImg.anchor(top: cardView.topAnchor, bottom: cardView.bottomAnchor, leading: nil, trailing: nil, paddingTop: 80, paddingBottom: -10, paddingLeft: 0, paddingRight: 0, width: contentWight*0.5, height: 0)
        
-        line.anchor(top: animalImg.bottomAnchor, bottom: nil, leading: nil, trailing: nil, paddingTop: 15, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: contentWight*0.3, height: 2)
+       
         print(cardView.frame.height)
         
         animalImg.bounce()
