@@ -27,7 +27,7 @@ class QuizPopupViewController: UIViewController {
         noView.isUserInteractionEnabled = true
         noView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(notExitTapped)))
         cardView.layer.cornerRadius = 20
-
+createAdd()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
