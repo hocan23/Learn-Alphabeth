@@ -40,7 +40,7 @@ class ResultViewController: UIViewController {
     let spacing = CGSize(width: 5, height: 10)
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        createAdd()
         
         if let data = UserDefaults.standard.value(forKey:"correctAnswers") as? Data {
             correctAnswer = try! PropertyListDecoder().decode(Array<Alphabeth>.self, from: data)

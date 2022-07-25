@@ -90,7 +90,10 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         isautoPlay=true
         playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
+        if isAuto{
+            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
 
+        }
         if isinAd==true{
             isinAd=false
             playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
@@ -204,7 +207,6 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     @IBAction func autoPlaySwitchPressed(_ sender: UISwitch) {
         print(sender.isOn)
         if sender.isOn {
-//            homeAnimation(name: "detail\(animationCount)")
 
             isautoPlay = true
         }else{
@@ -228,7 +230,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             isAnimate = false
              collectionAnimal.reloadData()
         }else{
-            homeAnimation(name: "detail\(animationCount)")
+            homeAnimation(name: "detail3")
             isAnimate = true
              collectionAnimal.reloadData()
             let urlString = Bundle.main.path(forResource: name, ofType: type)
@@ -259,6 +261,9 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         print("finished")//It is working now! printed "finished"!
         playView.image = UIImage(named: "playBtn")
         animationView.isHidden=true
+        if selectedItemNumber == cellIds.count-1{
+            selectedItemNumber = -1
+        }
         if selectedItemNumber < cellIds.count-1{
             if isAuto == true{
                 selectedItemNumber += 1
@@ -374,17 +379,10 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
                 
             }
         }
-        if animationCount<5{
-//            homeAnimation(name: "detail\(animationCount)")
-            animationCount+=1
-        }else{
-            animationCount=1
-//            homeAnimation(name: "detail\(animationCount)")
-
-        }
         adCounter+=1
         if isAuto == true{
-            if adCounter >= 6{
+            print(adCounter)
+            if adCounter >= 13{
                 if interstitial != nil {
                     interstitial?.present(fromRootViewController: self)
                     adCounter = 0
@@ -395,6 +393,7 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
                 }
             }
         }else{
+        
             if adCounter >= 6{
                 if interstitial != nil {
                     interstitial?.present(fromRootViewController: self)
@@ -404,7 +403,7 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
                 } else {
                     print("Ad wasn't ready")
                 }
-            }
+        }
         }
         print("Visible cell's index is : \(visibleIndexPath?.row)!")
     }
@@ -572,7 +571,7 @@ extension UIView {
                 // Do what you need to do repeatedly
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
                 if UIDevice.current.userInterfaceIdiom == .pad  {
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
 
                 }else{
                     self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
@@ -580,7 +579,7 @@ extension UIView {
                     
                 }
                 if UIDevice.current.userInterfaceIdiom == .pad  {
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
 
                 }else{
                     self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
