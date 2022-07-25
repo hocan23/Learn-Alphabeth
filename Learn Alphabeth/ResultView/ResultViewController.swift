@@ -57,7 +57,9 @@ class ResultViewController: UIViewController {
         emptyLabel.isHidden = true
         setupConstraits()
         resultAnimation()
-        createAdd()
+        if Utils.isPremium != "premium"{
+            createAdd()
+        }
         doneButton.image = UIImage(named: "tamamlaBtn")
         if isFirst == true{
             isFirstStup()

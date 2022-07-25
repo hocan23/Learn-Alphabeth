@@ -5,7 +5,7 @@
   ],
   "products" : [
     {
-      "displayPrice" : "3.99",
+      "displayPrice" : "0.99",
       "familyShareable" : false,
       "internalID" : "31AA9546",
       "localizations" : [
@@ -15,7 +15,7 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "com.SIX11.learnABC.removeAds",
+      "productID" : "com.SIX11.elifba.remove",
       "referenceName" : "Remove Ads",
       "type" : "NonConsumable"
     }

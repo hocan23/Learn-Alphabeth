@@ -84,8 +84,8 @@ class Utils{
         
         
     ]
-    static var fullScreenAdId = "ca-app-pub-1501030234998564/6651165302"
-    static var  bannerId = "ca-app-pub-1501030234998564/6616356346"
+    static var fullScreenAdId = "ca-app-pub-1501030234998564/1558605394"
+    static var  bannerId = "ca-app-pub-1501030234998564/9245523725"
     static var isPremium = ""
     static func saveLocal (array:[Alphabeth], key : String){
         let encoder = JSONEncoder()
