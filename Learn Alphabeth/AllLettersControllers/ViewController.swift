@@ -56,12 +56,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        collectionLetter.showsVerticalScrollIndicator = false
+
         SKPaymentQueue.default().add(self)
         removeView.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04, width: view.frame.width*0.11, height: view.frame.height*0.05)
         
         homeView.anchor(top:view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: view.frame.height*0.04, paddingRight: 0, width: view.frame.height*0.05, height: view.frame.height*0.05)
-        collectionLetter.anchor(top: removeView.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.02, paddingBottom: 0, paddingLeft: view.frame.height*0.04, paddingRight: -view.frame.height*0.04, width: 0, height: 0)
+        collectionLetter.anchor(top: removeView.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.02, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
         homeView.isUserInteractionEnabled = true
         homeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(exitTapped)))
         removeView.isUserInteractionEnabled = true

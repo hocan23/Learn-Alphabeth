@@ -48,11 +48,16 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     var LeftButtonNumber = 0
     var rightButtonNumber = 1
     var MidButtonNumber = 2
-
+    var quizMembers : [Int] = []
+    var b = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        cellIds.shuffle()
-        print(cellIds[0].animalName)
+        for b in 0...28{
+            quizMembers.append(b)
+            self.b+=1
+        }
+        quizMembers.shuffle()
+        print(quizMembers)
         collectionAnimal1.delegate = self
         collectionAnimal1.dataSource = self
         //        collectionAnimal1.isScrollEnabled = false
@@ -74,7 +79,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }
         if isinAd==true{
             isinAd=false
-            playMusic(name: "\(selectedItemNumber+1)", type: "mp3")
+            playMusic(name: "\(quizMembers[selectedItemNumber])s", type: "mp3")
 
         }
         if Utils.isPremium == "premium"{
@@ -97,7 +102,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     @IBAction func playyTapped(_ sender: UIButton) {
-        playMusic(name: "\(selectedItemNumber+1)", type: "mp3")
+        playMusic(name: "\(quizMembers[selectedItemNumber])s", type: "mp3")
 
     }
     func SetupConstraints (){
@@ -282,7 +287,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     @IBAction func rightButtonTapped(_ sender: Any) {
         rightButton.zoomIn()
         print(cellIds[selectedItemNumber].letterImage)
-        if rightButtonNumber == selectedItemNumber+1  {
+        if rightButtonNumber == quizMembers[selectedItemNumber]  {
             print("exists")
             if isFirestAnswer == true{
                 correctAnswer.append(selectedItemNumber+1)
@@ -346,7 +351,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         midButton.zoomIn()
         print(selectedItemNumber)
         print(MidButtonNumber)
-        if MidButtonNumber == selectedItemNumber+1  {
+        if MidButtonNumber == quizMembers[selectedItemNumber]  {
             if isFirestAnswer == true{
                 correctAnswer.append(selectedItemNumber+1)
             }else{
@@ -411,7 +416,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     }
     @IBAction func leftButtonTapped(_ sender: Any) {
         leftButton.zoomIn()
-        if LeftButtonNumber == selectedItemNumber+1  {
+        if LeftButtonNumber == quizMembers[selectedItemNumber] {
             print("exists")
             if isFirestAnswer == true{
                 correctAnswer.append(selectedItemNumber+1)
@@ -491,20 +496,20 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
         let visiblePoint = CGPoint(x: CGFloat(visibleRect.midX), y: CGFloat(visibleRect.midY))
         let visibleIndexPath: IndexPath? = collectionAnimal1.indexPathForItem(at: visiblePoint)
         if let number = (visibleIndexPath?.row){
-            selectedItemNumber = (visibleIndexPath?.row)!
+            selectedItemNumber = quizMembers[visibleIndexPath!.row]
             //        let visibleIndexPath = selectedItemNumber
-            var firstRandom = Int.random(in: 0..<29)
+            var firstRandom = Int.random(in: 0..<28)
             if firstRandom == visibleIndexPath!.row+1 {
-                if firstRandom == 29{
+                if firstRandom == 28{
                     firstRandom-=1
                 }else{
                     firstRandom+=1
                     
                 }
             }
-            var secondRandom = Int.random(in: 0..<29)
+            var secondRandom = Int.random(in: 0..<28)
             if secondRandom == visibleIndexPath!.row+1 {
-                if secondRandom == 29{
+                if secondRandom == 28{
                     secondRandom-=1
                 }else{
                     secondRandom+=1
@@ -512,7 +517,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
                 }
             }
             if secondRandom == firstRandom {
-                if secondRandom == 29{
+                if secondRandom == 28{
                     secondRandom-=1
                 }else{
                     secondRandom+=1
@@ -522,7 +527,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
            
             print(visibleIndexPath)
             selectedItemNumber = visibleIndexPath!.row
-            var buttonOptions = [(visibleIndexPath!.row+1),(firstRandom),(secondRandom)]
+            var buttonOptions = [quizMembers[selectedItemNumber],(firstRandom),(secondRandom)]
             buttonOptions.shuffle()
             print("butti\(buttonOptions)")
             buttonOption = buttonOptions
@@ -536,7 +541,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
 
           
             if isinAd == false{
-                playMusic(name: "\(selectedItemNumber+1)", type: "mp3")
+                playMusic(name: "\(quizMembers[selectedItemNumber])s", type: "mp3")
 
             }
             
@@ -560,7 +565,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionAnimal1.dequeueReusableCell(withReuseIdentifier: "quizcell", for: indexPath) as! QuizCollectionViewCell
         
-        cell.animalImg.image = UIImage(named:  "\(selectedItemNumber+1)t")
+        cell.animalImg.image = UIImage(named:  "\(quizMembers[selectedItemNumber])t")
         cell.progressLabel.text = "\(selectedItemNumber)/28"
         cell.progressBar.setProgress(Float(selectedItemNumber)/28, animated: true)
         if isStop == true{

@@ -562,18 +562,18 @@ extension UIView {
                 // Do what you need to do repeatedly
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
                 if UIDevice.current.userInterfaceIdiom == .pad  {
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.02, y: 1.02)
 
                 }else{
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.02, y: 1.02)
 
                     
                 }
                 if UIDevice.current.userInterfaceIdiom == .pad  {
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.02, y: 1.02)
 
                 }else{
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.02, y: 1.02)
 
                     
                 }          }) { (finished) in

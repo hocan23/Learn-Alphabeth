@@ -31,6 +31,8 @@ class PracriceViewController: UIViewController {
     private var interstitial: GADInterstitialAd?
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionLetter.showsVerticalScrollIndicator = false
+
         collectionLetter.delegate = self
         collectionLetter.dataSource = self
         setupConstraints()
@@ -196,8 +198,15 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
         }
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
         vc.isSmall = isSmall
-        selectedItemNumber = indexPath.row
-        vc.selectedItemNumber = indexPath.row
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            selectedItemNumber =  padLine[indexPath.row]
+        }else{
+            selectedItemNumber =  phoneLine[indexPath.row]
+
+        }
+
+        
+        vc.selectedItemNumber = selectedItemNumber
         vc.providesPresentationContextTransitionStyle = true;
         
         vc.definesPresentationContext = true;

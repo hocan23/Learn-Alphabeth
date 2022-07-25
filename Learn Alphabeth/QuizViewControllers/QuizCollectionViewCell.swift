@@ -23,12 +23,17 @@ class QuizCollectionViewCell: UICollectionViewCell {
         layoutIfNeeded()
         print(UIScreen.main.bounds.size.height)
         print(contentView.frame.height)
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            animalImg.anchor(top: playImage.bottomAnchor, bottom: progressBar.topAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -20, paddingLeft: 40, paddingRight: -40, width: contentWight*0.5, height: 0)
+        }else{
+            animalImg.anchor(top: playImage.bottomAnchor, bottom: progressBar.topAnchor, leading: nil, trailing: nil, paddingTop: 20, paddingBottom: -20, paddingLeft: 0, paddingRight: 0, width: contentWight*0.7, height: 0)
+        }
+
        
-        animalImg.anchor(top: playImage.bottomAnchor, bottom: progressBar.topAnchor, leading: nil, trailing: nil, paddingTop: 20, paddingBottom: -20, paddingLeft: 0, paddingRight: 0, width: contentWight*0.7, height: 0)
       
            
-        playButton.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 10, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 30, height: 30)
-        playImage.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 10, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 50, height: 50)
+        playButton.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 10, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 40, height: 40)
+        playImage.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 10, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 30, height: 30)
        
         progressBar.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: progressLabel.leadingAnchor, paddingTop: 0, paddingBottom: -30, paddingLeft: 10, paddingRight: 0, width:contentWight*0.6, height: 15)
         progressLabel.anchor(top: nil, bottom: cardView.bottomAnchor, leading: progressBar.trailingAnchor, trailing: cardView.trailingAnchor, paddingTop: 0, paddingBottom: -20, paddingLeft: 0, paddingRight: -10, width:60, height: 15)

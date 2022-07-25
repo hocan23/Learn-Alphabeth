@@ -304,7 +304,7 @@
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lkd-RU-l9d" userLabel="animal">
                                                     <rect key="frame" x="49" y="100" width="240" height="128"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.95686274509803915" green="0.98039215686274506" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -631,7 +631,7 @@
                                         <rect key="frame" x="8" y="112" width="146" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Zvc-MT-kk2">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="closeBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Zvc-MT-kk2">
                                         <rect key="frame" x="171" y="112" width="146" height="88"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -928,6 +928,7 @@ SONUCU YOK</string>
         <image name="ayarlarBtn" width="180" height="180"/>
         <image name="backBtn" width="44" height="44"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="closeBtn" width="84" height="84"/>
         <image name="dogruCevaplar" width="225" height="32"/>
         <image name="elıfBaBtn" width="180" height="180"/>
         <image name="elıfBaHeaderImage" width="235.33332824707031" height="67"/>

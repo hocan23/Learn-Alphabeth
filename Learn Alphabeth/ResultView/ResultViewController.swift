@@ -87,11 +87,13 @@ class ResultViewController: UIViewController {
             animationView.isHidden = true
             doneButton.image = UIImage(named: "testStartBtn")
 
+        }else{
+            doneButton.image = UIImage(named: "tekrarBtn")
+
         }
 //        headerLabel.text = "HENÜZ TEST  \nSONUCU YOK"
 
 //        animationView.isHidden=true
-        doneButton.image = UIImage(named: "tekrarBtn")
     }
     
     func setupConstraits(){
