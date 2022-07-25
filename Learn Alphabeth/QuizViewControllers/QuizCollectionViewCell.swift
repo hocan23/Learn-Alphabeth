@@ -24,7 +24,7 @@ class QuizCollectionViewCell: UICollectionViewCell {
         print(UIScreen.main.bounds.size.height)
         print(contentView.frame.height)
        
-        animalImg.anchor(top: playImage.bottomAnchor, bottom: progressBar.topAnchor, leading: nil, trailing: nil, paddingTop: 20, paddingBottom: -20, paddingLeft: 0, paddingRight: 0, width: contentWight*0.5, height: 0)
+        animalImg.anchor(top: playImage.bottomAnchor, bottom: progressBar.topAnchor, leading: nil, trailing: nil, paddingTop: 20, paddingBottom: -20, paddingLeft: 0, paddingRight: 0, width: contentWight*0.7, height: 0)
       
            
         playButton.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 10, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 30, height: 30)

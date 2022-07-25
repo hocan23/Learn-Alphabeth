@@ -41,7 +41,7 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
             viewCard.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.24, paddingBottom: -view.frame.height*0.24, paddingLeft: view.frame.width*0.07, paddingRight: -view.frame.width*0.07, width: 0, height: 0)
         }
       
-        letterImage.anchor(top: viewCard.topAnchor, bottom: playView.topAnchor, leading: viewCard.leadingAnchor, trailing: viewCard.trailingAnchor, paddingTop: 10, paddingBottom: -view.frame.height*0.045, paddingLeft: view.frame.width*0.01, paddingRight: -view.frame.width*0.01, width: 0, height: 0)
+        letterImage.anchor(top: viewCard.topAnchor, bottom: playView.topAnchor, leading: viewCard.leadingAnchor, trailing: viewCard.trailingAnchor, paddingTop: view.frame.width*0.2, paddingBottom: -view.frame.width*0.2, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: 0)
         playView.anchor(top: nil, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.29, paddingLeft: view.frame.width*0.31, paddingRight: 0, width: view.frame.height*0.07, height: view.frame.height*0.07)
         exitView.anchor(top: nil, bottom: view.bottomAnchor, leading: nil, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.29, paddingLeft: 0, paddingRight: -view.frame.width*0.31, width: view.frame.height*0.07, height: view.frame.height*0.07)
        
@@ -74,14 +74,14 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        letterImage.image=UIImage(named: "\(selectedItemNumber+1)t")
+        letterImage.image=UIImage(named: "\(selectedItemNumber+1)")
         print("\(selectedItemNumber+1)p")
-        playMusic(name: "\(selectedItemNumber+1)p", type: "mp3")
+        playMusic(name: "\(selectedItemNumber+1)", type: "mp3")
 
     }
   
     @objc func playTapped(){
-        playMusic(name: "\(selectedItemNumber+1)p", type: "mp3")
+        playMusic(name: "\(selectedItemNumber+1)", type: "mp3")
 
     }
     

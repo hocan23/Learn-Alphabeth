@@ -27,7 +27,9 @@ class DetailCollectionViewCell: UICollectionViewCell {
 
         print(UIScreen.main.bounds.size.height)
         print(contentView.frame.height)
-     
+        animalImg.superview?.bringSubviewToFront(switchLabel)
+        `switch`.superview?.bringSubviewToFront(animalImg)
+
         `switch`.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: cardView.trailingAnchor, paddingTop: 20, paddingBottom: 0, paddingLeft: 0, paddingRight: -30, width: 40, height: 40)
         switchLabel.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: `switch`.leadingAnchor, paddingTop: 17, paddingBottom: 0, paddingLeft: 0, paddingRight: -13, width: 100, height: 40)
         print(contentWight)

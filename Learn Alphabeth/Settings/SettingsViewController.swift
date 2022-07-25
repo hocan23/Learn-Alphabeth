@@ -16,7 +16,7 @@ class SettingsViewController: UIViewController{
     var headers = ["Share App","Other Apps",  "Rate App",  "Remove Ads - $0.99",  "Restore Purchase"]
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.SIX11.learnABC.removeAds"
+        case removeAds = "com.SIX11.elifba.remove"
     }
     var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?
@@ -102,7 +102,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
                 }
         switch indexPath.row{
         case 0 :
-            if let name = URL(string: "https://apps.apple.com/us/app/learn-abc-letter-zoo/id1412549968"), !name.absoluteString.isEmpty {
+            if let name = URL(string: "https://apps.apple.com/us/app/şarkılarla-elif-ba-öğreniyorum/id1491565588"), !name.absoluteString.isEmpty {
                 let objectsToShare = [name]
                 let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                 self.present(activityVC, animated: true, completion: nil)
@@ -114,7 +114,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
                 UIApplication.shared.open(url)
             }
         case 2:
-            if let url = URL(string: "https://apps.apple.com/us/app/learn-abc-letter-zoo/id1412549968") {
+            if let url = URL(string: "https://apps.apple.com/us/app/şarkılarla-elif-ba-öğreniyorum/id1491565588") {
                 UIApplication.shared.open(url)
             }
         case 3:

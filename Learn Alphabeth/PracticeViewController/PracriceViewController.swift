@@ -17,15 +17,16 @@ class PracriceViewController: UIViewController {
     @IBOutlet weak var switchLetter: UISwitch!
     @IBOutlet weak var removeView: UIImageView!
     @IBOutlet weak var collectionLetter: UICollectionView!
-    var cellIds : [Alphabeth] = Utils.cellIds
     var selectedItemNumber = 0
     var isSmall : Bool = false
     let insets = UIEdgeInsets(top: 10, left: 15, bottom: 60, right: 15)
     let spacing = CGSize(width: 7, height: 10)
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.SIX11.learnABC.removeAds"
+        case removeAds = "com.SIX11.elifba.remove"
     }
+    var padLine = [6,5,4,3,2,1,12,11,10,9,8,7,18,17,16,15,14,13,24,23,22,21,20,19,28,27,26,25]
+    var phoneLine = [4,3,2,1,8,7,6,5,12,11,10,9,16,15,14,13,20,19,18,17,24,23,22,21,28,27,26,25]
     var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?
     override func viewDidLoad() {
@@ -149,20 +150,19 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if (collectionView == collectionView) {
-            
-            return cellIds.count
-            
-        }
-        
-        return cellIds.count
+      return 28
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PracticeCell", for: indexPath) as! PracticeCollectionViewCell
         print("\(indexPath.row+1)")
-            cell.practiceImage.image = UIImage(named: "\(indexPath.row+1)")
-            
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            cell.practiceImage.image = UIImage(named: "\(padLine[indexPath.row])")
+
+        }else{
+            cell.practiceImage.image = UIImage(named: "\(phoneLine[indexPath.row])")
+        }
+
        
 //        if UIDevice.current.userInterfaceIdiom == .pad  {
 //            cell.letterLabel.font = cell.letterLabel.font.withSize(60)

@@ -8,7 +8,9 @@
 import UIKit
 
 class ResultTwoCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var labelTwo: UILabel!
+
+    @IBOutlet weak var imageViewTwo: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.layer.masksToBounds = false

@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     let animationView = AnimationView()
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.SIX11.learnABC.removeAds"
+        case removeAds = "com.SIX11.elifba.remove"
     }
     var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?

@@ -31,8 +31,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     var selectedItemNumber = 0
     var player : AVAudioPlayer?
     var isFirestAnswer = true
-    var correctAnswer : [Alphabeth] = []
-    var wrongAnswer : [Alphabeth] = []
+    var correctAnswer : [Int] = []
+    var wrongAnswer : [Int] = []
     var isStop = false
     let animationView = AnimationView()
     var buttonOption : [Int] = []
@@ -42,7 +42,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     var isinAd = false
     private var interstitial: GADInterstitialAd?
     enum Products : String,CaseIterable{
-        case removeAds = "com.SIX11.learnABC.removeAds"
+        case removeAds = "com.SIX11.elifba.remove"
     }
     var animationCount = 0
     var LeftButtonNumber = 0
@@ -74,8 +74,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }
         if isinAd==true{
             isinAd=false
-            playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
-            
+            playMusic(name: "\(selectedItemNumber+1)", type: "mp3")
+
         }
         if Utils.isPremium == "premium"{
             removeView.isHidden = true
@@ -97,8 +97,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     @IBAction func playyTapped(_ sender: UIButton) {
-        playMusic(name: cellIds[selectedItemNumber].letterSound, type: "mp3")
-        
+        playMusic(name: "\(selectedItemNumber+1)", type: "mp3")
+
     }
     func SetupConstraints (){
         collectionAnimal1.contentInset = UIEdgeInsets(top: 0, left: view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05)
@@ -151,7 +151,11 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         rightButton.layer.shadowOpacity = 1
         rightButton.backgroundColor = UIColor.white
         rightButton.layer.masksToBounds = false
-    }
+//        leftButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+//        rightButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+//        midButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+//
+   }
     
     
     
@@ -159,7 +163,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         homeView.zoomIn()
         
         player?.stop()
-        if selectedItemNumber < 25{
+        if selectedItemNumber < 27{
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "QuizPopupViewController") as! QuizPopupViewController
             vc.providesPresentationContextTransitionStyle = true;
             vc.definesPresentationContext = true;
@@ -281,9 +285,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         if rightButtonNumber == selectedItemNumber+1  {
             print("exists")
             if isFirestAnswer == true{
-                correctAnswer.append(cellIds[selectedItemNumber])
+                correctAnswer.append(selectedItemNumber+1)
             }else{
-                wrongAnswer.append(cellIds[selectedItemNumber])
+                wrongAnswer.append(selectedItemNumber+1)
             }
             player?.stop()
             isStop = false
@@ -344,9 +348,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         print(MidButtonNumber)
         if MidButtonNumber == selectedItemNumber+1  {
             if isFirestAnswer == true{
-                correctAnswer.append(cellIds[selectedItemNumber])
+                correctAnswer.append(selectedItemNumber+1)
             }else{
-                wrongAnswer.append(cellIds[selectedItemNumber])
+                wrongAnswer.append(selectedItemNumber+1)
             }
             isStop = false
             collectionAnimal1.reloadData()
@@ -410,9 +414,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         if LeftButtonNumber == selectedItemNumber+1  {
             print("exists")
             if isFirestAnswer == true{
-                correctAnswer.append(cellIds[selectedItemNumber])
+                correctAnswer.append(selectedItemNumber+1)
             }else{
-                wrongAnswer.append(cellIds[selectedItemNumber])
+                wrongAnswer.append(selectedItemNumber+1)
             }
             isStop = false
             collectionAnimal1.reloadData()
@@ -489,18 +493,18 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
         if let number = (visibleIndexPath?.row){
             selectedItemNumber = (visibleIndexPath?.row)!
             //        let visibleIndexPath = selectedItemNumber
-            var firstRandom = Int.random(in: 0..<28)
-            if firstRandom == visibleIndexPath?.row {
-                if firstRandom == 27{
+            var firstRandom = Int.random(in: 0..<29)
+            if firstRandom == visibleIndexPath!.row+1 {
+                if firstRandom == 29{
                     firstRandom-=1
                 }else{
                     firstRandom+=1
                     
                 }
             }
-            var secondRandom = Int.random(in: 0..<28)
-            if secondRandom == visibleIndexPath?.row {
-                if secondRandom == 27{
+            var secondRandom = Int.random(in: 0..<29)
+            if secondRandom == visibleIndexPath!.row+1 {
+                if secondRandom == 29{
                     secondRandom-=1
                 }else{
                     secondRandom+=1
@@ -508,35 +512,31 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
                 }
             }
             if secondRandom == firstRandom {
-                if secondRandom == 27{
+                if secondRandom == 29{
                     secondRandom-=1
                 }else{
                     secondRandom+=1
                     
                 }
             }
-            if animationCount<5{
-    //            homeAnimation(name: "detail\(animationCount)")
-                animationCount+=1
-            }else{
-                animationCount=1
-    //            homeAnimation(name: "detail\(animationCount)")
-
-            }
-
+           
             print(visibleIndexPath)
             selectedItemNumber = visibleIndexPath!.row
             var buttonOptions = [(visibleIndexPath!.row+1),(firstRandom),(secondRandom)]
             buttonOptions.shuffle()
-            print(buttonOptions)
+            print("butti\(buttonOptions)")
             buttonOption = buttonOptions
+            LeftButtonNumber = buttonOptions[0]
+            MidButtonNumber = buttonOptions[1]
+            rightButtonNumber = buttonOptions[2]
+
                 leftButton.setImage(UIImage(named: "\(buttonOptions[0])"), for: .normal)
             midButton.setImage(UIImage(named: "\(buttonOptions[1])"), for: .normal)
             rightButton.setImage(UIImage(named: "\(buttonOptions[2])"), for: .normal)
 
           
             if isinAd == false{
-                playMusic(name: "\(selectedItemNumber+1)p", type: "mp3")
+                playMusic(name: "\(selectedItemNumber+1)", type: "mp3")
 
             }
             
@@ -561,8 +561,8 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
         let cell = collectionAnimal1.dequeueReusableCell(withReuseIdentifier: "quizcell", for: indexPath) as! QuizCollectionViewCell
         
         cell.animalImg.image = UIImage(named:  "\(selectedItemNumber+1)t")
-        cell.progressLabel.text = "\(selectedItemNumber)/26"
-        cell.progressBar.setProgress(Float(selectedItemNumber)/26, animated: true)
+        cell.progressLabel.text = "\(selectedItemNumber)/28"
+        cell.progressBar.setProgress(Float(selectedItemNumber)/28, animated: true)
         if isStop == true{
             cell.playImage.image = UIImage(named: "pauseBtn")
             

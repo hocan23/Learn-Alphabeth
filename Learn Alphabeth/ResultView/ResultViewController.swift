@@ -18,7 +18,7 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var homeView: UIImageView!
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.SIX11.learnABC.removeAds"
+        case removeAds = "com.SIX11.elifba.remove"
     }
     var isFirst = false
     @IBOutlet weak var doneButton: UIImageView!
@@ -28,8 +28,8 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var collectionBottom: UICollectionView!
     @IBOutlet weak var collectionTop: UICollectionView!
     var cellIds : [Alphabeth] = Utils.cellIds
-    var correctAnswer : [Alphabeth] = []
-    var wrongAnswer : [Alphabeth] = []
+    var correctAnswer : [Int] = []
+    var wrongAnswer : [Int] = []
     let animationView = AnimationView()
     var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?
@@ -43,10 +43,10 @@ class ResultViewController: UIViewController {
         
         
         if let data = UserDefaults.standard.value(forKey:"correctAnswers") as? Data {
-            correctAnswer = try! PropertyListDecoder().decode(Array<Alphabeth>.self, from: data)
+            correctAnswer = try! PropertyListDecoder().decode(Array<Int>.self, from: data)
         }
         if let data = UserDefaults.standard.value(forKey:"wrongAnswers") as? Data {
-            wrongAnswer = try! PropertyListDecoder().decode(Array<Alphabeth>.self, from: data)
+            wrongAnswer = try! PropertyListDecoder().decode(Array<Int>.self, from: data)
         }
      
         
@@ -58,6 +58,7 @@ class ResultViewController: UIViewController {
         setupConstraits()
         resultAnimation()
         createAdd()
+        doneButton.image = UIImage(named: "tamamlaBtn")
         if isFirst == true{
             isFirstStup()
             
@@ -82,12 +83,13 @@ class ResultViewController: UIViewController {
             collectionBottom.isHidden = true
             emptyLabel.isHidden = false
             animationView.isHidden = true
-            
+            doneButton.image = UIImage(named: "testStartBtn")
+
         }
 //        headerLabel.text = "HENÜZ TEST  \nSONUCU YOK"
 
 //        animationView.isHidden=true
-        doneButton.image = UIImage(named: "testStartBtn")
+        doneButton.image = UIImage(named: "tekrarBtn")
     }
     
     func setupConstraits(){
@@ -130,8 +132,16 @@ class ResultViewController: UIViewController {
     @objc func exitTapped (){
         homeView.zoomIn()
        
-            self.dismiss(animated: true)
-        
+        if interstitial != nil {
+            interstitial?.present(fromRootViewController: self)
+            isAd = true
+        } else {
+            print("Ad wasn't ready")
+            let destinationVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            destinationVC.modalPresentationStyle = .fullScreen
+            self.present(destinationVC, animated: true, completion: nil)
+            
+        }
         
     }
     @objc func doneTapped(){
@@ -210,14 +220,11 @@ extension ResultViewController : UICollectionViewDataSource,UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionTop {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "resultCell", for: indexPath) as! ResultCollectionViewCell
-            if isSmall == false{
-                cell.resultLabel.text = String(correctAnswer[indexPath.row].letterImage.prefix(1))
+            
+            cell.imageViewOne.image = UIImage(named: "\(correctAnswer[indexPath.row])" )
                 
-            }else{
-                cell.resultLabel.text = String(correctAnswer[indexPath.row].letterImage.suffix(1))
-                
-            }
-            cell.resultLabel.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
+            
+//            cell.resultLabel.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
             cell.layer.cornerRadius = 5
             // Set up cell
             return cell
@@ -225,14 +232,11 @@ extension ResultViewController : UICollectionViewDataSource,UICollectionViewDele
         
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "resultTwoCell", for: indexPath) as! ResultTwoCollectionViewCell
-            if isSmall == false{
-                cell.labelTwo.text = String(wrongAnswer[indexPath.row].letterImage.prefix(1))
-                
-            }else{
-                cell.labelTwo.text = String(wrongAnswer[indexPath.row].letterImage.suffix(1))
-                
-            }
-            cell.labelTwo.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
+           
+            cell.imageViewTwo.image = UIImage(named: "\(wrongAnswer[indexPath.row])" )
+
+            
+//            cell.labelTwo.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
             cell.layer.cornerRadius = 5
             return cell
         }

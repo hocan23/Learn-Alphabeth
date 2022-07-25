@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class QuizPopupViewController: UIViewController {
     @IBOutlet weak var dialogView: UIImageView!
@@ -13,8 +14,12 @@ class QuizPopupViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var noView: UIImageView!
     @IBOutlet weak var yesView: UIImageView!
+    private var interstitial: GADInterstitialAd?
+    var isAd = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        createAdd()
         cardView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.24, paddingBottom: -view.frame.height*0.24, paddingLeft: view.frame.width*0.07, paddingRight: -view.frame.width*0.07, width: 0, height: 0)
         yesView.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.05, paddingLeft: view.frame.width*0.13, paddingRight: 0, width: view.frame.width*0.25, height: view.frame.width*0.12)
         noView.anchor(top: nil, bottom: cardView.bottomAnchor, leading: nil , trailing: cardView.trailingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.05, paddingLeft: 0, paddingRight: -view.frame.width*0.13, width: view.frame.width*0.25, height: view.frame.width*0.12)
@@ -27,6 +32,13 @@ class QuizPopupViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        if isAd == true{
+            let destinationVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            destinationVC.modalPresentationStyle = .fullScreen
+            self.present(destinationVC, animated: true, completion: nil) 
+        }
+    }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         get {
@@ -35,9 +47,16 @@ class QuizPopupViewController: UIViewController {
         }
     }
     @objc func exitTapped (){
-        let destinationVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        destinationVC.modalPresentationStyle = .fullScreen
-        self.present(destinationVC, animated: true, completion: nil)
+        if interstitial != nil {
+            interstitial?.present(fromRootViewController: self)
+            isAd = true
+        } else {
+            print("Ad wasn't ready")
+            let destinationVC = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            destinationVC.modalPresentationStyle = .fullScreen
+            self.present(destinationVC, animated: true, completion: nil)        }
+    
+      
     }
 
     @objc func notExitTapped(){
@@ -53,4 +72,48 @@ class QuizPopupViewController: UIViewController {
     }
     */
 
+}
+extension QuizPopupViewController: GADBannerViewDelegate, GADFullScreenContentDelegate{
+    func createAdd() {
+        let request = GADRequest()
+        interstitial?.fullScreenContentDelegate = self
+        GADInterstitialAd.load(withAdUnitID:Utils.fullScreenAdId,
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+        }
+        )
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitialAd) {
+        print("interstitialWillDismissScreen")
+    }
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
 }

@@ -26,7 +26,6 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     var isFirstOpen : Bool = true
     var adCounter = 0
     var isinAd = false
-    var animationCount = 1
     let animationView = AnimationView()
     var isAnimate = false
 
@@ -56,7 +55,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     
     var models = [SKProduct]()
     enum Products : String,CaseIterable{
-        case removeAds = "com.SIX11.learnABC.removeAds"
+        case removeAds = "com.SIX11.elifba.remove"
 
     }
     var bannerView: GADBannerView!
@@ -84,6 +83,10 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         isautoPlay=true
+        if isAuto{
+            playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
+
+        }
         playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
 
         if isinAd==true{
@@ -199,7 +202,6 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
     @IBAction func autoPlaySwitchPressed(_ sender: UISwitch) {
         print(sender.isOn)
         if sender.isOn {
-//            homeAnimation(name: "detail\(animationCount)")
 
             isautoPlay = true
         }else{
@@ -223,7 +225,7 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
             isAnimate = false
              collectionAnimal.reloadData()
         }else{
-            homeAnimation(name: "detail\(animationCount)")
+            homeAnimation(name: "detail3")
             isAnimate = true
              collectionAnimal.reloadData()
             let urlString = Bundle.main.path(forResource: name, ofType: type)
@@ -254,7 +256,10 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         print("finished")//It is working now! printed "finished"!
         playView.image = UIImage(named: "playBtn")
         animationView.isHidden=true
-        if selectedItemNumber < 27-1{
+        if selectedItemNumber == 27{
+            selectedItemNumber = -1
+        }
+        if selectedItemNumber < 27{
             if isAuto == true{
                 selectedItemNumber += 1
                 //                setupUi()
@@ -363,22 +368,17 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
         print(selectedItemNumber)
         player?.stop()
         if let number = selectedItemNumber  {
+            print(isAuto)
+            print(isautoPlay)
             if isautoPlay == true || isAuto == true{
                 playMusic(name: "\(selectedItemNumber+1)s", type: "mp3")
                 
             }
         }
-        if animationCount<5{
-//            homeAnimation(name: "detail\(animationCount)")
-            animationCount+=1
-        }else{
-            animationCount=1
-//            homeAnimation(name: "detail\(animationCount)")
-
-        }
+     
         adCounter+=1
         if isAuto == true{
-            if adCounter >= 6{
+            if adCounter >= 13{
                 if interstitial != nil {
                     interstitial?.present(fromRootViewController: self)
                     adCounter = 0
@@ -422,8 +422,7 @@ extension DetailViewController: UICollectionViewDataSource,UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionAnimal.dequeueReusableCell(withReuseIdentifier: "colcell", for: indexPath) as! DetailCollectionViewCell
         cell.animalImg.image = UIImage(named:  "\(selectedItemNumber+1)c")
-       
-       
+        cell.`switch`.setOn(isautoPlay, animated: true)
        
       
         //        cell.animalImg.anchor(top: collectionAnimal.topAnchor, bottom: collectionAnimal.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: collectionAnimal.frame.height*0.22, paddingBottom: -collectionAnimal.frame.height*0.22, paddingLeft: collectionAnimal.frame.width*0.25, paddingRight: collectionAnimal.frame.width*0.25, width: 0, height: collectionAnimal.frame.height*0.6)
@@ -563,7 +562,7 @@ extension UIView {
                 // Do what you need to do repeatedly
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
                 if UIDevice.current.userInterfaceIdiom == .pad  {
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
 
                 }else{
                     self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
@@ -571,7 +570,7 @@ extension UIView {
                     
                 }
                 if UIDevice.current.userInterfaceIdiom == .pad  {
-                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
 
                 }else{
                     self.transform = CGAffineTransform.identity.scaledBy(x: 1.1, y: 1.1)
