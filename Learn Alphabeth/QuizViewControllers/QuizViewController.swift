@@ -414,6 +414,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         destinationVC.correctAnswer = correctAnswer
         destinationVC.wrongAnswer = wrongAnswer
         destinationVC.isSmall = isSmall
+        destinationVC.isResult = true
         self.present(destinationVC, animated: true, completion: nil)
     }
     @IBAction func leftButtonTapped(_ sender: Any) {

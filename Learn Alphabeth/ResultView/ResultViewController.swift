@@ -38,6 +38,7 @@ class ResultViewController: UIViewController {
     var isSmall : Bool = false
     let insets = UIEdgeInsets(top: 10, left: 15, bottom: 60, right: 15)
     let spacing = CGSize(width: 5, height: 10)
+    var isResult = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -184,6 +185,10 @@ class ResultViewController: UIViewController {
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
             bannerView.delegate = self
+        }
+        if isResult == true{
+            homeView.isHidden = true
+            headerLabel.text = "Test Sonuçları"
         }
     }
     func resultAnimation () {
