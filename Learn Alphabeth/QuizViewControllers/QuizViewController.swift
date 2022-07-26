@@ -398,6 +398,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         destinationVC.modalPresentationStyle = .fullScreen
         destinationVC.correctAnswer = correctAnswer
         destinationVC.wrongAnswer = wrongAnswer
+        destinationVC.isResult = true
         destinationVC.isSmall = isSmall
         self.present(destinationVC, animated: true, completion: nil)
     }
@@ -544,6 +545,8 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
             var buttonOptions = [(cellIds[visibleIndexPath!.row].letterImage),cellIds[firstRandom].letterImage,cellIds[secondRandom].letterImage]
             buttonOptions.shuffle()
             buttonOption = buttonOptions
+            isFirestAnswer = true
+
             if isSmall == false{
                 leftButton.setTitle(String(buttonOptions[0].prefix(1)), for: .normal)
                 midButton.setTitle(String(buttonOptions[1].prefix(1)), for: .normal)
