@@ -52,7 +52,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     var b = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        for b in 0...28{
+        for b in 1...28{
             quizMembers.append(b)
             self.b+=1
         }
@@ -498,7 +498,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
         if let number = (visibleIndexPath?.row){
             selectedItemNumber = quizMembers[visibleIndexPath!.row]
             //        let visibleIndexPath = selectedItemNumber
-            var firstRandom = Int.random(in: 0..<28)
+            var firstRandom = Int.random(in: 1..<29)
             if firstRandom == visibleIndexPath!.row+1 {
                 if firstRandom == 28{
                     firstRandom-=1
@@ -507,7 +507,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
                     
                 }
             }
-            var secondRandom = Int.random(in: 0..<28)
+            var secondRandom = Int.random(in: 1..<28)
             if secondRandom == visibleIndexPath!.row+1 {
                 if secondRandom == 28{
                     secondRandom-=1
