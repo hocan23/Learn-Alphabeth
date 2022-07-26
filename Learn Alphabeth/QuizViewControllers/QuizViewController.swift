@@ -27,7 +27,6 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
     var isSmall : Bool = false
     @IBOutlet weak var collectionAnimal1: UICollectionView!
     @IBOutlet weak var removeBtn: UIButton!
-    var cellIds : [Alphabeth] = Utils.cellIds
     var selectedItemNumber = 0
     var player : AVAudioPlayer?
     var isFirestAnswer = true
@@ -288,13 +287,12 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
      */
     @IBAction func rightButtonTapped(_ sender: Any) {
         rightButton.zoomIn()
-        print(cellIds[selectedItemNumber].letterImage)
         if rightButtonNumber == quizMembers[selectedItemNumber]  {
             print("exists")
             if isFirestAnswer == true{
-                correctAnswer.append(selectedItemNumber+1)
+                correctAnswer.append(rightButtonNumber)
             }else{
-                wrongAnswer.append(selectedItemNumber+1)
+                wrongAnswer.append(rightButtonNumber)
             }
             player?.stop()
             isStop = false
@@ -304,7 +302,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             playMusic(name: "correctSound", type: "mp3")
             
             successAnimation()
-            if selectedItemNumber > 24{
+            if selectedItemNumber > 26{
+                print(correctAnswer)
+                print(wrongAnswer)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(correctAnswer), forKey:"correctAnswers")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(wrongAnswer), forKey:"wrongAnswers")
                 goNextView()
@@ -355,9 +355,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         print(MidButtonNumber)
         if MidButtonNumber == quizMembers[selectedItemNumber]  {
             if isFirestAnswer == true{
-                correctAnswer.append(selectedItemNumber+1)
+                correctAnswer.append(MidButtonNumber)
             }else{
-                wrongAnswer.append(selectedItemNumber+1)
+                wrongAnswer.append(MidButtonNumber)
             }
             isStop = false
             collectionAnimal1.reloadData()
@@ -368,7 +368,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             playMusic(name: "correctSound", type: "mp3")
             successAnimation()
             
-            if selectedItemNumber > 24{
+            if selectedItemNumber > 26{
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(correctAnswer), forKey:"correctAnswers")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(wrongAnswer), forKey:"wrongAnswers")
                 goNextView()
@@ -421,9 +421,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         if LeftButtonNumber == quizMembers[selectedItemNumber] {
             print("exists")
             if isFirestAnswer == true{
-                correctAnswer.append(selectedItemNumber+1)
+                correctAnswer.append(LeftButtonNumber)
             }else{
-                wrongAnswer.append(selectedItemNumber+1)
+                wrongAnswer.append(LeftButtonNumber)
             }
             isStop = false
             collectionAnimal1.reloadData()
@@ -434,7 +434,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             
             successAnimation()
             
-            if selectedItemNumber > 24{
+            if selectedItemNumber > 26{
                 print(selectedItemNumber)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(correctAnswer), forKey:"correctAnswers")
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(wrongAnswer), forKey:"wrongAnswers")
@@ -488,7 +488,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
 
 extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellIds.count
+        return 28
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
@@ -498,7 +498,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
         let visiblePoint = CGPoint(x: CGFloat(visibleRect.midX), y: CGFloat(visibleRect.midY))
         let visibleIndexPath: IndexPath? = collectionAnimal1.indexPathForItem(at: visiblePoint)
         if let number = (visibleIndexPath?.row){
-            selectedItemNumber = quizMembers[visibleIndexPath!.row]
+//            selectedItemNumber = quizMembers[visibleIndexPath!.row]
                 selectedItemNumber = visibleIndexPath!.row
             var firstRandom = Int.random(in: 1..<14)
             if firstRandom == selectedItemNumber {
@@ -544,7 +544,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
             LeftButtonNumber = buttonOptions[0]
             MidButtonNumber = buttonOptions[1]
             rightButtonNumber = buttonOptions[2]
-
+            isFirestAnswer = true
                 leftButton.setImage(UIImage(named: "\(buttonOptions[0])"), for: .normal)
             midButton.setImage(UIImage(named: "\(buttonOptions[1])"), for: .normal)
             rightButton.setImage(UIImage(named: "\(buttonOptions[2])"), for: .normal)
@@ -586,7 +586,6 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
             
         }
         
-        print(cellIds[indexPath.row].letterImage)
         //        cell.animalLabel.text = cellIds[indexPath.row].animalName
         //        cell.switch.setOn(isautoPlay, animated: true)
         //        cell.inimalLatter.text = cellIds[indexPath.row].letterImage

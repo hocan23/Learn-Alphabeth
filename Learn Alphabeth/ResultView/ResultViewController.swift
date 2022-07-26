@@ -48,7 +48,8 @@ class ResultViewController: UIViewController {
         if let data = UserDefaults.standard.value(forKey:"wrongAnswers") as? Data {
             wrongAnswer = try! PropertyListDecoder().decode(Array<Int>.self, from: data)
         }
-     
+        print(correctAnswer)
+        print(wrongAnswer)
         
         collectionTop.delegate = self
         collectionTop.dataSource = self
