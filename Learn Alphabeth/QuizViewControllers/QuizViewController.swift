@@ -56,6 +56,8 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
             quizMembers.append(b)
             self.b+=1
         }
+        print(quizMembers.count)
+
         quizMembers.shuffle()
         print(quizMembers)
         collectionAnimal1.delegate = self
@@ -497,18 +499,18 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
         let visibleIndexPath: IndexPath? = collectionAnimal1.indexPathForItem(at: visiblePoint)
         if let number = (visibleIndexPath?.row){
             selectedItemNumber = quizMembers[visibleIndexPath!.row]
-            //        let visibleIndexPath = selectedItemNumber
-            var firstRandom = Int.random(in: 1..<29)
-            if firstRandom == visibleIndexPath!.row {
-                if firstRandom == 28{
+                selectedItemNumber = visibleIndexPath!.row
+            var firstRandom = Int.random(in: 1..<14)
+            if firstRandom == selectedItemNumber {
+                if firstRandom == 13{
                     firstRandom-=1
                 }else{
                     firstRandom+=1
                     
                 }
             }
-            var secondRandom = Int.random(in: 1..<28)
-            if secondRandom == visibleIndexPath!.row {
+            var secondRandom = Int.random(in: 14..<28)
+            if secondRandom == selectedItemNumber {
                 if secondRandom == 28{
                     secondRandom-=1
                 }else{
@@ -516,19 +518,26 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
                     
                 }
             }
-            if secondRandom == firstRandom {
-                if secondRandom == 28{
-                    secondRandom-=1
-                }else{
-                    secondRandom+=1
-                    
-                }
-            }
+//            if secondRandom == firstRandom {
+//                if secondRandom > 22 {
+//                    secondRandom-=5
+//                }else{
+//                    secondRandom+=5
+//
+//                }
+//            }
             
-           
+           print(secondRandom)
+            print(firstRandom)
             print(visibleIndexPath)
-            selectedItemNumber = visibleIndexPath!.row
+//            selectedItemNumber = visibleIndexPath!.row
             var buttonOptions = [quizMembers[selectedItemNumber],(firstRandom),(secondRandom)]
+            if buttonOptions[0]==buttonOptions[1]{
+                buttonOptions[1]=buttonOptions[1]+1
+            }
+            if buttonOptions[0]==buttonOptions[2]{
+                buttonOptions[2]=buttonOptions[2]+1
+            }
             buttonOptions.shuffle()
             print("butti\(buttonOptions)")
             buttonOption = buttonOptions
