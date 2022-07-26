@@ -499,7 +499,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
             selectedItemNumber = quizMembers[visibleIndexPath!.row]
             //        let visibleIndexPath = selectedItemNumber
             var firstRandom = Int.random(in: 1..<29)
-            if firstRandom == visibleIndexPath!.row+1 {
+            if firstRandom == visibleIndexPath!.row {
                 if firstRandom == 28{
                     firstRandom-=1
                 }else{
@@ -508,7 +508,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
                 }
             }
             var secondRandom = Int.random(in: 1..<28)
-            if secondRandom == visibleIndexPath!.row+1 {
+            if secondRandom == visibleIndexPath!.row {
                 if secondRandom == 28{
                     secondRandom-=1
                 }else{
@@ -524,6 +524,7 @@ extension QuizViewController: UICollectionViewDataSource,UICollectionViewDelegat
                     
                 }
             }
+            
            
             print(visibleIndexPath)
             selectedItemNumber = visibleIndexPath!.row
