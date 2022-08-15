@@ -102,7 +102,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         collectionAnimal1.contentInset = UIEdgeInsets(top: 0, left: view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05)
         
         top1View.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.15)
-        collectionAnimal1.anchor(top: removeView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.02, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.7)
+        collectionAnimal1.anchor(top: removeView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height)
         print(view.bounds.height)
         print(view.frame.height*0.3)
         bottom1View.anchor(top: collectionAnimal1.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -65, paddingLeft: 0, paddingRight: 0, width: 0, height:  view.frame.height*0.15)
@@ -111,9 +111,7 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         
         removeBtn.anchor(top: top1View.topAnchor, bottom: top1View.bottomAnchor, leading: nil, trailing: top1View.trailingAnchor, paddingTop: view.frame.height*0.050, paddingBottom: -view.frame.height*0.050, paddingLeft: 0, paddingRight: -10, width: view.frame.width*0.35, height: view.frame.height*0.05)
         
-        leftButton.anchor(top: nil, bottom: nil, leading: nil, trailing: midButton.leadingAnchor, paddingTop: bottom1View.frame.height*0.1, paddingBottom: -bottom1View.frame.height*0.1, paddingLeft:  0, paddingRight: -view.frame.width*0.05, width: view.frame.height*0.11, height: view.frame.height*0.11)
-        midButton.anchor(top: nil, bottom: nil, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.11, height: view.frame.height*0.11)
-        rightButton.anchor(top: nil, bottom: nil, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.11, height: view.frame.height*0.11)
+        
         
         removeView.anchor(top: view.topAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.07, paddingBottom: 0, paddingLeft: 0, paddingRight: -view.frame.height*0.04, width: view.frame.width*0.11, height: view.frame.height*0.05)
         
@@ -149,8 +147,19 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         rightButton.layer.shadowOpacity = 1
         rightButton.backgroundColor = UIColor.white
         rightButton.layer.masksToBounds = false
+        
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+
+        leftButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: nil, trailing: midButton.leadingAnchor, paddingTop: bottom1View.frame.height*0.1, paddingBottom: -75, paddingLeft:  0, paddingRight: -view.frame.width*0.05, width: view.frame.height*0.14, height: view.frame.height*0.14)
+        midButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -75, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.14, height: view.frame.height*0.14)
+        rightButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -75, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.14, height: view.frame.height*0.14)
+        }else{
+            leftButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: nil, trailing: midButton.leadingAnchor, paddingTop: bottom1View.frame.height*0.1, paddingBottom: -55, paddingLeft:  0, paddingRight: -view.frame.width*0.05, width: view.frame.height*0.11, height: view.frame.height*0.11)
+            midButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -55, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.11, height: view.frame.height*0.11)
+            rightButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -55, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.11, height: view.frame.height*0.11)
+            
+        }
     }
-    
     
     
     @objc func exitTapped (){

@@ -38,7 +38,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        createAdd()
+
         Utils.isPremium = Utils.readLocal(key: "purchase")
         print(Utils.isPremium)
         topLeftView.isUserInteractionEnabled = true
@@ -63,7 +64,7 @@ class HomeViewController: UIViewController {
         //        homeAnimation()
         setupConstraits()
 
-
+       
         if Utils.isPremium == "premium"{
             removeView.isHidden = true
         }else{
@@ -75,6 +76,18 @@ class HomeViewController: UIViewController {
             bannerView.load(GADRequest())
             bannerView.delegate = self
         }
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+            if Utils.isFirstOpen == true{
+                if self.interstitial != nil {
+                    self.interstitial?.present(fromRootViewController: self)
+                    self.isAd = true
+                    Utils.isFirstOpen = false
+                } else {
+                    print("Ad wasn't ready")
+                }
+            }
+        }
+       
     }
     
     
@@ -158,6 +171,8 @@ class HomeViewController: UIViewController {
     
     @objc func topLeftTapped (){
         topLeftView.zoomIn()
+        Utils.isFirstOpen = false
+
         let destinationVC = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         destinationVC.modalPresentationStyle = .fullScreen
         self.present(destinationVC, animated: true, completion: nil)
@@ -165,7 +180,8 @@ class HomeViewController: UIViewController {
     
     @objc func topRightTapped (){
         topRightView.zoomIn()
-        
+        Utils.isFirstOpen = false
+
         let destinationVC = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
         destinationVC.modalPresentationStyle = .fullScreen
         destinationVC.isFirst = true
@@ -175,7 +191,8 @@ class HomeViewController: UIViewController {
     
     @objc func bottomLeftTapped (){
         bottomLeftView.zoomIn()
-        
+        Utils.isFirstOpen = false
+
         let destinationVC = storyboard?.instantiateViewController(withIdentifier: "PracriceViewController") as! PracriceViewController
         destinationVC.modalPresentationStyle = .fullScreen
         self.present(destinationVC, animated: true, completion: nil)
@@ -183,13 +200,16 @@ class HomeViewController: UIViewController {
     
     @objc func bottomRightTapped (){
         bottomRightView.zoomIn()
-        
+        Utils.isFirstOpen = false
+
         let destinationVC = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
         destinationVC.modalPresentationStyle = .fullScreen
         self.present(destinationVC, animated: true, completion: nil)
     }
     @objc func removeTapped (){
         removeView.zoomIn()
+        Utils.isFirstOpen = false
+
         if SKPaymentQueue.canMakePayments(){
             let set :  Set<String> = [Products.removeAds.rawValue]
             let productRequest = SKProductsRequest(productIdentifiers: set)

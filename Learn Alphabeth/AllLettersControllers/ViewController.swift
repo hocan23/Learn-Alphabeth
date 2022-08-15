@@ -185,10 +185,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if Utils.viewcontrollerAddCounter > 3{
+            if interstitial != nil {
+                Utils.viewcontrollerAddCounter = 0
+                interstitial?.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
+            }
+        }
         let destinationVC = storyboard?.instantiateViewController(withIdentifier: "DetailVC") as! DetailViewController
-        
-        
+        Utils.viewcontrollerAddCounter+=1
         destinationVC.delegate = self
         destinationVC.cellIds = cellIds
         destinationVC.selectedItem = cellIds[indexPath.row]

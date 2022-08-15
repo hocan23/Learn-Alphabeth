@@ -20,11 +20,14 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     var cellIds : [Alphabeth] = Utils.cellIds
     var selectedItemNumber : Int = 0
     var player : AVAudioPlayer?
+    var isShowAd = false
+    var isinAd = false
+
     var bannerView: GADBannerView!
-    private var interstitial: GADInterstitialAd?
+    var interstitial: GADInterstitialAd?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        createAdd()
        setupConstraits()
         playView.isUserInteractionEnabled = true
         playView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playTapped)))
@@ -33,6 +36,7 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
         
         
     }
+    
     func setupConstraits (){
         print(view.frame.height)
         if UIDevice.current.userInterfaceIdiom == .pad  {
@@ -70,20 +74,42 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
             let touch = touches.first
             if touch?.view != self.viewCard && touch?.view != self.playView {
 
-              dismiss(animated: true)
+                if isShowAd==true{
+                if interstitial != nil {
+                    interstitial?.present(fromRootViewController: self)
+                    Utils.practiceAdCounter = 0
+                    isinAd = true
+                    Utils.ispracticePopUpShowAd = true
+                } else {
+                    print("Ad wasn't ready")
+                    self.dismiss(animated: true)
+
+                }
+                }else{
+                    self.dismiss(animated: true)
+
+                }
             }
         }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+       
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
+        if isinAd == true {
+            self.dismiss(animated: true)
+            
+        }
         if isSmall == false{
             letterLabel.text = String(cellIds[selectedItemNumber].letterImage.prefix(1))
 
         }else{
             letterLabel.text = String(cellIds[selectedItemNumber].letterImage.suffix(1))
         }
+        if isinAd != true{
         playMusic(name: "\(cellIds[selectedItemNumber].letterSound)1", type: "mp3")
-
+        }
     }
     @IBAction func switchChanged(_ sender: UISwitch) {
         if sender.isOn {
@@ -105,7 +131,20 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @objc func exitTapped(){
-        self.dismiss(animated: true)
+        if isShowAd==true{
+        if interstitial != nil {
+            interstitial?.present(fromRootViewController: self)
+            Utils.practiceAdCounter = 0
+            isinAd = true
+        } else {
+            print("Ad wasn't ready")
+            self.dismiss(animated: true)
+
+        }
+        }else{
+            self.dismiss(animated: true)
+
+        }
     }
     public func playMusic (name:String,type:String){
         

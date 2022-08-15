@@ -12,6 +12,7 @@ class PracriceViewController: UIViewController {
     var isAd = false
     var isinAd = false
     var tappedCounter = 0
+    var isNextViewAd = false
     @IBOutlet weak var homeView: UIImageView!
     @IBOutlet weak var labelSwitch: UILabel!
     @IBOutlet weak var switchLetter: UISwitch!
@@ -129,8 +130,12 @@ class PracriceViewController: UIViewController {
         } else {
             print("Ad wasn't ready")
             self.dismiss(animated: true)
+
         }
-        
+        if Utils.ispracticePopUpShowAd == true{
+            Utils.ispracticePopUpShowAd = false
+            self.dismiss(animated: true)
+        }
     }
     @IBAction func switchPositionChanged(_ sender: UISwitch) {
         if sender.isOn {
@@ -187,28 +192,21 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        tappedCounter+=1
-        print(tappedCounter)
-        if tappedCounter >= 8{
-            if interstitial != nil {
-                interstitial?.present(fromRootViewController: self)
-                tappedCounter = 0
-                isinAd = true
-            } else {
-                print("Ad wasn't ready")
-                tappedCounter+=1
-            }
-        }
+        Utils.practiceAdCounter+=1
+        
+       
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
         vc.isSmall = isSmall
         selectedItemNumber = indexPath.row
         vc.selectedItemNumber = indexPath.row
         vc.providesPresentationContextTransitionStyle = true;
-        
         vc.definesPresentationContext = true;
-        
+        vc.interstitial = interstitial
+        if Utils.practiceAdCounter >= 5{
+            vc.isShowAd = true
+            
+        }
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        
         self.present(vc, animated: false, completion: nil)
         
         

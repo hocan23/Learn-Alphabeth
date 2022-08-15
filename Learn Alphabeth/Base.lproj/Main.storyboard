@@ -470,8 +470,9 @@
                                             <action selector="midButtonTapped:" destination="1hI-Cm-wH2" eventType="touchUpInside" id="iS0-ze-yJ3"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VS-0d-KPN">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VS-0d-KPN">
                                         <rect key="frame" x="302" y="97" width="34" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="60"/>
                                         <color key="tintColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
@@ -481,8 +482,9 @@
                                             <action selector="rightButtonTapped:" destination="1hI-Cm-wH2" eventType="touchUpInside" id="bGz-zv-2TO"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W01-Ta-GiQ">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W01-Ta-GiQ">
                                         <rect key="frame" x="72" y="97" width="34" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="60"/>
                                         <color key="tintColor" red="0.1450980392" green="0.24313725489999999" blue="0.42352941179999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
@@ -495,9 +497,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.98039215690000003" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="W01-Ta-GiQ" firstAttribute="centerY" secondItem="IYm-p0-jVh" secondAttribute="centerY" id="a52-Ef-OnN"/>
-                                    <constraint firstItem="W01-Ta-GiQ" firstAttribute="centerY" secondItem="Pxw-Jz-1k3" secondAttribute="centerY" id="mBN-eI-jpz"/>
-                                    <constraint firstItem="IYm-p0-jVh" firstAttribute="centerY" secondItem="5VS-0d-KPN" secondAttribute="centerY" id="us8-EE-UHd"/>
                                     <constraint firstItem="IYm-p0-jVh" firstAttribute="centerX" secondItem="Pxw-Jz-1k3" secondAttribute="centerX" id="z0B-j2-gwR"/>
                                 </constraints>
                             </view>

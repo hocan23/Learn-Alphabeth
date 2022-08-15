@@ -105,7 +105,12 @@ class ResultViewController: UIViewController {
         }
         
         wrongView.anchor(top: collectionTop.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.02, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.04)
-        doneButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.025, paddingBottom: -65, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: view.frame.height*0.08)
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            doneButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.025, paddingBottom: -65, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: view.frame.height*0.08)
+        }else{
+            doneButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.025, paddingBottom: -50, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: view.frame.height*0.08)
+        }
+       
         if wrongAnswer.count<13{
         collectionBottom.anchor(top: wrongView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.008, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.12)
         } else{
