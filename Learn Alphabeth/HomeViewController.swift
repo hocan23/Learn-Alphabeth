@@ -38,7 +38,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createAdd()
 
         Utils.isPremium = Utils.readLocal(key: "purchase")
         print(Utils.isPremium)
@@ -75,18 +74,19 @@ class HomeViewController: UIViewController {
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
             bannerView.delegate = self
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
-            if Utils.isFirstOpen == true{
-                if self.interstitial != nil {
-                    self.interstitial?.present(fromRootViewController: self)
-                    self.isAd = true
-                    Utils.isFirstOpen = false
-                } else {
-                    print("Ad wasn't ready")
+            DispatchQueue.main.asyncAfter(deadline: .now()+3) {
+                if Utils.isFirstOpen == true{
+                    if self.interstitial != nil {
+                        self.interstitial?.present(fromRootViewController: self)
+                        self.isAd = true
+                        Utils.isFirstOpen = false
+                    } else {
+                        print("Ad wasn't ready")
+                    }
                 }
             }
         }
+    
        
     }
     

@@ -27,7 +27,6 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     var interstitial: GADInterstitialAd?
     override func viewDidLoad() {
         super.viewDidLoad()
-        createAdd()
        setupConstraits()
         playView.isUserInteractionEnabled = true
         playView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playTapped)))
@@ -53,7 +52,9 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
         viewCard.layer.cornerRadius = 20
         switchLabel.textColor = UIColor(red: 38/255, green: 51/255, blue: 117/255, alpha: 1)
         letterLabel.font = letterLabel.font.withSize(view.frame.height*0.24)
+        if Utils.isPremium != "premium"{
         createAdd()
+        }
         bannerView = GADBannerView(adSize: GADAdSizeBanner)
         bannerView.adUnitID = Utils.bannerId
         bannerView.rootViewController = self
