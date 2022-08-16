@@ -91,6 +91,7 @@ class Utils{
     static var viewcontrollerAddCounter = 0
     static var practiceAdCounter = 0
     static var ispracticePopUpShowAd = false
+    static var isPopAd = false
     static func saveLocal (array:[Alphabeth], key : String){
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(array) {

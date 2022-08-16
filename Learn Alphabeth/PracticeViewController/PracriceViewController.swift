@@ -184,18 +184,8 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        tappedCounter+=1
-        print(tappedCounter)
-        if tappedCounter >= 5{
-            if interstitial != nil {
-                interstitial?.present(fromRootViewController: self)
-                tappedCounter = 0
-                isinAd = true
-            } else {
-                print("Ad wasn't ready")
-                tappedCounter+=1
-            }
-        }
+        Utils.practiceAdCounter+=1
+       
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PopupViewController") as! PopupViewController
         vc.isSmall = isSmall
         if UIDevice.current.userInterfaceIdiom == .pad  {
@@ -204,7 +194,11 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
             selectedItemNumber =  phoneLine[indexPath.row]
 
         }
-
+        vc.interstitial = interstitial
+        if Utils.practiceAdCounter >= 5{
+            vc.isShowAd = true
+            
+        }
         
         vc.selectedItemNumber = selectedItemNumber
         vc.providesPresentationContextTransitionStyle = true;

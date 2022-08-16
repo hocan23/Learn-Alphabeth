@@ -21,7 +21,9 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     var selectedItemNumber : Int = 0
     var player : AVAudioPlayer?
     var bannerView: GADBannerView!
-    private var interstitial: GADInterstitialAd?
+    var interstitial: GADInterstitialAd?
+    var isShowAd = false
+    var isinAd = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,8 +50,9 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
         exitView.anchor(top: nil, bottom: view.bottomAnchor, leading: nil, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -view.frame.height*0.29, paddingLeft: 0, paddingRight: -view.frame.width*0.31, width: view.frame.height*0.07, height: view.frame.height*0.07)
        
         viewCard.layer.cornerRadius = 20
-       
+        if Utils.isPremium != "premium"{
         createAdd()
+        }
         bannerView = GADBannerView(adSize: GADAdSizeBanner)
         bannerView.adUnitID = Utils.bannerId
         bannerView.rootViewController = self
@@ -70,16 +73,35 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
             let touch = touches.first
             if touch?.view != self.viewCard && touch?.view != self.playView {
 
-              dismiss(animated: true)
-            }
+                if isShowAd==true{
+                if interstitial != nil {
+                    interstitial?.present(fromRootViewController: self)
+                    Utils.practiceAdCounter = 0
+                    Utils.isPopAd = true
+                    Utils.ispracticePopUpShowAd = true
+                } else {
+                    print("Ad wasn't ready")
+                    self.dismiss(animated: true)
+
+                }
+                }else{
+                    self.dismiss(animated: true)
+
+                }            }
         }
     
     
     override func viewWillAppear(_ animated: Bool) {
+        print(isinAd)
+        if Utils.isPopAd == true {
+            Utils.isPopAd = false
+            self.dismiss(animated: true)
+            
+        }else{
         letterImage.image=UIImage(named: "\(selectedItemNumber)")
         print("\(selectedItemNumber+1)p")
         playMusic(name: "\(selectedItemNumber)", type: "mp3")
-
+        }
     }
   
     @objc func playTapped(){
@@ -88,8 +110,20 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @objc func exitTapped(){
-        self.dismiss(animated: true)
-    }
+        if isShowAd==true{
+        if interstitial != nil {
+            interstitial?.present(fromRootViewController: self)
+            Utils.practiceAdCounter = 0
+            Utils.isPopAd = true
+        } else {
+            print("Ad wasn't ready")
+            self.dismiss(animated: true)
+
+        }
+        }else{
+            self.dismiss(animated: true)
+
+        }    }
     public func playMusic (name:String,type:String){
         
         if let player = player, player.isPlaying{
