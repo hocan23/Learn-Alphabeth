@@ -186,7 +186,7 @@ extension PracriceViewController : UICollectionViewDataSource,UICollectionViewDe
         
         tappedCounter+=1
         print(tappedCounter)
-        if tappedCounter >= 8{
+        if tappedCounter >= 5{
             if interstitial != nil {
                 interstitial?.present(fromRootViewController: self)
                 tappedCounter = 0

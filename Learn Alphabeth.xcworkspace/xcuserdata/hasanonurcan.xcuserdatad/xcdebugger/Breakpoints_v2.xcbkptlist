@@ -14,8 +14,8 @@
             filePath = "Learn Alphabeth/QuizViewControllers/QuizViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
             landmarkName = "midButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>

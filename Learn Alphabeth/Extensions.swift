@@ -87,6 +87,10 @@ class Utils{
     static var fullScreenAdId = "ca-app-pub-1501030234998564/1558605394"
     static var  bannerId = "ca-app-pub-1501030234998564/9245523725"
     static var isPremium = ""
+    static var isFirstOpen = true
+    static var viewcontrollerAddCounter = 0
+    static var practiceAdCounter = 0
+    static var ispracticePopUpShowAd = false
     static func saveLocal (array:[Alphabeth], key : String){
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(array) {
