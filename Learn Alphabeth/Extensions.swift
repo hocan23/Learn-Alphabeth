@@ -117,7 +117,15 @@ class Utils{
         return myarray
     }
   
-    
+    static func saveLocalad (array:String, key : String){
+    let defaults = UserDefaults.standard
+    defaults.set(array, forKey: key)
+}
+    static func readLocalad (key: String)->String{
+        let defaults = UserDefaults.standard
+        let myarray = defaults.string(forKey: key) ?? String()
+        return myarray
+    }
 
 }
 
