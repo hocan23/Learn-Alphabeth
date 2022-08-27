@@ -61,7 +61,6 @@ class ResultViewController: UIViewController {
         emptyLabel.isHidden = true
         setupConstraits()
         resultAnimation()
-        createAdd()
         if isFirst == true{
             isFirstStup()
             
@@ -138,6 +137,7 @@ class ResultViewController: UIViewController {
     }
     @objc func exitTapped (){
         homeView.zoomIn()
+        
         if interstitial != nil {
             interstitial?.present(fromRootViewController: self)
             isAd = true
@@ -397,14 +397,16 @@ extension ResultViewController: SKProductsRequestDelegate, SKPaymentTransactionO
                 SKPaymentQueue.default().finishTransaction(transaction)
                 Utils.saveLocal(array: "premium", key: "purchase")
                 Utils.isPremium = "premium"
-
+                removeView.isHidden = true
+                bannerView.isHidden = true
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
             case .restored:
                 print("restore")
                 Utils.saveLocal(array: "premium", key: "purchase")
                 Utils.isPremium = "premium"
-
+                removeView.isHidden = true
+                bannerView.isHidden = true
             case .deferred:
                 print("deffered")
             default: break
