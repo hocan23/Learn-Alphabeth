@@ -105,6 +105,7 @@ class PopupViewController: UIViewController, AVAudioPlayerDelegate {
     }
   
     @objc func playTapped(){
+        print(selectedItemNumber)
         playMusic(name: "\(selectedItemNumber)", type: "mp3")
 
     }

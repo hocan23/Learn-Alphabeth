@@ -158,7 +158,7 @@ extension SettingsViewController: SKProductsRequestDelegate, SKPaymentTransactio
                 SKPaymentQueue.default().finishTransaction(transaction)
                 Utils.saveLocal(array: "premium", key: "purchase")
                 Utils.isPremium = "premium"
-
+                bannerView.isHidden = true
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
@@ -166,6 +166,7 @@ extension SettingsViewController: SKProductsRequestDelegate, SKPaymentTransactio
                 print("restore")
                 Utils.saveLocal(array: "premium", key: "purchase")
                 Utils.isPremium = "premium"
+                bannerView.isHidden = true
             case .deferred:
                 print("deffered")
             default: break

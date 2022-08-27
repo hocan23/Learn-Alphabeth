@@ -393,14 +393,16 @@ extension ResultViewController: SKProductsRequestDelegate, SKPaymentTransactionO
                 SKPaymentQueue.default().finishTransaction(transaction)
                 Utils.saveLocal(array: "premium", key: "purchase")
                 Utils.isPremium = "premium"
-
+                removeView.isHidden = true
+                bannerView.isHidden = true
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
             case .restored:
                 print("restore")
                 Utils.saveLocal(array: "premium", key: "purchase")
                 Utils.isPremium = "premium"
-
+                removeView.isHidden = true
+                bannerView.isHidden = true
             case .deferred:
                 print("deffered")
             default: break

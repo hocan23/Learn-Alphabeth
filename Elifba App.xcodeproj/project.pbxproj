@@ -71,6 +71,7 @@
 		B76CA69E288D7F40006DFC72 /* 4s.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B76CA682288D7F40006DFC72 /* 4s.mp3 */; };
 		B76CA69F288D7F40006DFC72 /* 27s.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B76CA683288D7F40006DFC72 /* 27s.mp3 */; };
 		B76CA6A0288D7F40006DFC72 /* 6s.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B76CA684288D7F40006DFC72 /* 6s.mp3 */; };
+		B774E00128B137CE00BAB3F3 /* 25.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B774E00028B137CE00BAB3F3 /* 25.mp3 */; };
 		B7DD9F8E288F058100190268 /* 17.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F72288F058000190268 /* 17.mp3 */; };
 		B7DD9F8F288F058100190268 /* 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F73288F058000190268 /* 2.mp3 */; };
 		B7DD9F90288F058100190268 /* 20.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F74288F058000190268 /* 20.mp3 */; };
@@ -82,7 +83,6 @@
 		B7DD9F96288F058100190268 /* 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F7A288F058000190268 /* 1.mp3 */; };
 		B7DD9F97288F058100190268 /* 23.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F7B288F058000190268 /* 23.mp3 */; };
 		B7DD9F98288F058100190268 /* 21.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F7C288F058000190268 /* 21.mp3 */; };
-		B7DD9F99288F058100190268 /* 25.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F7D288F058000190268 /* 25.mp3 */; };
 		B7DD9F9A288F058100190268 /* 26.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F7E288F058000190268 /* 26.mp3 */; };
 		B7DD9F9B288F058100190268 /* 12.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F7F288F058000190268 /* 12.mp3 */; };
 		B7DD9F9C288F058100190268 /* 11.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DD9F80288F058000190268 /* 11.mp3 */; };
@@ -188,6 +188,7 @@
 		B76CA682288D7F40006DFC72 /* 4s.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 4s.mp3; sourceTree = "<group>"; };
 		B76CA683288D7F40006DFC72 /* 27s.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 27s.mp3; sourceTree = "<group>"; };
 		B76CA684288D7F40006DFC72 /* 6s.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 6s.mp3; sourceTree = "<group>"; };
+		B774E00028B137CE00BAB3F3 /* 25.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 25.mp3; path = "../../../../Downloads/ElifBa Assets/Elif-Ba Practice Sounds/25.mp3"; sourceTree = "<group>"; };
 		B7DD9F72288F058000190268 /* 17.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 17.mp3; sourceTree = "<group>"; };
 		B7DD9F73288F058000190268 /* 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2.mp3; sourceTree = "<group>"; };
 		B7DD9F74288F058000190268 /* 20.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 20.mp3; sourceTree = "<group>"; };
@@ -199,7 +200,6 @@
 		B7DD9F7A288F058000190268 /* 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1.mp3; sourceTree = "<group>"; };
 		B7DD9F7B288F058000190268 /* 23.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 23.mp3; sourceTree = "<group>"; };
 		B7DD9F7C288F058000190268 /* 21.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 21.mp3; sourceTree = "<group>"; };
-		B7DD9F7D288F058000190268 /* 25.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 25.mp3; sourceTree = "<group>"; };
 		B7DD9F7E288F058000190268 /* 26.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 26.mp3; sourceTree = "<group>"; };
 		B7DD9F7F288F058000190268 /* 12.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 12.mp3; sourceTree = "<group>"; };
 		B7DD9F80288F058000190268 /* 11.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 11.mp3; sourceTree = "<group>"; };
@@ -426,7 +426,7 @@
 				B7DD9F89288F058100190268 /* 22.mp3 */,
 				B7DD9F7B288F058000190268 /* 23.mp3 */,
 				B7DD9F81288F058000190268 /* 24.mp3 */,
-				B7DD9F7D288F058000190268 /* 25.mp3 */,
+				B774E00028B137CE00BAB3F3 /* 25.mp3 */,
 				B7DD9F7E288F058000190268 /* 26.mp3 */,
 				B7DD9F79288F058000190268 /* 27.mp3 */,
 				B7DD9F78288F058000190268 /* 28.mp3 */,
@@ -604,7 +604,6 @@
 				B7DD9F96288F058100190268 /* 1.mp3 in Resources */,
 				B7DD9F9C288F058100190268 /* 11.mp3 in Resources */,
 				B76CA692288D7F40006DFC72 /* 22s.mp3 in Resources */,
-				B7DD9F99288F058100190268 /* 25.mp3 in Resources */,
 				B7DD9FA1288F058100190268 /* 8.mp3 in Resources */,
 				7687D2E32875784F00ACBC00 /* Cera Pro Medium.ttf in Resources */,
 				7687D2E52875787900ACBC00 /* Cera Pro Bold.ttf in Resources */,
@@ -612,6 +611,7 @@
 				B7DD9F9E288F058100190268 /* 13.mp3 in Resources */,
 				B76CA689288D7F40006DFC72 /* 13s.mp3 in Resources */,
 				B7DD9FA6288F058100190268 /* 14.mp3 in Resources */,
+				B774E00128B137CE00BAB3F3 /* 25.mp3 in Resources */,
 				7C693FFD2870E72E0030BFDF /* Main.storyboard in Resources */,
 				B76CA695288D7F40006DFC72 /* 8s.mp3 in Resources */,
 				B7DD9FA7288F058100190268 /* 4.mp3 in Resources */,
@@ -964,7 +964,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -995,7 +995,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
