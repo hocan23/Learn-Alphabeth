@@ -103,7 +103,13 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         }else{
             createAdd()
             removeView.isHidden = false
-            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            if UIDevice.current.userInterfaceIdiom == .pad  {
+                bannerView = GADBannerView(adSize: GADAdSizeLeaderboard)
+
+            }else{
+                bannerView = GADBannerView(adSize: GADAdSizeBanner)
+
+            }
             bannerView.adUnitID = Utils.bannerId
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
@@ -171,16 +177,18 @@ class DetailViewController: UIViewController ,AVAudioPlayerDelegate{
         collectionAnimal.contentInset = UIEdgeInsets(top: 0, left:view.frame.width*0.15, bottom: 0, right: view.frame.width*0.15);
             autoNextBtn.anchor(top: nil, bottom: playBtn.topAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: 0, paddingRight: 0, width: view.frame.width*0.6, height: view.frame.height*0.08)
             autonextView.anchor(top: nil, bottom: playBtn.topAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: 0, paddingRight: 0, width: view.frame.width*0.6, height: view.frame.height*0.08)
+            bottomView.anchor(top: collectionAnimal.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -100, paddingLeft: 0, paddingRight: 0, width: 0, height:  view.frame.height*0.22)
         }else{
             collectionAnimal.contentInset = UIEdgeInsets(top: 0, left:view.frame.width*0.05, bottom: 0, right: view.frame.width*0.05);
             autoNextBtn.anchor(top: nil, bottom: playBtn.topAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: 0, paddingRight: 0, width: view.frame.width*0.7, height: view.frame.height*0.1)
             autonextView.anchor(top: nil, bottom: playBtn.topAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: -view.frame.height*0.025, paddingLeft: 0, paddingRight: 0, width: view.frame.width*0.7, height: view.frame.height*0.1)
+            bottomView.anchor(top: collectionAnimal.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -55, paddingLeft: 0, paddingRight: 0, width: 0, height:  view.frame.height*0.22)
         }
         topView.anchor(top: view.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.12)
         collectionAnimal.anchor(top: topView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: view.frame.height*0.66)
         print(view.bounds.height)
         print(view.frame.height*0.3)
-        bottomView.anchor(top: collectionAnimal.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingBottom: -55, paddingLeft: 0, paddingRight: 0, width: 0, height:  view.frame.height*0.22)
+     
         
         playBtn.anchor(top: nil, bottom: bottomView.bottomAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: view.frame.width*0.2, height: view.frame.height*0.09)
         playView.anchor(top: nil, bottom: bottomView.bottomAnchor, leading: nil, trailing: nil, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: view.frame.width*0.2, height: view.frame.height*0.09)
