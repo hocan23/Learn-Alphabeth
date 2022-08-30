@@ -63,7 +63,13 @@ class HomeViewController: UIViewController {
         }else{
             createAdd()
             removeView.isHidden = false
-            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            if UIDevice.current.userInterfaceIdiom == .pad  {
+                bannerView = GADBannerView(adSize: GADAdSizeLeaderboard)
+
+            }else{
+                bannerView = GADBannerView(adSize: GADAdSizeBanner)
+
+            }
             bannerView.adUnitID = Utils.bannerId
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
@@ -89,11 +95,11 @@ class HomeViewController: UIViewController {
     func setupConstraits (){
         print(view.frame.width)
         if UIDevice.current.userInterfaceIdiom == .pad  {
-            topLeftView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: 0, width: (view.frame.width)*0.35, height: view.frame.height*0.3)
-            topRightView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: topLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: -(view.frame.width)*0.1, width: (view.frame.width)*0.35, height: view.frame.height*0.3)
-            bottomLeftView.anchor(top: topLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop:view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: 40, width:  (view.frame.width)*0.35, height: view.frame.height*0.3)
-            bottomRightView.anchor(top: topRightView.bottomAnchor, bottom: nil, leading: bottomLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: (view.frame.width)*0.35, height: view.frame.height*0.3)
-            removeView.anchor(top: bottomLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -75, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: 0, height: 0)
+            topLeftView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: 0, width: (view.frame.width)*0.35, height: view.frame.height*0.29)
+            topRightView.anchor(top: headerView.bottomAnchor, bottom: nil, leading: topLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: -(view.frame.width)*0.1, width: (view.frame.width)*0.35, height: view.frame.height*0.29)
+            bottomLeftView.anchor(top: topLeftView.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil, paddingTop:view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: 40, width:  (view.frame.width)*0.35, height: view.frame.height*0.29)
+            bottomRightView.anchor(top: topRightView.bottomAnchor, bottom: nil, leading: bottomLeftView.trailingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: 0, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: (view.frame.width)*0.35, height: view.frame.height*0.29)
+            removeView.anchor(top: bottomLeftView.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.03, paddingBottom: -view.frame.height*0.03-100, paddingLeft: view.frame.width*0.1, paddingRight: -view.frame.width*0.1, width: 0, height: 0)
             headerView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.04, paddingBottom: 0, paddingLeft: view.frame.width*0.124, paddingRight: -view.frame.width*0.124, width: 0, height: view.frame.height*0.08)
             
             topLeftImage.anchor(top: topLeftView.topAnchor, bottom: topLeftView.bottomAnchor, leading: topLeftView.leadingAnchor, trailing: topLeftView.trailingAnchor, paddingTop: 10, paddingBottom:-10, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.16)

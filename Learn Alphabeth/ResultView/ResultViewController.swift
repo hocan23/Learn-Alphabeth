@@ -110,7 +110,7 @@ class ResultViewController: UIViewController {
         
         wrongView.anchor(top: collectionTop.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.02, paddingBottom: 0, paddingLeft: 10, paddingRight: -10, width: 0, height: view.frame.height*0.04)
         if UIDevice.current.userInterfaceIdiom == .pad  {
-            doneButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.025, paddingBottom: -65, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: view.frame.height*0.08)
+            doneButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.025, paddingBottom: -100, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: view.frame.height*0.08)
         }else{
             doneButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: view.frame.height*0.025, paddingBottom: -50, paddingLeft: view.frame.width*0.2, paddingRight: -view.frame.width*0.2, width: 0, height: view.frame.height*0.08)
         }
@@ -184,7 +184,14 @@ class ResultViewController: UIViewController {
             removeView.isHidden = true
         }else{
             removeView.isHidden = false
-            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            if UIDevice.current.userInterfaceIdiom == .pad  {
+                bannerView = GADBannerView(adSize: GADAdSizeLeaderboard)
+
+            }else{
+                bannerView = GADBannerView(adSize: GADAdSizeBanner)
+
+            }
+            
             bannerView.adUnitID = Utils.bannerId
             bannerView.rootViewController = self
             bannerView.load(GADRequest())

@@ -88,7 +88,13 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         }else{
             createAdd()
             removeView.isHidden = false
-            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            if UIDevice.current.userInterfaceIdiom == .pad  {
+                bannerView = GADBannerView(adSize: GADAdSizeLeaderboard)
+
+            }else{
+                bannerView = GADBannerView(adSize: GADAdSizeBanner)
+
+            }
             bannerView.adUnitID = Utils.bannerId
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
@@ -161,9 +167,9 @@ class QuizViewController: UIViewController, AVAudioPlayerDelegate {
         
         if UIDevice.current.userInterfaceIdiom == .pad  {
 
-        leftButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: nil, trailing: midButton.leadingAnchor, paddingTop: bottom1View.frame.height*0.1, paddingBottom: -75, paddingLeft:  0, paddingRight: -view.frame.width*0.05, width: view.frame.height*0.14, height: view.frame.height*0.14)
-        midButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -75, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.14, height: view.frame.height*0.14)
-        rightButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -75, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.14, height: view.frame.height*0.14)
+        leftButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: nil, trailing: midButton.leadingAnchor, paddingTop: bottom1View.frame.height*0.1, paddingBottom: -100, paddingLeft:  0, paddingRight: -view.frame.width*0.05, width: view.frame.height*0.13, height: view.frame.height*0.12)
+        midButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -100, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.13, height: view.frame.height*0.12)
+        rightButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: midButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -100, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.13, height: view.frame.height*0.12)
         }else{
             leftButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: nil, trailing: midButton.leadingAnchor, paddingTop: bottom1View.frame.height*0.1, paddingBottom: -55, paddingLeft:  0, paddingRight: -view.frame.width*0.05, width: view.frame.height*0.11, height: view.frame.height*0.11)
             midButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: leftButton.trailingAnchor, trailing: nil, paddingTop: 0, paddingBottom: -55, paddingLeft:  view.frame.width*0.05, paddingRight: 0, width: view.frame.height*0.11, height: view.frame.height*0.11)
