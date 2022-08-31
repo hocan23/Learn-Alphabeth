@@ -77,15 +77,15 @@ class HomeViewController: UIViewController {
             if Utils.readLocalad(key: "adcontrolforreview") == "true"{
                 DispatchQueue.main.asyncAfter(deadline: .now()+3) {
             
-                if Utils.isFirstOpen == true{
-                    if self.interstitial != nil {
-                        self.interstitial?.present(fromRootViewController: self)
-                        self.isAd = true
-                        Utils.isFirstOpen = false
-                    } else {
-                        print("Ad wasn't ready")
-                    }
-                }
+//                if Utils.isFirstOpen == true{
+//                    if self.interstitial != nil {
+//                        self.interstitial?.present(fromRootViewController: self)
+//                        self.isAd = true
+//                        Utils.isFirstOpen = false
+//                    } else {
+//                        print("Ad wasn't ready")
+//                    }
+//                }
                 }
             }
         }
